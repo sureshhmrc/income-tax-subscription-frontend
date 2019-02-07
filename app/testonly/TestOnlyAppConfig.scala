@@ -19,25 +19,26 @@
 package testonly
 
 import javax.inject.{Inject, Singleton}
-
 import core.config.FrontendAppConfig
 import play.api.{Configuration, Environment}
+import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
 class TestOnlyAppConfig @Inject()(configuration: Configuration,
-                                  environment: Environment) extends FrontendAppConfig(configuration, environment) {
+                                  environment: Environment,
+                                  config: ServicesConfig) extends FrontendAppConfig(configuration, config, environment) {
 
-  override lazy val ggAuthenticationURL: String = baseUrl("gg-authentication")
+  override lazy val ggAuthenticationURL: String = config.baseUrl("gg-authentication")
 
-  lazy val entityResolverURL: String = baseUrl("entity-resolver")
+  lazy val entityResolverURL: String = config.baseUrl("entity-resolver")
 
   lazy val protectedMicroServiceTestOnlyUrl = s"$protectedMicroServiceUrl/income-tax-subscription/test-only"
 
-  lazy val taxEnrolmentsURL: String = baseUrl("tax-enrolments")
+  lazy val taxEnrolmentsURL: String = config.baseUrl("tax-enrolments")
 
-  lazy val matchingStubsURL: String = baseUrl("matching-stubs")
+  lazy val matchingStubsURL: String = config.baseUrl("matching-stubs")
 
-  lazy val enrolmentStoreStubUrl: String = baseUrl("enrolment-store-stub")
+  lazy val enrolmentStoreStubUrl: String = config.baseUrl("enrolment-store-stub")
 
 }
 
