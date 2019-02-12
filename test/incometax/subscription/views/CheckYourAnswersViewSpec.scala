@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ import incometax.incomesource.models.{RentUkPropertyModel, WorkForYourselfModel}
 import incometax.subscription.models.{IncomeSourceType, IndividualSummary}
 import org.jsoup.nodes.{Document, Element}
 import org.scalatest.Matchers._
-import play.api.i18n.Messages.Implicits.applicationMessages
 import play.api.mvc.Call
 import play.api.test.FakeRequest
 import play.twirl.api.Html
@@ -70,7 +69,7 @@ class CheckYourAnswersViewSpec extends UnitTestTrait {
       isRegistration = isRegistration,
       postAction = postAction,
       backUrl = backUrl
-    )(FakeRequest(), applicationMessages, appConfig)
+    )(FakeRequest(), messagesProvider.messages, appConfig)
 
   def document(isRegistration: Boolean = false, testSummaryModel: IndividualSummary = testSummary): Document =
     page(isRegistration = isRegistration, testSummaryModel).doc

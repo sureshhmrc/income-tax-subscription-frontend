@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,10 @@ import agent.models.BusinessNameModel
 import agent.services.mocks.MockKeystoreService
 import agent.utils.TestModels._
 import core.config.featureswitch.FeatureSwitching
-import core.models.DateModel
 import incometax.incomesource.services.mocks.MockCurrentTimeService
 import incometax.subscription.models._
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers._
 
 class BusinessNameControllerSpec extends AgentControllerBaseSpec
@@ -40,7 +39,7 @@ class BusinessNameControllerSpec extends AgentControllerBaseSpec
 
   object TestBusinessNameController extends BusinessNameController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     MockKeystoreService,
     mockAuthService,
     mockCurrentTimeService

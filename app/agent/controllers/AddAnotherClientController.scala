@@ -17,23 +17,23 @@
 package agent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import agent.audit.Logging
 import agent.auth.{IncomeTaxAgentUser, StatelessController}
 import agent.services.KeystoreService
 import core.auth.AuthPredicate.AuthPredicate
 import core.config.BaseControllerConfig
 import core.services.AuthService
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class AddAnotherClientController @Inject()(override val baseConfig: BaseControllerConfig,
-                                           override val messagesApi: MessagesApi,
+                                           mcc: MessagesControllerComponents,
                                            keystore: KeystoreService,
                                            val authService: AuthService,
                                            logging: Logging
-                                          ) extends StatelessController {
+                                          ) extends StatelessController(mcc) {
 
   override val statelessDefaultPredicate: AuthPredicate[IncomeTaxAgentUser] = agent.auth.AuthPredicates.defaultPredicates
 

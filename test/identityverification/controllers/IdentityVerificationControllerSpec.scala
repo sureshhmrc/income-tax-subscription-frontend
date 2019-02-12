@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import core.audit.Logging
 import core.controllers.ControllerBaseSpec
 import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers._
 
 class IdentityVerificationControllerSpec extends ControllerBaseSpec {
@@ -33,7 +33,7 @@ class IdentityVerificationControllerSpec extends ControllerBaseSpec {
 
   object TestIdentityVerificationController extends IdentityVerificationController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     mockAuthService,
     app.injector.instanceOf[Logging]
   )

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import play.api.test.FakeRequest
 class IvFailedViewSpec extends ViewSpecTrait {
   val testUrl = "link/iv"
 
-  lazy val page = identityverification.views.html.iv_failed(testUrl)(FakeRequest(), applicationMessages, appConfig)
+  lazy val page = identityverification.views.html.iv_failed(testUrl)(FakeRequest(), messagesProvider.messages, appConfig)
 
   "The IV failed view spec" should {
     val testPage = TestView(

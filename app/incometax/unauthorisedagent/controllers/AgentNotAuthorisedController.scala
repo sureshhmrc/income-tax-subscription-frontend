@@ -16,23 +16,25 @@
 
 package incometax.unauthorisedagent.controllers
 
-import javax.inject.Inject
-
 import agent.services.KeystoreService
 import core.ITSASessionKeys
 import core.auth.AuthenticatedController
 import core.config.BaseControllerConfig
 import core.services.AuthService
 import incometax.unauthorisedagent.services.SubscriptionStoreRetrievalService
-import play.api.i18n.{I18nSupport, MessagesApi}
+import javax.inject.Inject
+import play.api.i18n.I18nSupport
+import play.api.mvc.MessagesControllerComponents
 import usermatching.userjourneys.ConfirmAgentSubscription
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 class AgentNotAuthorisedController @Inject()(val baseConfig: BaseControllerConfig,
-                                             val messagesApi: MessagesApi,
+                                             mcc: MessagesControllerComponents,
                                              val authService: AuthService,
                                              subscriptionStoreService: SubscriptionStoreRetrievalService,
                                              keystoreService: KeystoreService
-                                            ) extends AuthenticatedController[ConfirmAgentSubscription.type] with I18nSupport {
+                                            ) extends AuthenticatedController[ConfirmAgentSubscription.type](mcc) with I18nSupport {
   val show = Authenticated.async {
     implicit request =>
       user =>

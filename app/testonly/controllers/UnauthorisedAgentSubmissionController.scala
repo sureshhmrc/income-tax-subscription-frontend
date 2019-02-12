@@ -16,8 +16,6 @@
 
 package testonly.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import core.config.AppConfig
 import core.models.{Cash, DateModel}
 import core.services.AuthService
@@ -25,22 +23,24 @@ import core.utils.Implicits._
 import incometax.subscription.models._
 import incometax.unauthorisedagent.connectors.SubscriptionStoreConnector
 import incometax.unauthorisedagent.models.{StoreSubscriptionSuccess, StoredSubscription}
+import javax.inject.{Inject, Singleton}
 import play.api.data.Form
-import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, Request}
+import play.api.i18n.I18nSupport
+import play.api.mvc.{MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import testonly.forms.UnauthorisedAgentSubmissionForm
 import testonly.models.UnauthorisedAgentSubmissionModel
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
+import scala.concurrent.ExecutionContext.Implicits.global
 //$COVERAGE-OFF$Disabling scoverage on this class as it is only intended to be used by the test only controller
 
 @Singleton
 class UnauthorisedAgentSubmissionController @Inject()(implicit val applicationConfig: AppConfig,
-                                                      val messagesApi: MessagesApi,
+                                                      mcc: MessagesControllerComponents,
                                                       val subscriptionStoreConnector: SubscriptionStoreConnector,
                                                       val authService: AuthService
-                                                     ) extends FrontendController with I18nSupport {
+                                                     ) extends FrontendController(mcc) with I18nSupport {
 
   def view(unauthorisedAgentSubmissionForm: Form[UnauthorisedAgentSubmissionModel])(implicit request: Request[_]): Html =
     testonly.views.html.unauthorised_agent_submission(

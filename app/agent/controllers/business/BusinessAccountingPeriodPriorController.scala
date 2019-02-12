@@ -16,8 +16,6 @@
 
 package agent.controllers.business
 
-import javax.inject.{Inject, Singleton}
-
 import agent.auth.AuthenticatedController
 import agent.forms.AccountingPeriodPriorForm
 import agent.models.AccountingPeriodPriorModel
@@ -26,19 +24,20 @@ import core.config.BaseControllerConfig
 import core.models.{No, Yes}
 import core.services.AuthService
 import core.utils.Implicits._
+import javax.inject.{Inject, Singleton}
 import play.api.data.Form
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import play.api.mvc._
 import play.twirl.api.Html
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class BusinessAccountingPeriodPriorController @Inject()(val baseConfig: BaseControllerConfig,
-                                                        val messagesApi: MessagesApi,
+                                                        mcc: MessagesControllerComponents,
                                                         val keystoreService: KeystoreService,
                                                         val authService: AuthService
-                                                       ) extends AuthenticatedController {
+                                                       ) extends AuthenticatedController(mcc) {
 
   def view(accountingPeriodPriorForm: Form[AccountingPeriodPriorModel], isEditMode: Boolean)(implicit request: Request[_]): Future[Html] =
     backUrl.map { backUrl =>

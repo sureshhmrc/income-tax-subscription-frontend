@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ class BusinessRegisterNextAccountingPeriodViewSpec extends ViewSpecTrait {
   lazy val page = agent.views.html.business.register_next_accounting_period(
     postAction = action,
     backUrl = backUrl
-  )(request, applicationMessages, appConfig)
+  )(request, messagesProvider.messages, appConfig)
 
   "The 'Register Next Accounting Period' view" should {
     val testPage = TestView(

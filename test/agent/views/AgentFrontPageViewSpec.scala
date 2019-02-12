@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ class AgentFrontPageViewSpec extends ViewSpecTrait {
 
   lazy val page = agent.views.html.agent_frontpage(
     getAction = action
-  )(FakeRequest(), applicationMessages, appConfig)
+  )(FakeRequest(), messagesProvider.messages, appConfig)
 
   lazy val document = Jsoup.parse(page.body)
 

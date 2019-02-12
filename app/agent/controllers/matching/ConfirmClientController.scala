@@ -16,8 +16,6 @@
 
 package agent.controllers.matching
 
-import javax.inject.{Inject, Singleton}
-
 import agent.auth.AgentJourneyState._
 import agent.auth._
 import agent.controllers.ITSASessionKeys
@@ -25,7 +23,7 @@ import agent.controllers.ITSASessionKeys.FailedClientMatching
 import agent.services._
 import core.config.BaseControllerConfig
 import core.services.AuthService
-import play.api.i18n.MessagesApi
+import javax.inject.{Inject, Singleton}
 import play.api.mvc._
 import play.twirl.api.Html
 import uk.gov.hmrc.http.InternalServerException
@@ -36,14 +34,16 @@ import scala.concurrent.Future
 import scala.concurrent.Future.{failed, successful}
 import scala.util.Left
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 
 @Singleton
 class ConfirmClientController @Inject()(val baseConfig: BaseControllerConfig,
-                                        val messagesApi: MessagesApi,
+                                        mcc: MessagesControllerComponents,
                                         val agentQualificationService: AgentQualificationService,
                                         val authService: AuthService,
                                         val lockOutService: UserLockoutService
-                                       ) extends UserMatchingController {
+                                       ) extends UserMatchingController(mcc) {
 
   def view(userDetailsModel: UserDetailsModel)(implicit request: Request[_]): Html =
     agent.views.html.check_your_client_details(

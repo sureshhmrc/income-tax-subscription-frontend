@@ -17,7 +17,6 @@
 package agent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import agent.auth.AuthenticatedController
 import agent.forms.IncomeSourceForm
 import agent.services.KeystoreService
@@ -27,18 +26,19 @@ import core.services.AuthService
 import core.utils.Implicits._
 import incometax.util.AccountingPeriodUtil
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import uk.gov.hmrc.http.InternalServerException
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class TermsController @Inject()(val baseConfig: BaseControllerConfig,
-                                val messagesApi: MessagesApi,
+                                mcc: MessagesControllerComponents,
                                 val keystoreService: KeystoreService,
                                 val authService: AuthService
-                               ) extends AuthenticatedController {
+                               ) extends AuthenticatedController(mcc) {
 
   def view(backUrl: String, taxEndYear: Int)(implicit request: Request[_]): Html =
     agent.views.html.terms(

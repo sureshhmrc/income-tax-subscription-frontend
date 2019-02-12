@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import core.views.html.helpers
 class CheckboxHelperSpec extends UnitTestTrait {
 
   private def checkboxHelper(field: Field, label: String)
-  = helpers.checkboxHelper(field, label)(applicationMessages)
+  = helpers.checkboxHelper(field, label)(messagesProvider.messages)
 
   case class TestData(checked: Boolean)
 

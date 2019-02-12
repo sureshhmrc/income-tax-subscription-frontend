@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import agent.utils.TestModels
 import agent.utils.TestModels.testCacheMap
 import incometax.unauthorisedagent.services.mocks.MockSubscriptionStorePersistenceService
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import play.api.mvc._
 import play.api.test.Helpers._
 import uk.gov.hmrc.domain.Generator
 import uk.gov.hmrc.http.InternalServerException
@@ -49,7 +49,7 @@ class CheckYourAnswersControllerSpec extends AgentControllerBaseSpec
 
   object TestCheckYourAnswersController extends CheckYourAnswersController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     MockKeystoreService,
     subscriptionService = mockSubscriptionOrchestrationService,
     clientRelationshipService = mockClientRelationshipService,

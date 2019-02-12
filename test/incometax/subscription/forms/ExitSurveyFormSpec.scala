@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +17,12 @@
 package incometax.subscription.forms
 
 import assets.MessageLookup
+import core.forms.FormBaseSpec
 import core.forms.validation.ErrorMessageFactory
 import core.forms.validation.testutils._
 import incometax.subscription.models.ExitSurveyModel
-import org.scalatestplus.play.PlaySpec
-import org.scalatestplus.play.guice.GuiceOneAppPerTest
-import play.api.i18n.Messages.Implicits._
 
-class ExitSurveyFormSpec extends PlaySpec with GuiceOneAppPerTest {
+class ExitSurveyFormSpec extends FormBaseSpec {
 
   import incometax.subscription.forms.ExitSurveyForm._
 

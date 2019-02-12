@@ -16,18 +16,17 @@
 
 package incometax.subscription.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import core.auth.PostSubmissionController
 import core.config.BaseControllerConfig
 import core.services.AuthService
-import play.api.i18n.MessagesApi
+import javax.inject.{Inject, Singleton}
+import play.api.mvc.MessagesControllerComponents
 
 @Singleton
 class AlreadyEnrolledController @Inject()(val baseConfig: BaseControllerConfig,
-                                          val messagesApi: MessagesApi,
+                                          mcc: MessagesControllerComponents,
                                           val authService: AuthService
-                                         ) extends PostSubmissionController {
+                                         ) extends PostSubmissionController(mcc) {
 
   val show = Authenticated { implicit request =>
     user => Ok(incometax.subscription.views.html.enrolled.already_enrolled())

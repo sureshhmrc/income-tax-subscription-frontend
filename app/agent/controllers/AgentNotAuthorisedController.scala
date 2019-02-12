@@ -17,21 +17,19 @@
 package agent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import agent.auth.AgentJourneyState._
 import agent.auth.{AgentUserMatched, IncomeTaxAgentUser, UnauthorisedAgentController}
 import cats.implicits._
 import core.auth.AuthPredicate.AuthPredicate
 import core.config.BaseControllerConfig
 import core.services.AuthService
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import usermatching.utils.UserMatchingSessionUtil._
 
 @Singleton
 class AgentNotAuthorisedController @Inject()(val baseConfig: BaseControllerConfig,
-                                             val messagesApi: MessagesApi,
-                                             val authService: AuthService) extends UnauthorisedAgentController {
+                                             mcc: MessagesControllerComponents,
+                                             val authService: AuthService) extends UnauthorisedAgentController(mcc) {
 
   override val unauthorisedDefaultPredicate: AuthPredicate[IncomeTaxAgentUser] =
     agent.auth.AuthPredicates.unauthorisedUserMatchingPredicates |+| agent.auth.AuthPredicates.userMatchingJourneyPredicate |+| agent.auth.AuthPredicates.notSubmitted

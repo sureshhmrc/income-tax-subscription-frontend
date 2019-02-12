@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import incometax.unauthorisedagent.services.mocks.MockSubscriptionStoreRetrieval
 import org.jsoup.Jsoup
 import play.api.i18n.Messages
 import play.api.i18n.Messages.Implicits._
-import play.api.mvc.{Action, AnyContent, AnyContentAsEmpty}
+import play.api.mvc.{Action, AnyContent, AnyContentAsEmpty, MessagesControllerComponents}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import uk.gov.hmrc.http.{HttpResponse, NotFoundException}
@@ -45,7 +45,7 @@ class AgentNotAuthorisedControllerSpec extends ControllerBaseSpec
 
   object TestAgentNotAuthorisedController extends AgentNotAuthorisedController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     mockAuthService,
     mockSubscriptionStoreRetrievalService,
     MockKeystoreService

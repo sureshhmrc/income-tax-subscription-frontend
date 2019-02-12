@@ -16,26 +16,25 @@
 
 package incometax.incomesource.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import core.audit.Logging
 import core.auth.SignUpController
 import core.config.BaseControllerConfig
 import core.services.CacheUtil._
 import core.services.{AuthService, KeystoreService}
 import incometax.subscription.models.{Both, Business, Property}
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent}
+import javax.inject.{Inject, Singleton}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class OtherIncomeErrorController @Inject()(val baseConfig: BaseControllerConfig,
-                                           val messagesApi: MessagesApi,
+                                           mcc: MessagesControllerComponents,
                                            val keystoreService: KeystoreService,
                                            val logging: Logging,
                                            val authService: AuthService
-                                          ) extends SignUpController {
+                                          ) extends SignUpController(mcc) {
 
   val show = Action.async { implicit request =>
     Future.successful(Ok(incometax.incomesource.views.html.other_income_error(

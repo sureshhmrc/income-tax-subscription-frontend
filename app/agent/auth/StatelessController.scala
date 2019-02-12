@@ -18,9 +18,10 @@ package agent.auth
 
 import core.auth.AuthPredicate.AuthPredicate
 import core.auth.BaseFrontendController
+import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.auth.core.{AffinityGroup, ConfidenceLevel, CredentialRole, Enrolments}
 
-trait StatelessController extends BaseFrontendController {
+abstract class StatelessController(override val mcc: MessagesControllerComponents) extends BaseFrontendController(mcc) {
 
   protected val statelessDefaultPredicate: AuthPredicate[IncomeTaxAgentUser] = agent.auth.AuthPredicates.homePredicates
 

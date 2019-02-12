@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ package agent.controllers
 import agent.assets.MessageLookup.{ClientAlreadySubscribed => messages}
 import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers._
 
 class ClientAlreadySubscribedControllerSpec extends AgentControllerBaseSpec {
@@ -32,7 +32,7 @@ class ClientAlreadySubscribedControllerSpec extends AgentControllerBaseSpec {
 
   object TestClientAlreadySubscribedController extends ClientAlreadySubscribedController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     mockAuthService
   )
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import play.api.http.Status._
 import play.api.i18n.MessagesApi
 import play.api.libs.json.JsValue
 import play.api.mvc.{AnyContent, Request}
+import play.api.test.FakeRequest
 
 import scala.concurrent.Future
 
@@ -47,7 +48,7 @@ trait MockPreferenceFrontendConnector extends MockTrait {
   def mockCheckPaperlessException(token: String): Unit = mockCheckPaperless(token)(Future.failed(testException))
 
   def mockChoosePaperlessUrl(url: String): Unit =
-    when(mockPreferenceFrontendConnector.choosePaperlessUrl) thenReturn url
+    when(mockPreferenceFrontendConnector.choosePaperlessUrl(FakeRequest())) thenReturn url
 
 }
 

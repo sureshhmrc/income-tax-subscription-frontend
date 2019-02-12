@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,13 +21,13 @@ import agent.controllers.AgentControllerBaseSpec
 import agent.forms.AccountingPeriodDateForm
 import agent.services.mocks.MockKeystoreService
 import agent.utils.TestModels._
-import core.config.featureswitch.{FeatureSwitching}
+import core.config.featureswitch.FeatureSwitching
 import core.models.DateModel
 import incometax.business.models.AccountingPeriodModel
 import incometax.util.AccountingPeriodUtil
 import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
@@ -42,7 +42,7 @@ class BusinessAccountingPeriodDateControllerSpec extends AgentControllerBaseSpec
 
   object TestBusinessAccountingPeriodController extends BusinessAccountingPeriodDateController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     MockKeystoreService,
     mockAuthService
   )

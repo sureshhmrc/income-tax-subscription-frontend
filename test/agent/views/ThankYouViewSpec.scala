@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ class ThankYouViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
 
-  lazy val page = agent.views.html.feedback_thank_you()(FakeRequest(), applicationMessages, appConfig)
+  lazy val page = agent.views.html.feedback_thank_you()(FakeRequest(), messagesProvider.messages, appConfig)
 
   "The Thank You Page view" should {
 

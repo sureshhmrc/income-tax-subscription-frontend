@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import core.config.{BaseControllerConfig, MockConfig}
 import org.jsoup.Jsoup
 import org.mockito.Mockito.reset
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
@@ -45,7 +45,7 @@ class HomeControllerSpec extends AgentControllerBaseSpec {
 
   private def testHomeController(showGuidance: Boolean) = new HomeController(
     mockBaseControllerConfig(showGuidance),
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     mockAuthService,
     app.injector.instanceOf[Logging]
   )

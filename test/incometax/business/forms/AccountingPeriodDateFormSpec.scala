@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,16 +19,15 @@ package incometax.business.forms
 import java.time.LocalDate
 
 import assets.MessageLookup
+import core.forms.FormBaseSpec
 import core.forms.submapping.DateMapping
 import core.forms.validation.ErrorMessageFactory
 import core.forms.validation.testutils.{DataMap, _}
 import core.models.DateModel
 import incometax.business.models.AccountingPeriodModel
 import org.scalatest.Matchers._
-import org.scalatestplus.play.{OneAppPerTest, PlaySpec}
-import play.api.i18n.Messages.Implicits._
 
-class AccountingPeriodDateFormSpec extends PlaySpec with OneAppPerTest {
+class AccountingPeriodDateFormSpec extends FormBaseSpec {
 
   import DateMapping._
   import incometax.business.forms.AccountingPeriodDateForm._

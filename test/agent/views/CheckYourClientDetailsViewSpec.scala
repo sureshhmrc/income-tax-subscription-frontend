@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ import agent.views.html.helpers.ConfirmClientIdConstants._
 import core.utils.{TestModels, UnitTestTrait}
 import org.jsoup.nodes.{Document, Element}
 import org.scalatest.Matchers._
-import play.api.i18n.Messages.Implicits.applicationMessages
 import play.api.mvc.Call
 import play.api.test.FakeRequest
 import play.twirl.api.Html
@@ -48,7 +47,7 @@ class CheckYourClientDetailsViewSpec extends UnitTestTrait {
     userDetailsModel = testClientDetails,
     postAction = postAction,
     backUrl = backUrl
-  )(FakeRequest(), applicationMessages, appConfig)
+  )(FakeRequest(), messagesProvider.messages, appConfig)
 
   def document(): Document = page().doc
 

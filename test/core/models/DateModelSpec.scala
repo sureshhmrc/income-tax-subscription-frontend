@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,12 @@ package core.models
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 import org.scalatest.Matchers._
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice.GuiceOneServerPerSuite
-import play.api.i18n.{Lang, Messages, MessagesApi}
+import play.api.i18n.{Lang, Messages, MessagesApi, MessagesImpl}
 
 class DateModelSpec extends PlaySpec with GuiceOneServerPerSuite{
 
@@ -50,8 +51,8 @@ class DateModelSpec extends PlaySpec with GuiceOneServerPerSuite{
     }
     "should display the date in the user's chosen language" when {
      lazy val messagesApi = app.injector.instanceOf[MessagesApi]
-     lazy val messagesEnglish = new Messages(new Lang("en"), messagesApi)
-     lazy val messagesWelsh = new Messages(new Lang("cy"), messagesApi)
+     lazy val messagesEnglish = new MessagesImpl(new Lang(Locale.ENGLISH), messagesApi)
+     lazy val messagesWelsh = new MessagesImpl(new Lang(Locale.forLanguageTag("CY")), messagesApi)
       "locale is in English" in {
         date.toCheckYourAnswersDateFormat(messagesEnglish) shouldBe "1 February 2017"
       }

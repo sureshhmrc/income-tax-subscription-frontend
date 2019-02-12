@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,9 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice.GuiceOneServerPerSuite
-import play.api.i18n.MessagesApi
+import play.api.i18n.{MessagesApi, MessagesImpl, MessagesProvider}
+import play.api.mvc.MessagesControllerComponents
+import play.i18n.Lang
 import play.twirl.api.Html
 
 import scala.concurrent.{ExecutionContextExecutor, Future}
@@ -46,6 +48,10 @@ trait UnitTestTrait extends PlaySpec with GuiceOneServerPerSuite with Implicits 
 
   implicit val appConfig: AppConfig = MockConfig
 
-  implicit lazy val messagesApi = app.injector.instanceOf[MessagesApi]
+  implicit lazy val mcc = app.injector.instanceOf[MessagesControllerComponents]
+
+  implicit val messagesProvider: MessagesProvider = {
+    MessagesImpl(app.injector.instanceOf[Lang], app.injector.instanceOf[MessagesApi])
+  }
 
 }

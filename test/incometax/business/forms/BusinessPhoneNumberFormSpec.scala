@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,16 +17,14 @@
 package incometax.business.forms
 
 import assets.MessageLookup
+import core.forms.FormBaseSpec
 import core.forms.validation.ErrorMessageFactory
 import core.forms.validation.testutils._
 import core.utils.TestConstants._
 import incometax.business.models.BusinessPhoneNumberModel
 import org.scalatest.Matchers._
-import org.scalatestplus.play.PlaySpec
-import org.scalatestplus.play.guice.GuiceOneAppPerSuite
-import play.api.i18n.Messages.Implicits._
 
-class BusinessPhoneNumberFormSpec extends PlaySpec with GuiceOneAppPerSuite {
+class BusinessPhoneNumberFormSpec extends FormBaseSpec {
 
   import incometax.business.forms.BusinessPhoneNumberForm._
 

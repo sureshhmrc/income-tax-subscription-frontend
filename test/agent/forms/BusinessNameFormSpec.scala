@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,13 @@ import agent.assets.MessageLookup
 import core.forms.validation.ErrorMessageFactory
 import core.forms.validation.testutils.{DataMap, _}
 import agent.models.BusinessNameModel
+import core.forms.FormBaseSpec
 import org.scalatest.Matchers._
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.i18n.Messages.Implicits._
 
-class BusinessNameFormSpec extends PlaySpec with GuiceOneAppPerSuite {
+class BusinessNameFormSpec extends FormBaseSpec {
 
   import BusinessNameForm._
 

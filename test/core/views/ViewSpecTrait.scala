@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,8 +25,10 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.{Document, Element}
 import org.jsoup.select.Elements
 import play.api.data.Form
-import play.api.mvc.Call
+import play.api.i18n.{MessagesApi, MessagesImpl, MessagesProvider}
+import play.api.mvc.{AnyContentAsEmpty, Call}
 import play.api.test.FakeRequest
+import play.i18n.Lang
 import play.twirl.api.Html
 
 

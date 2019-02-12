@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import assets.MessageLookup.{OtherIncome => messages}
 import core.forms.submapping.YesNoMapping
 import core.views.ViewSpecTrait
 import incometax.incomesource.forms.OtherIncomeForm
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class OtherIncomeViewSpec extends ViewSpecTrait {
@@ -34,7 +33,7 @@ class OtherIncomeViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode = isEditMode
-  )(FakeRequest(), applicationMessages, appConfig)
+  )(FakeRequest(), messagesProvider.messages, appConfig)
 
   "The Other Income View" should {
 

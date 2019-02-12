@@ -17,7 +17,6 @@
 package agent.controllers.business
 
 import javax.inject.{Inject, Singleton}
-
 import agent.auth.AuthenticatedController
 import agent.forms._
 import agent.models.enums._
@@ -31,18 +30,19 @@ import incometax.business.models.AccountingPeriodModel
 import incometax.subscription.models.IncomeSourceType
 import play.api.data.Form
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import uk.gov.hmrc.http.InternalServerException
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class BusinessAccountingPeriodDateController @Inject()(val baseConfig: BaseControllerConfig,
-                                                       val messagesApi: MessagesApi,
+                                                       mcc: MessagesControllerComponents,
                                                        val keystoreService: KeystoreService,
                                                        val authService: AuthService
-                                                      ) extends AuthenticatedController {
+                                                      ) extends AuthenticatedController(mcc) {
 
   def view(form: Form[AccountingPeriodModel], backUrl: String, isEditMode: Boolean, viewType: AccountingPeriodViewType)(implicit request: Request[_]): Html =
     agent.views.html.business.accounting_period_date(

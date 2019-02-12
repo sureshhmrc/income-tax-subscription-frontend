@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package agent.controllers
 
 import agent.audit.Logging
 import agent.services.mocks.MockKeystoreService
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers._
 import uk.gov.hmrc.http.{HttpResponse, NotFoundException}
 
@@ -33,7 +33,7 @@ class AddAnotherClientControllerSpec extends AgentControllerBaseSpec
 
   object TestAddAnotherClientController extends AddAnotherClientController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     MockKeystoreService,
     mockAuthService,
     app.injector.instanceOf[Logging]

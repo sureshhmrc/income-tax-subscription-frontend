@@ -16,32 +16,31 @@
 
 package incometax.unauthorisedagent.controllers
 
-import javax.inject.{Inject, Singleton}
-
+import agent.services.CacheUtil._
 import core.ITSASessionKeys
+import core.ITSASessionKeys.AgentReferenceNumber
 import core.auth.UnauthorisedAgentSubscriptionController
 import core.config.BaseControllerConfig
-import agent.services.CacheUtil._
-import core.ITSASessionKeys.AgentReferenceNumber
 import core.services.{AuthService, KeystoreService}
 import incometax.subscription.models.SubscriptionSuccess
 import incometax.subscription.services.SubscriptionOrchestrationService
 import incometax.unauthorisedagent.services.SubscriptionStoreRetrievalService
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent}
+import javax.inject.{Inject, Singleton}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.http.{HeaderCarrier, InternalServerException}
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 /**/
 @Singleton
 class UnauthorisedSubscriptionController @Inject()(val baseConfig: BaseControllerConfig,
-                                                   val messagesApi: MessagesApi,
+                                                   mcc: MessagesControllerComponents,
                                                    val authService: AuthService,
                                                    keystoreService: KeystoreService,
                                                    subscriptionStoreRetrievalService: SubscriptionStoreRetrievalService,
                                                    subscriptionOrchestrationService: SubscriptionOrchestrationService
-                                                  ) extends UnauthorisedAgentSubscriptionController {
+                                                  ) extends UnauthorisedAgentSubscriptionController(mcc) {
 
 
   def subscribeUnauthorised: Action[AnyContent] = Authenticated.async { implicit req =>

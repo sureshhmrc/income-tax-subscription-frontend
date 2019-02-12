@@ -16,13 +16,13 @@
 
 package core.auth
 
-import play.api.mvc.Action
+import play.api.mvc.{Action, MessagesControllerComponents}
 import uk.gov.hmrc.auth.core.{AffinityGroup, ConfidenceLevel, CredentialRole, Enrolments}
 import uk.gov.hmrc.http.NotFoundException
 
 import scala.concurrent.Future
 
-trait UnauthorisedAgentSubscriptionController extends BaseFrontendController {
+abstract class UnauthorisedAgentSubscriptionController(override val mcc: MessagesControllerComponents) extends BaseFrontendController(mcc) {
 
   object Authenticated extends AuthenticatedActions[IncomeTaxSAUser] {
 

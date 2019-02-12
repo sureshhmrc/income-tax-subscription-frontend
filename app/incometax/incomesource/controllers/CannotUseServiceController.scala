@@ -16,21 +16,19 @@
 
 package incometax.incomesource.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import core.auth.StatelessController
 import core.config.BaseControllerConfig
 import core.services.AuthService
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent}
+import javax.inject.{Inject, Singleton}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 
 import scala.concurrent.Future
 
 @Singleton
 class CannotUseServiceController @Inject()(val baseConfig: BaseControllerConfig,
-                                           val messagesApi: MessagesApi,
+                                           mcc: MessagesControllerComponents,
                                            val authService: AuthService
-                                          ) extends StatelessController {
+                                          ) extends StatelessController(mcc) {
 
   val show: Action[AnyContent] = Authenticated.asyncUnrestricted { implicit request =>
     implicit user =>

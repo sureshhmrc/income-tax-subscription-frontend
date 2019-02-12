@@ -16,7 +16,6 @@
 
 package core.auth
 
-import agent.auth.IncomeTaxAgentUser
 import core.auth.AuthPredicate._
 import core.auth.JourneyState.{RequestFunctions, SessionFunctions}
 import core.config.BaseControllerConfig
@@ -32,7 +31,8 @@ import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-trait BaseFrontendController extends FrontendController with I18nSupport with AuthPredicates {
+abstract class BaseFrontendController(val mcc: MessagesControllerComponents)
+  extends FrontendController(mcc) with AuthPredicates with I18nSupport{
 
   val authService: AuthService
   val baseConfig: BaseControllerConfig

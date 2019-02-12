@@ -16,23 +16,21 @@
 
 package agent.controllers.business
 
-import javax.inject.{Inject, Singleton}
-
 import agent.auth.AuthenticatedController
-import core.config.BaseControllerConfig
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
-import play.twirl.api.Html
 import agent.services.KeystoreService
+import core.config.BaseControllerConfig
 import core.services.AuthService
 import core.utils.Implicits._
+import javax.inject.{Inject, Singleton}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
+import play.twirl.api.Html
 
 @Singleton
 class RegisterNextAccountingPeriodController @Inject()(val baseConfig: BaseControllerConfig,
-                                                       val messagesApi: MessagesApi,
+                                                       mcc: MessagesControllerComponents,
                                                        val keystoreService: KeystoreService,
                                                        val authService: AuthService
-                                                      ) extends AuthenticatedController {
+                                                      ) extends AuthenticatedController(mcc) {
 
   def view()(implicit request: Request[AnyContent]): Html =
     agent.views.html.business.register_next_accounting_period(

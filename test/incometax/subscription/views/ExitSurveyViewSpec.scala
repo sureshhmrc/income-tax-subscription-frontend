@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,9 @@
 
 package incometax.subscription.views
 
-import assets.MessageLookup.{Base => common, ExitSurvey => messages}
+import assets.MessageLookup.{ExitSurvey => messages}
 import core.views.ViewSpecTrait
 import incometax.subscription.forms.ExitSurveyForm
-import play.api.i18n.Messages.Implicits.applicationMessages
 import play.api.test.FakeRequest
 
 
@@ -30,7 +29,7 @@ class ExitSurveyViewSpec extends ViewSpecTrait {
   lazy val page = incometax.subscription.views.html.exit_survey(
     exitSurveyForm = ExitSurveyForm.exitSurveyForm.form,
     postAction = action
-  )(FakeRequest(), applicationMessages, appConfig)
+  )(FakeRequest(), messagesProvider.messages, appConfig)
 
   "The Exit Survey Page view" should {
 

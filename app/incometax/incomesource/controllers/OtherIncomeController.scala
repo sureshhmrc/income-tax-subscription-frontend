@@ -16,8 +16,6 @@
 
 package incometax.incomesource.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import core.audit.Logging
 import core.auth.SignUpController
 import core.config.BaseControllerConfig
@@ -27,20 +25,22 @@ import core.services.{AuthService, KeystoreService}
 import incometax.incomesource.forms.OtherIncomeForm
 import incometax.incomesource.services.CurrentTimeService
 import incometax.subscription.models.{Both, Business, IncomeSourceType, Property}
+import javax.inject.{Inject, Singleton}
 import play.api.data.Form
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import play.api.mvc._
 import play.twirl.api.Html
 import uk.gov.hmrc.http.cache.client.CacheMap
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 @Singleton
 class OtherIncomeController @Inject()(val baseConfig: BaseControllerConfig,
-                                      val messagesApi: MessagesApi,
+                                      mcc: MessagesControllerComponents,
                                       val keystoreService: KeystoreService,
                                       val logging: Logging,
                                       val authService: AuthService,
                                       val currentTimeService: CurrentTimeService
-                                     ) extends SignUpController {
+                                     ) extends SignUpController(mcc) {
 
   def view(otherIncomeForm: Form[YesNo], backUrl: String, isEditMode: Boolean)(implicit request: Request[_]): Html =
     incometax.incomesource.views.html.other_income(

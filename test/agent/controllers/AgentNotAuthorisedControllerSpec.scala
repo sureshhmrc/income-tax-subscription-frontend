@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import agent.utils.TestModels
 import core.config.MockConfig
 import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers._
 import usermatching.utils.UserMatchingTestSupport
 
@@ -38,7 +38,7 @@ class AgentNotAuthorisedControllerSpec extends AgentControllerBaseSpec
     mockBaseControllerConfig(new MockConfig {
       override val unauthorisedAgentEnabled = enableMatchingFeature
     }),
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     mockAuthService
   )
 

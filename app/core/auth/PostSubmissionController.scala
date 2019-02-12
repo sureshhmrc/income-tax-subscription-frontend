@@ -16,10 +16,10 @@
 
 package core.auth
 
-import agent.auth.IncomeTaxAgentUser
+import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.auth.core.{AffinityGroup, ConfidenceLevel, CredentialRole, Enrolments}
 
-trait PostSubmissionController extends BaseFrontendController {
+abstract class PostSubmissionController(override val  mcc: MessagesControllerComponents) extends BaseFrontendController(mcc) {
 
   object Authenticated extends AuthenticatedActions[IncomeTaxSAUser] {
     override def userApply: (Enrolments, Option[AffinityGroup], Option[CredentialRole], ConfidenceLevel) => IncomeTaxSAUser = IncomeTaxSAUser.apply

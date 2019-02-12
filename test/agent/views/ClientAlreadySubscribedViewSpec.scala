@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ class ClientAlreadySubscribedViewSpec extends ViewSpecTrait {
   val action = ViewSpecTrait.testCall
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.client_already_subscribed(action)(request, applicationMessages, appConfig)
+  lazy val page = agent.views.html.client_already_subscribed(action)(request, messagesProvider.messages, appConfig)
 
   "The Client Already Enrolled view" should {
     val testPage = TestView(

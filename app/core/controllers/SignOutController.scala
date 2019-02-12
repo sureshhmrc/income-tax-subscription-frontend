@@ -17,22 +17,23 @@
 package core.controllers
 
 import java.net.URLEncoder
-import javax.inject.{Inject, Singleton}
 
 import core.config.AppConfig
 import core.services.AuthService
-import play.api.mvc.{Action, AnyContent, Call, Request}
+import javax.inject.{Inject, Singleton}
+import play.api.mvc._
 import uk.gov.hmrc.auth.core.AffinityGroup.Agent
 import uk.gov.hmrc.auth.core.retrieve.Retrievals._
 import uk.gov.hmrc.http.InternalServerException
-import uk.gov.hmrc.play.binders.ContinueUrl
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class SignOutController @Inject()(val applicationConfig: AppConfig,
-                                  authService: AuthService) extends FrontendController {
+                                  authService: AuthService,
+                                  mcc: MessagesControllerComponents) extends FrontendController(mcc) {
 
   def signOut(origin: String): Action[AnyContent] = Action.async { implicit request =>
     authService.authorised().retrieve(affinityGroup) {

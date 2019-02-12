@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import core.config.MockConfig
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito._
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import play.api.mvc._
 import play.api.test.Helpers.{await, _}
 import uk.gov.hmrc.http.{HttpResponse, InternalServerException}
 import usermatching.services.mocks.MockUserLockoutService
@@ -49,7 +49,7 @@ class ConfirmClientControllerSpec extends AgentControllerBaseSpec
     mockBaseControllerConfig(new MockConfig {
       override val unauthorisedAgentEnabled = enableMatchingFeature
     }),
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     mockAgentQualificationService,
     mockAuthService,
     mockUserLockoutService

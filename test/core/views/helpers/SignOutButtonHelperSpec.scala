@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import play.api.test.FakeRequest
 
 class SignOutButtonHelperSpec extends UnitTestTrait {
 
-  def view(alternateText: Option[String])(request: Request[_]) = signOutButton(alternateText)(request, applicationMessages)
+  def view(alternateText: Option[String])(request: Request[_]) = signOutButton(alternateText)(request, messagesProvider.messages)
 
   def html(alternateText: Option[String])(request: Request[_]) = Jsoup.parse(view(alternateText)(request).body)
 

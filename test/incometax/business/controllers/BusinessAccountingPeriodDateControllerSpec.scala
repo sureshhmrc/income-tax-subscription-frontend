@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package incometax.business.controllers
 
 import assets.MessageLookup
 import core.config.MockConfig
-import core.config.featureswitch.{FeatureSwitching}
+import core.config.featureswitch.FeatureSwitching
 import core.controllers.ControllerBaseSpec
 import core.models.DateModel
 import core.services.mocks.MockKeystoreService
@@ -30,7 +30,7 @@ import incometax.incomesource.services.mocks.MockCurrentTimeService
 import incometax.util.AccountingPeriodUtil
 import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers._
 
 class BusinessAccountingPeriodDateControllerSpec extends ControllerBaseSpec
@@ -57,7 +57,7 @@ class BusinessAccountingPeriodDateControllerSpec extends ControllerBaseSpec
       mockBaseControllerConfig(new MockConfig {
         override val enableRegistration = setEnableRegistration
       }),
-      messagesApi,
+      app.injector.instanceOf[MessagesControllerComponents],
       MockKeystoreService,
       mockAuthService,
       mockCurrentTimeService

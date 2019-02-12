@@ -17,13 +17,13 @@
 package agent.auth
 
 import core.auth.BaseFrontendController
-import play.api.mvc.Action
+import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.auth.core.{AffinityGroup, ConfidenceLevel, CredentialRole, Enrolments}
 import uk.gov.hmrc.http.NotFoundException
 
 import scala.concurrent.Future
 
-trait UnauthorisedAgentController extends BaseFrontendController {
+abstract class UnauthorisedAgentController(override val mcc:MessagesControllerComponents) extends BaseFrontendController(mcc) {
 
   protected val unauthorisedDefaultPredicate = agent.auth.AuthPredicates.unauthorisedUserMatchingPredicates
 

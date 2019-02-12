@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ class BusinessAccountingPeriodDateViewSpec extends ViewSpecTrait {
     backUrl = backUrl,
     viewType = viewType,
     isEditMode = isEditMode
-  )(FakeRequest(), applicationMessages, appConfig)
+  )(FakeRequest(), messagesProvider.messages, appConfig)
 
   def documentCore(prefix: String, suffix: Option[String] = None, viewType: AccountingPeriodViewType, isEditMode: Boolean) = TestView(
     name = s"$prefix Business Accounting Period Date View${suffix.fold("")(x => x)}",

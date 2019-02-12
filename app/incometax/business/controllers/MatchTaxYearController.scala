@@ -16,8 +16,6 @@
 
 package incometax.business.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import core.auth.{Registration, SignUpController}
 import core.config.BaseControllerConfig
 import core.models.{No, Yes}
@@ -25,20 +23,21 @@ import core.services.{AuthService, KeystoreService}
 import incometax.business.forms.MatchTaxYearForm
 import incometax.business.models.MatchTaxYearModel
 import incometax.incomesource.services.CurrentTimeService
+import javax.inject.{Inject, Singleton}
 import play.api.data.Form
-import play.api.i18n.MessagesApi
 import play.api.mvc._
 import play.twirl.api.Html
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class MatchTaxYearController @Inject()(val baseConfig: BaseControllerConfig,
-                                       val messagesApi: MessagesApi,
+                                       mcc: MessagesControllerComponents,
                                        val keystoreService: KeystoreService,
                                        val authService: AuthService,
                                        val currentTimeService: CurrentTimeService
-                                      ) extends SignUpController {
+                                      ) extends SignUpController(mcc) {
 
   def view(matchTaxYearForm: Form[MatchTaxYearModel], isEditMode: Boolean)(implicit request: Request[AnyContent]): Html =
     incometax.business.views.html.match_to_tax_year(

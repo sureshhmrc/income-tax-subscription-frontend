@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import core.views.html.helpers.RadioOption
 class RadioHelperSpec extends UnitTestTrait {
 
   private def radioHelper(field: Field, legend: String, options: Seq[RadioOption])
-  = helpers.radioHelper(field, legend, options)(applicationMessages)
+  = helpers.radioHelper(field, legend, options)(messagesProvider.messages)
 
   case class TestData(radio: String)
 

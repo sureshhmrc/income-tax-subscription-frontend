@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import agent.controllers.AgentControllerBaseSpec
 import agent.services.mocks.MockKeystoreService
 import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, Result}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Result}
 import play.api.test.Helpers._
 
 import scala.concurrent.Future
@@ -35,7 +35,7 @@ class RegisterNextAccountingPeriodControllerSpec extends AgentControllerBaseSpec
 
   object TestRegisterNextAccountingPeriodController extends RegisterNextAccountingPeriodController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     MockKeystoreService,
     mockAuthService
   )

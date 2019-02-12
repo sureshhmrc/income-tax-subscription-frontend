@@ -39,7 +39,7 @@ import org.scalatestplus.play.guice.GuiceOneServerPerSuite
 import play.api._
 import play.api.data.Form
 import play.api.http.HeaderNames
-import play.api.i18n.{I18nSupport, MessagesApi}
+import play.api.i18n.{I18nSupport, MessagesApi, MessagesProvider}
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.json.{JsArray, JsValue, Writes}
 import play.api.libs.ws.WSResponse
@@ -101,7 +101,7 @@ trait ComponentSpecBase extends UnitSpec
 
   implicit lazy val appConfig = app.injector.instanceOf[AppConfig]
 
-  override lazy val messagesApi = app.injector.instanceOf[MessagesApi]
+  implicit val messagesProvider = app.injector.instanceOf[MessagesProvider]
 
   override def beforeEach(): Unit = {
     super.beforeEach()

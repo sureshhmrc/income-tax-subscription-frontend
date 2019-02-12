@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ class OtherIncomeErrorViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
 
-  lazy val page = agent.views.html.other_income_error(postAction = action, backUrl = backUrl)(FakeRequest(), applicationMessages, appConfig)
+  lazy val page = agent.views.html.other_income_error(postAction = action, backUrl = backUrl)(FakeRequest(), messagesProvider.messages, appConfig)
 
   "The Main Income Error view" should {
 

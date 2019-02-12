@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package agent.forms
 
 import agent.assets.MessageLookup
 import agent.forms.validation.testutils.DataMap
+import core.forms.FormBaseSpec
 import core.forms.submapping.YesNoMapping
 import core.forms.validation.ErrorMessageFactory
 import core.forms.validation.testutils.{DataMap => _, _}
@@ -26,7 +27,7 @@ import org.scalatest.Matchers._
 import org.scalatestplus.play.{OneAppPerTest, PlaySpec}
 import play.api.i18n.Messages.Implicits._
 
-class OtherIncomeFormSpec extends PlaySpec with OneAppPerTest {
+class OtherIncomeFormSpec extends FormBaseSpec {
 
   import OtherIncomeForm._
 

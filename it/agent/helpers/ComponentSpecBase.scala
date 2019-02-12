@@ -40,11 +40,11 @@ import org.scalatestplus.play.guice.GuiceOneServerPerSuite
 import play.api._
 import play.api.data.Form
 import play.api.http.HeaderNames
-import play.api.i18n.{I18nSupport, MessagesApi}
+import play.api.i18n.{I18nSupport, MessagesProvider}
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.json.{JsArray, JsValue, Writes}
 import play.api.libs.ws.{WSClient, WSResponse}
-import play.api.mvc.Headers
+import play.api.mvc.{Headers, MessagesControllerComponents}
 import uk.gov.hmrc.play.HeaderCarrierConverter
 import uk.gov.hmrc.play.test.UnitSpec
 import usermatching.models.UserDetailsModel
@@ -77,7 +77,11 @@ trait ComponentSpecBase extends UnitSpec
     .in(Environment.simple(mode = Mode.Dev))
     .configure(config)
     .build
-  override lazy val messagesApi = app.injector.instanceOf[MessagesApi]
+
+  lazy val mcc = app.injector.instanceOf[MessagesControllerComponents]
+
+  implicit val messageProvider = app.injector.instanceOf[MessagesProvider]
+
   val mockHost = WiremockHelper.wiremockHost
   val mockPort = WiremockHelper.wiremockPort.toString
   val mockUrl = s"http://$mockHost:$mockPort"

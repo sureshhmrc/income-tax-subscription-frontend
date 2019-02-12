@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import agent.assets.MessageLookup.{ClientDetailsError => messages}
 import agent.controllers.AgentControllerBaseSpec
 import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers.{contentAsString, contentType, _}
 
 class ClientDetailsErrorControllerSpec extends AgentControllerBaseSpec {
@@ -34,7 +34,7 @@ class ClientDetailsErrorControllerSpec extends AgentControllerBaseSpec {
 
   object TestClientDetailsErrorController extends ClientDetailsErrorController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     mockAuthService
   )
 

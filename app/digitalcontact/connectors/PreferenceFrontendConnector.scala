@@ -17,7 +17,6 @@
 package digitalcontact.connectors
 
 import java.net.URLEncoder
-import javax.inject.{Inject, Singleton}
 
 import core.Constants._
 import core.audit.Logging
@@ -25,6 +24,8 @@ import core.config.{AppConfig, ITSAHeaderCarrierForPartialsConverter}
 import core.utils.HttpResult._
 import digitalcontact.httpparsers.PaperlessPreferenceHttpParser._
 import digitalcontact.models.{PaperlessPreferenceError, PaperlessState}
+import javax.inject.{Inject, Singleton}
+import play.api.Play
 import play.api.i18n.{I18nSupport, Messages, MessagesApi}
 import play.api.mvc.{AnyContent, Request}
 import uk.gov.hmrc.crypto.{ApplicationCrypto, PlainText}
@@ -46,11 +47,11 @@ class PreferenceFrontendConnector @Inject()(appConfig: AppConfig,
 
   lazy val returnUrl: String = PreferenceFrontendConnector.returnUrl(appConfig.baseUrl)
 
-  def checkPaperlessUrl(token: String): String =
-    appConfig.preferencesFrontend + PreferenceFrontendConnector.checkPaperlessUri(returnUrl, token)
+  def checkPaperlessUrl(token: String)(implicit request: Request[AnyContent]): String =
+    appConfig.preferencesFrontend + PreferenceFrontendConnector.checkPaperlessUri(returnUrl, token)(request.messages(messagesApi))
 
-  lazy val choosePaperlessUrl: String =
-    appConfig.preferencesFrontendRedirect + PreferenceFrontendConnector.choosePaperlessUri(returnUrl)
+  def choosePaperlessUrl(implicit request: Request[AnyContent]): String =
+    appConfig.preferencesFrontendRedirect + PreferenceFrontendConnector.choosePaperlessUri(returnUrl)(request.messages(messagesApi))
 
   def checkPaperless(token: String)(implicit request: Request[AnyContent]): Future[Either[PaperlessPreferenceError.type, PaperlessState]] = {
     // The header carrier must include the current user's session in order to be authenticated by the preferences-frontend service
@@ -66,10 +67,11 @@ class PreferenceFrontendConnector @Inject()(appConfig: AppConfig,
 }
 
 object PreferenceFrontendConnector {
+  lazy val applicationCrypto = new ApplicationCrypto(Play.current.configuration.underlying)
 
   private[digitalcontact] def urlEncode(text: String) = URLEncoder.encode(text, "UTF-8")
 
-  private[digitalcontact] def encryptAndEncode(s: String) = urlEncode(ApplicationCrypto.QueryParameterCrypto.encrypt(PlainText(s)).value)
+  private[digitalcontact] def encryptAndEncode(s: String) = urlEncode(applicationCrypto.QueryParameterCrypto.encrypt(PlainText(s)).value)
 
   def returnUrl(baseUrl: String): String =
     encryptAndEncode(baseUrl + digitalcontact.controllers.routes.PreferencesController.callback().url)

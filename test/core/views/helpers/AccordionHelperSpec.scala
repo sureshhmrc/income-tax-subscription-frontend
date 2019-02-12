@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,16 +19,23 @@ package core.views.helpers
 import core.views.html.helpers
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
-import org.scalatestplus.play.{OneServerPerSuite, PlaySpec}
-import play.api.i18n.Messages.Implicits.applicationMessages
-import play.twirl.api.Html
 import org.scalatest.Matchers._
+import org.scalatestplus.play.PlaySpec
+import org.scalatestplus.play.guice.GuiceOneServerPerSuite
+import play.api.i18n.Messages.Implicits.applicationMessages
+import play.api.i18n.{MessagesApi, MessagesImpl, MessagesProvider}
+import play.i18n.Lang
+import play.twirl.api.Html
 
 
-class AccordionHelperSpec extends PlaySpec with OneServerPerSuite {
+class AccordionHelperSpec extends PlaySpec with GuiceOneServerPerSuite {
+
+  implicit val messagesProvider: MessagesProvider = {
+    MessagesImpl(app.injector.instanceOf[Lang], app.injector.instanceOf[MessagesApi])
+  }
 
   private def accordionHelper(label: String,content: Html)
-  = helpers.accordionHelper(label,content)(applicationMessages)
+  = helpers.accordionHelper(label,content)(messagesProvider.messages)
 
   implicit class HtmlFormatUtil(html: Html) {
     def doc: Document = Jsoup.parse(html.body)

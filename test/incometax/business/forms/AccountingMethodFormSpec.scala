@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,16 +17,15 @@
 package incometax.business.forms
 
 import assets.MessageLookup
+import core.forms.FormBaseSpec
 import core.forms.submapping.AccountingMethodMapping
 import core.forms.validation.ErrorMessageFactory
 import core.forms.validation.testutils.{DataMap, _}
 import core.models.Cash
 import incometax.business.models.AccountingMethodModel
 import org.scalatest.Matchers._
-import org.scalatestplus.play.{OneAppPerTest, PlaySpec}
-import play.api.i18n.Messages.Implicits._
 
-class AccountingMethodFormSpec extends PlaySpec with OneAppPerTest {
+class AccountingMethodFormSpec extends FormBaseSpec {
 
   import incometax.business.forms.AccountingMethodForm._
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import core.utils.TestModels._
 import incometax.subscription.services.mocks.MockSubscriptionOrchestrationService
 import incometax.unauthorisedagent.services.mocks.MockSubscriptionStoreRetrievalService
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers._
 import uk.gov.hmrc.http.NotFoundException
 
@@ -47,7 +47,7 @@ class UnauthorisedSubscriptionControllerSpec extends ControllerBaseSpec
     mockBaseControllerConfig(new MockConfig {
       override val unauthorisedAgentEnabled = enableUnauthorisedAgent
     }),
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     mockAuthService,
     MockKeystoreService,
     mockSubscriptionStoreRetrievalService,

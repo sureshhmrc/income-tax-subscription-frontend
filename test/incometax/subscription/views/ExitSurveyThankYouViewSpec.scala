@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package incometax.subscription.views
 
 import assets.MessageLookup.{ThankYou => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits.applicationMessages
 import play.api.test.FakeRequest
 
 
@@ -26,7 +25,7 @@ class ExitSurveyThankYouViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
 
-  lazy val page = incometax.subscription.views.html.exit_survey_thank_you()(FakeRequest(), applicationMessages, appConfig)
+  lazy val page = incometax.subscription.views.html.exit_survey_thank_you()(FakeRequest(), messagesProvider.messages, appConfig)
 
   "The exit survey's Thank You Page view" should {
 

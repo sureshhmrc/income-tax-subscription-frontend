@@ -16,17 +16,16 @@
 
 package usermatching.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import core.config.AppConfig
-import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, AnyContent}
+import javax.inject.{Inject, Singleton}
+import play.api.i18n.I18nSupport
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
 @Singleton
 class NoSAController @Inject()(implicit val applicationConfig: AppConfig,
-                               val messagesApi: MessagesApi
-                              ) extends FrontendController with I18nSupport {
+                               mcc: MessagesControllerComponents
+                              ) extends FrontendController(mcc) with I18nSupport {
 
   val show: Action[AnyContent] = Action {
     implicit request => Ok(usermatching.views.html.no_sa())

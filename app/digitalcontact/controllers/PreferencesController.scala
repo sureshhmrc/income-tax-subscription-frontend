@@ -16,16 +16,14 @@
 
 package digitalcontact.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import core.ITSASessionKeys
 import core.auth.StatelessController
 import core.config.BaseControllerConfig
 import core.services.{AuthService, KeystoreService}
 import digitalcontact.models.{Activated, Unset}
 import digitalcontact.services.{PaperlessPreferenceTokenService, PreferencesService}
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import javax.inject.{Inject, Singleton}
+import play.api.mvc._
 import play.twirl.api.Html
 import uk.gov.hmrc.http.InternalServerException
 import usermatching.userjourneys.ConfirmAgentSubscription
@@ -34,12 +32,12 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class PreferencesController @Inject()(val baseConfig: BaseControllerConfig,
-                                      val messagesApi: MessagesApi,
+                                      mcc: MessagesControllerComponents,
                                       val preferencesService: PreferencesService,
                                       val authService: AuthService,
                                       keystoreService: KeystoreService,
                                       paperlessPreferenceTokenService: PaperlessPreferenceTokenService
-                                     ) extends StatelessController {
+                                     ) extends StatelessController(mcc) {
 
   override val statelessDefaultPredicate = preferencesPredicate
 

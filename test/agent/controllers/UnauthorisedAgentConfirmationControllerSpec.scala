@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import agent.services.mocks.MockKeystoreService
 import core.config.MockConfig
 import core.config.featureswitch.{FeatureSwitching, UnauthorisedAgentFeature}
 import org.scalatest.Matchers._
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers._
 import uk.gov.hmrc.http.NotFoundException
 
@@ -34,7 +34,7 @@ class UnauthorisedAgentConfirmationControllerSpec extends AgentControllerBaseSpe
         override val unauthorisedAgentEnabled = true
       }
     ),
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     MockKeystoreService,
     mockAuthService,
     app.injector.instanceOf[Logging]
@@ -53,7 +53,7 @@ class UnauthorisedAgentConfirmationControllerSpec extends AgentControllerBaseSpe
               override val unauthorisedAgentEnabled = true
             }
           ),
-          messagesApi,
+          app.injector.instanceOf[MessagesControllerComponents],
           MockKeystoreService,
           mockAuthService,
           app.injector.instanceOf[Logging]
@@ -96,7 +96,7 @@ class UnauthorisedAgentConfirmationControllerSpec extends AgentControllerBaseSpe
               override val unauthorisedAgentEnabled = false
             }
           ),
-          messagesApi,
+          app.injector.instanceOf[MessagesControllerComponents],
           MockKeystoreService,
           mockAuthService,
           app.injector.instanceOf[Logging]

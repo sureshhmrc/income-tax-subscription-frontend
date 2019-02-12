@@ -16,26 +16,24 @@
 
 package incometax.business.controllers
 
-import javax.inject.Inject
-
 import core.auth.RegistrationController
 import core.config.BaseControllerConfig
 import core.services.{AuthService, KeystoreService}
 import incometax.business.forms.BusinessStartDateForm
 import incometax.business.models.BusinessStartDateModel
+import javax.inject.Inject
 import play.api.data.Form
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 
 import scala.concurrent.Future
-
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class BusinessStartDateController @Inject()(val baseConfig: BaseControllerConfig,
-                                            val messagesApi: MessagesApi,
+                                            mcc: MessagesControllerComponents,
                                             val keystoreService: KeystoreService,
                                             val authService: AuthService
-                                           ) extends RegistrationController {
+                                           ) extends RegistrationController(mcc) {
 
   def view(businessStartDateForm: Form[BusinessStartDateModel], isEditMode: Boolean)(implicit request: Request[AnyContent]): Html =
     incometax.business.views.html.business_start_date(

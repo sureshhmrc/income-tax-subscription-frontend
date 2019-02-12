@@ -17,7 +17,6 @@
 package incometax.unauthorisedagent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.auth.JourneyState._
 import core.ITSASessionKeys._
 import core.auth.AuthenticatedController
@@ -29,7 +28,7 @@ import incometax.unauthorisedagent.models.ConfirmAgentModel
 import incometax.unauthorisedagent.services.SubscriptionStoreRetrievalService
 import play.api.data.Form
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import usermatching.userjourneys.ConfirmAgentSubscription
 
@@ -37,9 +36,9 @@ import scala.concurrent.Future
 
 @Singleton
 class AuthoriseAgentController @Inject()(val baseConfig: BaseControllerConfig,
-                                         val messagesApi: MessagesApi,
+                                         mcc: MessagesControllerComponents,
                                          val authService: AuthService
-                                        ) extends AuthenticatedController[ConfirmAgentSubscription.type] {
+                                        ) extends AuthenticatedController[ConfirmAgentSubscription.type](mcc) {
 
   lazy val goToPreferences = Redirect(digitalcontact.controllers.routes.PreferencesController.checkPreferences())
 

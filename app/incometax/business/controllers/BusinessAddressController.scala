@@ -16,27 +16,27 @@
 
 package incometax.business.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import core.auth.RegistrationController
 import core.config.BaseControllerConfig
 import core.services.{AuthService, KeystoreService}
 import incometax.business.models.address.{Address, _}
 import incometax.business.services.AddressLookupService
-import play.api.i18n.{Messages, MessagesApi}
-import play.api.mvc.{Action, AnyContent, Request}
+import javax.inject.{Inject, Singleton}
+import play.api.i18n.Messages
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import uk.gov.hmrc.http.InternalServerException
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 @Singleton
 class BusinessAddressController @Inject()(val baseConfig: BaseControllerConfig,
-                                          val messagesApi: MessagesApi,
+                                          mcc: MessagesControllerComponents,
                                           val authService: AuthService,
                                           addressLookupService: AddressLookupService,
                                           keystoreService: KeystoreService
-                                         ) extends RegistrationController {
+                                         ) extends RegistrationController(mcc) {
 
 
   private[controllers] def callbackUrl(editMode: Boolean)(implicit request: Request[AnyContent]): String =

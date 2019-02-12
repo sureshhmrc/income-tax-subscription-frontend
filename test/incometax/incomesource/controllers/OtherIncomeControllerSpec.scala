@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import incometax.incomesource.models.OtherIncomeModel
 import incometax.incomesource.services.mocks.MockCurrentTimeService
 import incometax.subscription.models.{Both, Property}
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers._
 
 class OtherIncomeControllerSpec extends ControllerBaseSpec
@@ -44,7 +44,7 @@ class OtherIncomeControllerSpec extends ControllerBaseSpec
 
   object TestOtherIncomeController extends OtherIncomeController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     MockKeystoreService,
     app.injector.instanceOf[Logging],
     mockAuthService,

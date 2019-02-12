@@ -16,32 +16,30 @@
 
 package incometax.business.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import core.auth.SignUpController
 import core.config.BaseControllerConfig
 import core.models.{No, Yes}
 import core.services.CacheUtil.CacheMapUtil
 import core.services.{AuthService, KeystoreService}
-import incometax.business.forms.{AccountingMethodForm, MatchTaxYearForm}
+import incometax.business.forms.AccountingMethodForm
 import incometax.business.models.{AccountingMethodModel, MatchTaxYearModel}
 import incometax.incomesource.services.CurrentTimeService
-import incometax.subscription.models.Both
+import javax.inject.{Inject, Singleton}
 import play.api.data.Form
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import uk.gov.hmrc.http.HeaderCarrier
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class BusinessAccountingMethodController @Inject()(val baseConfig: BaseControllerConfig,
-                                                   val messagesApi: MessagesApi,
+                                                   mcc: MessagesControllerComponents,
                                                    val keystoreService: KeystoreService,
                                                    val authService: AuthService,
                                                    val currentTimeService: CurrentTimeService
-                                                  ) extends SignUpController {
+                                                  ) extends SignUpController(mcc) {
 
   def view(accountingMethodForm: Form[AccountingMethodModel], isEditMode: Boolean)(implicit request: Request[_]): Future[Html] = {
     for {

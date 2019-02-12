@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ class UnauthorisedAgentConfirmationViewSpec extends UnitTestTrait {
 
   lazy val page = agent.views.html.unauthorised_agent_confirmation(
     postAction = agent.controllers.routes.AddAnotherClientController.addAnother()
-  )(FakeRequest(), applicationMessages, appConfig)
+  )(FakeRequest(), messagesProvider.messages, appConfig)
   lazy val document = Jsoup.parse(page.body)
 
   "The Unauthorised Agent Confirmation view" should {

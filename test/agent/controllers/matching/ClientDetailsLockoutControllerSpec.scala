@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import org.jsoup.Jsoup
 import play.api.Play
 import play.api.http.Status
 import play.api.i18n.Messages.Implicits.applicationMessagesApi
-import play.api.mvc.{Action, AnyContent, Cookie, Request}
+import play.api.mvc._
 import play.api.test.FakeRequest
 import play.api.test.Helpers.{contentAsString, contentType, _}
 import uk.gov.hmrc.play.language.LanguageUtils.WelshLangCode
@@ -42,7 +42,7 @@ class ClientDetailsLockoutControllerSpec extends AgentControllerBaseSpec
 
   object TestClientDetailsLockoutController extends ClientDetailsLockoutController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     mockAuthService,
     mockUserLockoutService
   )

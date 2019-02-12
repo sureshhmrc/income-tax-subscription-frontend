@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import core.config.MockConfig
 import core.controllers.ControllerBaseSpec
 import core.services.mocks.MockKeystoreService
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers._
 import uk.gov.hmrc.http.NotFoundException
 import core.utils.TestConstants._
@@ -43,7 +43,7 @@ class BusinessPhoneNumberControllerSpec extends ControllerBaseSpec
       mockBaseControllerConfig(new MockConfig {
         override val enableRegistration = setEnableRegistration
       }),
-      messagesApi,
+      app.injector.instanceOf[MessagesControllerComponents],
       MockKeystoreService,
       mockAuthService
     )

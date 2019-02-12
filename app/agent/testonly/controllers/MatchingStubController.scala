@@ -17,11 +17,10 @@
 package agent.testonly.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.config.{AppConfig, BaseControllerConfig}
 import play.api.data.Form
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import agent.testonly.connectors.{MatchingStubConnector, UserData}
 import agent.testonly.forms.ClientToStubForm
@@ -30,13 +29,15 @@ import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import core.utils.Implicits._
 import uk.gov.hmrc.http.InternalServerException
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 //$COVERAGE-OFF$Disabling scoverage on this class as it is only intended to be used by the test only controller
 
 @Singleton
 class MatchingStubController @Inject()(val baseConfig: BaseControllerConfig,
-                                       val messagesApi: MessagesApi,
+                                       mcc: MessagesControllerComponents,
                                        matchingStubConnector: MatchingStubConnector
-                                      ) extends FrontendController with I18nSupport {
+                                      ) extends FrontendController(mcc) with I18nSupport {
 
   implicit lazy val appConfig: AppConfig = baseConfig.applicationConfig
 
@@ -46,11 +47,12 @@ class MatchingStubController @Inject()(val baseConfig: BaseControllerConfig,
       agent.testonly.controllers.routes.MatchingStubController.submit()
     )
 
-  def show = Action.async { implicit request =>
+  def show:Action[AnyContent] = Action.async {
+    implicit request =>
     Ok(view(ClientToStubForm.clientToStubForm.form.fill(UserData().toClientToStubModel)))
   }
 
-  def submit = Action.async { implicit request =>
+  def submit :Action[AnyContent] = Action.async { implicit request =>
     ClientToStubForm.clientToStubForm.bindFromRequest.fold(
       formWithErrors => BadRequest(view(formWithErrors)),
       clientDetails =>

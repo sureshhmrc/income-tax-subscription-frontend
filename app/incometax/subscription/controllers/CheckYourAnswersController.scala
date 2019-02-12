@@ -17,7 +17,6 @@
 package incometax.subscription.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.ITSASessionKeys
 import core.audit.Logging
 import core.auth.{IncomeTaxSAUser, Registration, SignUpController}
@@ -28,20 +27,21 @@ import incometax.business.models.MatchTaxYearModel
 import incometax.subscription.models.{Property, SubscriptionSuccess}
 import incometax.subscription.services.SubscriptionOrchestrationService
 import play.api.i18n.MessagesApi
-import play.api.mvc.{AnyContent, Request, Result}
+import play.api.mvc.{AnyContent, MessagesControllerComponents, Request, Result}
 import uk.gov.hmrc.http.cache.client.CacheMap
 import uk.gov.hmrc.http.{HeaderCarrier, InternalServerException}
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class CheckYourAnswersController @Inject()(val baseConfig: BaseControllerConfig,
-                                           val messagesApi: MessagesApi,
+                                           mcc: MessagesControllerComponents,
                                            val keystoreService: KeystoreService,
                                            val subscriptionService: SubscriptionOrchestrationService,
                                            val authService: AuthService,
                                            logging: Logging
-                                          ) extends SignUpController {
+                                          ) extends SignUpController(mcc) {
 
   import core.services.CacheUtil._
 

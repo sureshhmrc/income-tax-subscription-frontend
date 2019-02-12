@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import core.models.DateModel
 import core.views.ViewSpecTrait
 import incometax.subscription.models.{Both, Business, IncomeSourceType}
 import org.jsoup.Jsoup
-import play.api.i18n.Messages.Implicits._
 import play.twirl.api.Html
 
 class UnauthorisedAgentConfirmationViewSpec extends ViewSpecTrait {
@@ -36,7 +35,7 @@ class UnauthorisedAgentConfirmationViewSpec extends ViewSpecTrait {
   def page(incomeSource: IncomeSourceType): Html = incometax.unauthorisedagent.views.html.unauthorised_agent_confirmation(
     journeyDuration = duration,
     incomeSource = incomeSource
-  )(request, applicationMessages, appConfig)
+  )(request, messagesProvider.messages, appConfig)
 
   def document = Jsoup.parse(page(incomeSource).body)
 

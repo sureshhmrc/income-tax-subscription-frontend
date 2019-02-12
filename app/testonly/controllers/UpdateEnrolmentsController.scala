@@ -16,27 +16,25 @@
 
 package testonly.controllers
 
-import core.auth.BaseFrontendController
 import core.config.AppConfig
 import core.services.AuthService
 import javax.inject.Inject
-import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, AnyContent}
+import play.api.i18n.I18nSupport
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import testonly.connectors.EnrolmentStoreStubConnector
 import testonly.forms.UpdateEnrolmentsForm
-import uk.gov.hmrc.auth.core.AuthConnector
 import uk.gov.hmrc.auth.core.retrieve.{Credentials, Retrievals}
-import uk.gov.hmrc.auth.otac.Authorised
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 
 class UpdateEnrolmentsController @Inject()(implicit val applicationConfig: AppConfig,
-                                           val messagesApi: MessagesApi,
+                                           mcc: MessagesControllerComponents,
                                            enrolmentStoreStubConnector: EnrolmentStoreStubConnector,
                                            authService: AuthService
-                                          ) extends FrontendController with I18nSupport {
+                                          ) extends FrontendController(mcc) with I18nSupport {
 
   import authService._
 

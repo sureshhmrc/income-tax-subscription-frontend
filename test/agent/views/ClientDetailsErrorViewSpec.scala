@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,15 +18,15 @@ package agent.views
 
 import agent.assets.MessageLookup.{Base => commonMessages, ClientDetailsError => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
+import play.api.mvc.AnyContentAsEmpty
 import play.api.test.FakeRequest
 
 class ClientDetailsErrorViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
-  val request = ViewSpecTrait.viewTestRequest
+  val request: FakeRequest[AnyContentAsEmpty.type] = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.client_details_error(action)(request, applicationMessages, appConfig)
+  lazy val page = agent.views.html.client_details_error(action)(request, messagesProvider.messages, appConfig)
 
   "The Client Details Error view" should {
     val testPage = TestView(

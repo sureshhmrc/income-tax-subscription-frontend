@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package incometax.business.forms
 
 import assets.MessageLookup
+import core.forms.FormBaseSpec
 import core.forms.submapping.YesNoMapping
 import core.forms.validation.ErrorMessageFactory
 import core.forms.validation.testutils.{DataMap, _}
@@ -24,10 +25,8 @@ import core.models.Yes
 import incometax.business.forms.MatchTaxYearForm._
 import incometax.business.models.MatchTaxYearModel
 import org.scalatest.Matchers._
-import org.scalatestplus.play.{OneAppPerTest, PlaySpec}
-import play.api.i18n.Messages.Implicits._
 
-class MatchTaxYearFormSpec extends PlaySpec with OneAppPerTest {
+class MatchTaxYearFormSpec extends FormBaseSpec {
 
   "The MatchTaxYearForm" should {
     "transform the request to the form case class" in {

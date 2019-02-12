@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ class NotEnrolledAgentServicesViewSpec extends ViewSpecTrait {
   val action = ViewSpecTrait.testCall
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.not_enrolled_agent_services()(request, applicationMessages, appConfig)
+  lazy val page = agent.views.html.not_enrolled_agent_services()(request, messagesProvider.messages, appConfig)
 
   "The Agent not Enrolled to Agent Services view" should {
     val testPage = TestView(

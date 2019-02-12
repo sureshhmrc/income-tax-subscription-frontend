@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,10 @@
 package incometax.subscription.views
 
 import assets.MessageLookup
-import assets.MessageLookup.{ClaimSubscription => messages, Base => common}
 import core.controllers.SignOutController
 import core.models.DateModel
 import core.views.ViewSpecTrait
 import org.jsoup.Jsoup
-import play.api.i18n.Messages.Implicits._
 
 class ClaimSubscriptionViewSpec extends ViewSpecTrait {
 
@@ -30,7 +28,7 @@ class ClaimSubscriptionViewSpec extends ViewSpecTrait {
   val action = ViewSpecTrait.testCall
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = incometax.subscription.views.html.enrolled.claim_subscription()(request, applicationMessages, appConfig)
+  lazy val page = incometax.subscription.views.html.enrolled.claim_subscription()(request, messagesProvider.messages, appConfig)
   lazy val document = Jsoup.parse(page.body)
 
   "The Confirmation view" should {

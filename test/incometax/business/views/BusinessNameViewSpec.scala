@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ class BusinessNameViewSpec extends ViewSpecTrait {
     backUrl = backUrl,
     isRegistration = isRegistration,
     isEditMode = isEditMode
-  )(FakeRequest(), applicationMessages, appConfig)
+  )(FakeRequest(), messagesProvider.messages, appConfig)
 
   def documentCore(isEditMode: Boolean, isRegistration: Boolean) = TestView(
     name = s"Business Name View for ${if (isRegistration) "registration" else "sign up"}",

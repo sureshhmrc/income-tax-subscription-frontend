@@ -16,8 +16,6 @@
 
 package incometax.subscription.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import cats.data.EitherT
 import cats.implicits._
 import core.auth.SignUpController
@@ -26,19 +24,20 @@ import core.connectors.models.{ConnectorError, KeystoreMissingError}
 import core.services.CacheConstants.MtditId
 import core.services.{AuthService, KeystoreService}
 import incometax.subscription.services.SubscriptionOrchestrationService
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import javax.inject.{Inject, Singleton}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import uk.gov.hmrc.http.{HeaderCarrier, InternalServerException}
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 @Singleton
 class ClaimSubscriptionController @Inject()(val baseConfig: BaseControllerConfig,
-                                            val messagesApi: MessagesApi,
+                                            mcc: MessagesControllerComponents,
                                             val authService: AuthService,
                                             val subscriptionOrchestrationService: SubscriptionOrchestrationService,
                                             val keystoreService: KeystoreService
-                                           ) extends SignUpController {
+                                           ) extends SignUpController(mcc) {
   val claim: Action[AnyContent] = Authenticated.async {
     implicit request =>
       user =>

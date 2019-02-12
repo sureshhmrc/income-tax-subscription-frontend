@@ -17,9 +17,10 @@
 package core.auth
 
 import core.auth.AuthPredicate.AuthPredicate
+import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.auth.core.{AffinityGroup, ConfidenceLevel, CredentialRole, Enrolments}
 
-trait SignUpController extends BaseFrontendController {
+abstract class SignUpController(override val mcc: MessagesControllerComponents) extends BaseFrontendController(mcc) {
 
   protected def defaultSignUpPredicates: AuthPredicate[IncomeTaxSAUser] = subscriptionPredicates
 

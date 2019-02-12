@@ -17,15 +17,18 @@
 package agent.testonly.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.config.BaseControllerConfig
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import agent.testonly.connectors.ResetAgentLockoutConnector
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 @Singleton
 class ResetAgentLockoutController @Inject()(val baseConfig: BaseControllerConfig,
-                                            val resetAgentLockoutConnector: ResetAgentLockoutConnector) extends FrontendController {
+                                            val resetAgentLockoutConnector: ResetAgentLockoutConnector,
+                                            mcc: MessagesControllerComponents
+                                           ) extends FrontendController(mcc) {
 
   val resetLockout: Action[AnyContent] = Action.async { implicit request =>
     for {

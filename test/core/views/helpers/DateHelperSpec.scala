@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import uk.gov.hmrc.play.language.LanguageUtils.Welsh
 
 class DateHelperSpec extends UnitTestTrait {
 
-  private def dateHelper(field: Field, label: Option[String])(implicit messages: Messages = applicationMessages)
+  private def dateHelper(field: Field, label: Option[String])(implicit messages: Messages = messagesProvider.messages)
   = helpers.dateHelper(field, label)(messages)
 
   val dateName = "testDate"

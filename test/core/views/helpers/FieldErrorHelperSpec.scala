@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ class FieldErrorHelperSpec extends UnitTestTrait {
   case class TestData(field1: String)
 
   private def fieldErrorHelper(field: Field, form: Form[_])
-  = helpers.fieldErrorHelper(field, form)(applicationMessages)
+  = helpers.fieldErrorHelper(field, form)(messagesProvider.messages)
 
   val errorMessage: Invalid = DataMap.alwaysFailInvalid
   val fieldErrorMessage: FieldError = DataMap.alwaysFailInvalid.errors.head.args(FieldErrorLoc).asInstanceOf[FieldError]

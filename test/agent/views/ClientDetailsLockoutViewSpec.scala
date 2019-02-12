@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ class ClientDetailsLockoutViewSpec extends ViewSpecTrait {
   val testTime = "test time"
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.client_details_lockout(testTime)(request, applicationMessages, appConfig)
+  lazy val page = agent.views.html.client_details_lockout(testTime)(request, messagesProvider.messages, appConfig)
 
   "The Client Details Lockout view" should {
     val testPage = TestView(

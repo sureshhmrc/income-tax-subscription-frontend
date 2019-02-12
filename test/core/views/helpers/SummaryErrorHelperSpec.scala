@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import core.views.html.helpers
 class SummaryErrorHelperSpec extends UnitTestTrait {
 
   private def summaryErrorHelper(form: Form[_])
-  = helpers.summaryErrorHelper(form)(applicationMessages)
+  = helpers.summaryErrorHelper(form)(messagesProvider.messages)
 
   case class TestData(field1: String, field2: String, field3: String)
 

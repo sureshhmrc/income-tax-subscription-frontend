@@ -16,24 +16,22 @@
 
 package agent.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import agent.audit.Logging
 import agent.auth.UnauthorisedAgentController
 import agent.services.KeystoreService
+import cats.implicits._
 import core.config.BaseControllerConfig
 import core.services.AuthService
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent}
-import cats.implicits._
+import javax.inject.{Inject, Singleton}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 
 @Singleton
 class UnauthorisedAgentConfirmationController @Inject()(val baseConfig: BaseControllerConfig,
-                                                        val messagesApi: MessagesApi,
+                                                        mcc: MessagesControllerComponents,
                                                         val keystoreService: KeystoreService,
                                                         val authService: AuthService,
                                                         val logging: Logging
-                                                       ) extends UnauthorisedAgentController {
+                                                       ) extends UnauthorisedAgentController(mcc) {
 
   override val unauthorisedDefaultPredicate =
     agent.auth.AuthPredicates.unauthorisedUserMatchingPredicates |+| agent.auth.AuthPredicates.hasSubmitted

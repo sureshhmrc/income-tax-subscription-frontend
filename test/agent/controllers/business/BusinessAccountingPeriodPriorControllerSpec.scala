@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import agent.utils.TestModels
 import core.models.{No, Yes, YesNo}
 import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, Result}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Result}
 import play.api.test.Helpers.{contentAsString, _}
 
 import scala.concurrent.Future
@@ -39,7 +39,7 @@ class BusinessAccountingPeriodPriorControllerSpec extends AgentControllerBaseSpe
 
   object TestAccountingPeriodPriorController extends BusinessAccountingPeriodPriorController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     MockKeystoreService,
     mockAuthService
   )

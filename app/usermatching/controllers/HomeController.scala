@@ -27,24 +27,24 @@ import incometax.subscription.models.SubscriptionSuccess
 import incometax.subscription.services.SubscriptionService
 import incometax.unauthorisedagent.services.SubscriptionStoreRetrievalService
 import javax.inject.{Inject, Singleton}
-import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import play.api.mvc._
 import uk.gov.hmrc.http.InternalServerException
 import usermatching.services.CitizenDetailsService
 import usermatching.userjourneys.ConfirmAgentSubscription
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class HomeController @Inject()(override val baseConfig: BaseControllerConfig,
-                               override val messagesApi: MessagesApi,
+                               mcc: MessagesControllerComponents,
                                subscriptionService: SubscriptionService,
                                keystoreService: KeystoreService,
                                val authService: AuthService,
                                citizenDetailsService: CitizenDetailsService,
                                subscriptionStoreService: SubscriptionStoreRetrievalService,
                                logging: Logging
-                              ) extends StatelessController {
+                              ) extends StatelessController(mcc) {
 
   lazy val showGuidance: Boolean = baseConfig.applicationConfig.showGuidance
 

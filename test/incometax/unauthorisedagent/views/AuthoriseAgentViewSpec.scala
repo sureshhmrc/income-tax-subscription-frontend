@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ class AuthoriseAgentViewSpec extends ViewSpecTrait {
   def page(addFormErrors: Boolean) = incometax.unauthorisedagent.views.html.authorise_agent(
     authoriseAgentForm = ConfirmAgentForm.confirmAgentForm.addError(addFormErrors),
     postAction = action
-  )(FakeRequest(), applicationMessages, appConfig)
+  )(FakeRequest(), messagesProvider.messages, appConfig)
 
   "The Authorise Agent View" should {
 

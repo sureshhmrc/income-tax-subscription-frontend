@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 HM Revenue & Customs
+ * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import agent.assets.MessageLookup.{NoClientRelationship => messages}
 import agent.services.ClientRelationshipService
 import agent.services.mocks.MockKeystoreService
 import org.jsoup.Jsoup
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import play.api.test.Helpers._
 
 class NoClientRelationshipControllerSpec
@@ -36,7 +36,7 @@ class NoClientRelationshipControllerSpec
 
   object TestNoClientRelationshipController extends NoClientRelationshipController(
     MockBaseControllerConfig,
-    messagesApi,
+    app.injector.instanceOf[MessagesControllerComponents],
     mockClientRelationshipService,
     MockKeystoreService,
     mockAuthService
