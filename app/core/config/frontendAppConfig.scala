@@ -113,7 +113,7 @@ trait AppConfig extends FeatureSwitching {
 @Singleton
 class FrontendAppConfig @Inject()(config: ServicesConfig) extends AppConfig {
 
-  protected def loadConfig(key: String) = config.getConfString(key, throw new Exception(s"Missing configuration key: $key"))
+  protected def loadConfig(key: String) = config.getString(key)
 
   protected def splitString(value: String, separator: String): Seq[String] = value.split(separator).toSeq
 

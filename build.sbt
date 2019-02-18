@@ -33,10 +33,12 @@ lazy val scoverageSettings = {
 
 lazy val microservice = Project(appName, file("."))
   .enablePlugins(play.sbt.PlayScala, SbtAutoBuildPlugin, SbtGitVersioning, SbtDistributablesPlugin, SbtArtifactory)
+  .enablePlugins(PlayService)
+  .enablePlugins(RoutesCompiler)
   .settings(scoverageSettings: _*)
   .settings(scalaSettings: _*)
   .settings(publishingSettings: _*)
-  .settings(scalaVersion := "2.11.11")
+  .settings(scalaVersion := "2.11.12")
   .settings(defaultSettings(): _*)
   .settings(
     Keys.fork in Test := true,
