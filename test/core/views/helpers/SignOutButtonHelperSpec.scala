@@ -27,7 +27,7 @@ import play.api.test.FakeRequest
 
 class SignOutButtonHelperSpec extends UnitTestTrait {
 
-  def view(alternateText: Option[String])(request: Request[_]) = signOutButton(alternateText)(request, messagesProvider.messages)
+  def view(alternateText: Option[String])(request: Request[_]) = signOutButton(alternateText)
 
   def html(alternateText: Option[String])(request: Request[_]) = Jsoup.parse(view(alternateText)(request).body)
 

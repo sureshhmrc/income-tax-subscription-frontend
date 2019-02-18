@@ -29,7 +29,7 @@ class UnauthorisedAgentConfirmationViewSpec extends UnitTestTrait {
 
   lazy val page = agent.views.html.unauthorised_agent_confirmation(
     postAction = agent.controllers.routes.AddAnotherClientController.addAnother()
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
   lazy val document = Jsoup.parse(page.body)
 
   "The Unauthorised Agent Confirmation view" should {

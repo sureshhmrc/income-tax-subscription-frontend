@@ -47,7 +47,7 @@ class CheckYourClientDetailsViewSpec extends UnitTestTrait {
     userDetailsModel = testClientDetails,
     postAction = postAction,
     backUrl = backUrl
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   def document(): Document = page().doc
 

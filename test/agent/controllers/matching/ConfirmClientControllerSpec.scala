@@ -49,7 +49,7 @@ class ConfirmClientControllerSpec extends AgentControllerBaseSpec
     mockBaseControllerConfig(new MockConfig {
       override val unauthorisedAgentEnabled = enableMatchingFeature
     }),
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAgentQualificationService,
     mockAuthService,
     mockUserLockoutService

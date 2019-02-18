@@ -40,7 +40,7 @@ class BusinessNameControllerSpec extends ControllerBaseSpec
 
   object TestBusinessNameController extends BusinessNameController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService
   )

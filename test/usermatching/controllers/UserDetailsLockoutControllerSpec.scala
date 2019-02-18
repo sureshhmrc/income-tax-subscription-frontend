@@ -47,7 +47,7 @@ class UserDetailsLockoutControllerSpec extends ControllerBaseSpec
 
   def createTestUserDetailsLockoutController(enableMatchingFeature: Boolean) = new UserDetailsLockoutController(
     MockBaseControllerConfig,
-    mcc,
+    stubMCC,
     mockAuthService,
     mockUserLockoutService
   )

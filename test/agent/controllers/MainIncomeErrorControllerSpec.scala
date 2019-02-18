@@ -30,7 +30,7 @@ class MainIncomeErrorControllerSpec extends AgentControllerBaseSpec {
 
   object TestMainIncomeErrorController extends MainIncomeErrorController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService
   )
 

@@ -22,7 +22,7 @@ import play.api.test.FakeRequest
 
 class SessionTimeoutViewSpec extends ViewSpecTrait {
 
-  lazy val page = _root_.core.views.html.timeout.timeout()(FakeRequest(), messagesProvider.messages, appConfig)
+  lazy val page = _root_.core.views.html.timeout.timeout()
 
   "The Session timeout view" should {
 

@@ -29,7 +29,7 @@ class SignOutControllerSpec extends ControllerBaseSpec {
   object TestSignOutController extends SignOutController(
     appConfig,
     mockAuthService,
-    app.injector.instanceOf[MessagesControllerComponents]
+    stubMCC
   )
 
   override val controllerName: String = "SignOutController"
@@ -37,7 +37,6 @@ class SignOutControllerSpec extends ControllerBaseSpec {
   val testOrigin = "/hello-world"
 
   "Authorised users" when {
-    implicit val request = fakeRequest
     "with an agent affinity group" should {
       "be redirected to the gg signOut" in {
         mockRetrievalSuccess(Some(AffinityGroup.Agent))

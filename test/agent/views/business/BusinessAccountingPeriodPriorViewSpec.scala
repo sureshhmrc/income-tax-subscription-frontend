@@ -33,7 +33,7 @@ class BusinessAccountingPeriodPriorViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   def documentCore(isEditMode: Boolean) =
     TestView(

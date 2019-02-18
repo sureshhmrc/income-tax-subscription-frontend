@@ -37,7 +37,7 @@ class IncomeSourceControllerSpec extends AgentControllerBaseSpec
 
   object TestIncomeSourceController extends IncomeSourceController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService,
     mockCurrentTimeService

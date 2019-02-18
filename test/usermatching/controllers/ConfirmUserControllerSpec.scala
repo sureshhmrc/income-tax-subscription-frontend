@@ -43,7 +43,7 @@ class ConfirmUserControllerSpec extends ControllerBaseSpec
 
   object TestConfirmUserController extends ConfirmUserController(
     MockBaseControllerConfig,
-    mcc,
+    stubMCC,
     mockAuthService,
     mockUserMatchingService,
     mockUserLockoutService

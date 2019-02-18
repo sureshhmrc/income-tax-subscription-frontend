@@ -33,7 +33,7 @@ class BusinessNameViewSpec extends ViewSpecTrait {
     backUrl = backUrl,
     isRegistration = isRegistration,
     isEditMode = isEditMode
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   def documentCore(isEditMode: Boolean, isRegistration: Boolean) = TestView(
     name = s"Business Name View for ${if (isRegistration) "registration" else "sign up"}",

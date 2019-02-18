@@ -29,6 +29,7 @@ import agent.common.Constants
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig
+import com.google.inject.name.Names
 import core.models.YesNo
 import helpers.UserMatchingIntegrationRequestSupport
 import helpers.servicemocks.AuditStub
@@ -40,7 +41,7 @@ import org.scalatestplus.play.guice.GuiceOneServerPerSuite
 import play.api._
 import play.api.data.Form
 import play.api.http.HeaderNames
-import play.api.i18n.{I18nSupport, MessagesProvider}
+import play.api.i18n.{I18nSupport, MessagesApi, MessagesProvider}
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.json.{JsArray, JsValue, Writes}
 import play.api.libs.ws.{WSClient, WSResponse}
@@ -78,9 +79,9 @@ trait ComponentSpecBase extends UnitSpec
     .configure(config)
     .build
 
-  lazy val mcc = app.injector.instanceOf[MessagesControllerComponents]
-
+  lazy val stubMCC = app.injector.instanceOf[MessagesControllerComponents]
   implicit val messageProvider = app.injector.instanceOf[MessagesProvider]
+  override lazy val messagesApi = app.injector.instanceOf[MessagesApi]
 
   val mockHost = WiremockHelper.wiremockHost
   val mockPort = WiremockHelper.wiremockPort.toString

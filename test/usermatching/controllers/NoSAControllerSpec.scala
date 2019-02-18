@@ -30,7 +30,7 @@ class NoSAControllerSpec extends ControllerBaseSpec {
 
   object TestNoSAController extends NoSAController()(
     MockBaseControllerConfig.applicationConfig,
-    mcc
+    stubMCC
   )
 
   "Calling the show action of the NoSAController" should {

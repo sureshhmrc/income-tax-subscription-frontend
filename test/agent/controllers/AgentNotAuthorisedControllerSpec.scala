@@ -38,7 +38,7 @@ class AgentNotAuthorisedControllerSpec extends AgentControllerBaseSpec
     mockBaseControllerConfig(new MockConfig {
       override val unauthorisedAgentEnabled = enableMatchingFeature
     }),
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService
   )
 

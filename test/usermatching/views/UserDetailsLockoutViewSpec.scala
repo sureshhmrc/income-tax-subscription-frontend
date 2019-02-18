@@ -26,7 +26,7 @@ class UserDetailsLockoutViewSpec extends ViewSpecTrait {
   val testTime = "test time"
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = usermatching.views.html.user_details_lockout(testTime)(request, applicationMessages, appConfig)
+  lazy val page = usermatching.views.html.user_details_lockout(testTime)
 
   "The User Details Lockout view" should {
     val testPage = TestView(

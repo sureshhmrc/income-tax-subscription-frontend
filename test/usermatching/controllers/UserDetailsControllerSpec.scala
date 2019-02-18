@@ -46,7 +46,7 @@ class UserDetailsControllerSpec extends ControllerBaseSpec
 
   object TestUserDetailsController extends UserDetailsController(
     MockBaseControllerConfig,
-    mcc,
+    stubMCC,
     MockKeystoreService,
     mockAuthService,
     mockUserLockoutService

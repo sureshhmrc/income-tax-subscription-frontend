@@ -29,11 +29,7 @@ class OtherIncomeErrorViewSpec extends ViewSpecTrait {
 
   lazy val page = incometax.incomesource.views.html.other_income_error(
     postAction = action,
-    backUrl = backUrl)(
-    FakeRequest(),
-    messagesProvider.messages,
-    appConfig
-  )
+    backUrl = backUrl)
 
   "The Other Income Error view" should {
 

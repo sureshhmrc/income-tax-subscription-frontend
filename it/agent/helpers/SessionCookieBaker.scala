@@ -18,21 +18,25 @@ package agent.helpers
 
 import java.net.URLEncoder
 
-import play.api.libs.Crypto
+import agent.helpers.IntegrationTestConstants._
+import play.api.http.SecretConfiguration
+import play.api.libs.crypto.{CookieSigner, DefaultCookieSigner}
 import uk.gov.hmrc.crypto.{CompositeSymmetricCrypto, PlainText}
 import uk.gov.hmrc.http.SessionKeys
-import IntegrationTestConstants._
 
 object SessionCookieBaker {
   private val cookieKey = "gvBoGdgzqG1AarzF1LY0zQ=="
 
+  val cookieSigner: CookieSigner = new DefaultCookieSigner(SecretConfiguration(cookieKey))
+
   private def cookieValue(sessionData: Map[String, String]) = {
+
     def encode(data: Map[String, String]): PlainText = {
       val encoded = data.map {
         case (k, v) => URLEncoder.encode(k, "UTF-8") + "=" + URLEncoder.encode(v, "UTF-8")
       }.mkString("&")
       val key = "yNhI04vHs9<_HWbC`]20u`37=NGLGYY5:0Tg5?y`W<NoJnXWqmjcgZBec@rOxb^G".getBytes
-      PlainText(Crypto.sign(encoded, key) + "-" + encoded)
+      PlainText(cookieSigner.sign(encoded, key) + "-" + encoded)
     }
 
     val encodedCookie = encode(sessionData)

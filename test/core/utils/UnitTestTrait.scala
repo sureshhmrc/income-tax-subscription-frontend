@@ -21,13 +21,14 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice.GuiceOneServerPerSuite
-import play.api.i18n.{MessagesApi, MessagesImpl, MessagesProvider}
+import play.api.i18n.{Messages, MessagesApi}
 import play.api.mvc.MessagesControllerComponents
-import play.i18n.Lang
+import play.api.test.FakeRequest
+import play.api.test.Helpers.stubMessagesControllerComponents
 import play.twirl.api.Html
+import uk.gov.hmrc.http.HeaderCarrier
 
 import scala.concurrent.{ExecutionContextExecutor, Future}
-import uk.gov.hmrc.http.HeaderCarrier
 
 
 trait UnitTestTrait extends PlaySpec with GuiceOneServerPerSuite with Implicits {
@@ -48,10 +49,10 @@ trait UnitTestTrait extends PlaySpec with GuiceOneServerPerSuite with Implicits 
 
   implicit val appConfig: AppConfig = MockConfig
 
-  implicit lazy val mcc = app.injector.instanceOf[MessagesControllerComponents]
+  lazy val stubMCC = app.injector.instanceOf[MessagesControllerComponents]//stubMessagesControllerComponents()
 
-  implicit val messagesProvider: MessagesProvider = {
-    MessagesImpl(app.injector.instanceOf[Lang], app.injector.instanceOf[MessagesApi])
-  }
+  def messagesApi: MessagesApi = stubMCC.messagesApi
 
+  implicit val implicitMessages: Messages = messagesApi.preferred(stubMCC.langs.availables)
+  implicit lazy val implicitFakeRequest: FakeRequest[_] = FakeRequest()
 }

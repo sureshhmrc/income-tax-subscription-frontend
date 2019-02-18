@@ -45,7 +45,7 @@ class AgentNotAuthorisedControllerSpec extends ControllerBaseSpec
 
   object TestAgentNotAuthorisedController extends AgentNotAuthorisedController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService,
     mockSubscriptionStoreRetrievalService,
     MockKeystoreService
@@ -76,7 +76,7 @@ class AgentNotAuthorisedControllerSpec extends ControllerBaseSpec
         "redirect to home" in {
           enable(UnauthorisedAgentFeature)
 
-          val res = await(TestAgentNotAuthorisedController.show(fakeRequest))
+          val res = await(TestAgentNotAuthorisedController.show(FakeRequest()))
 
           status(res) mustBe SEE_OTHER
         }

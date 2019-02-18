@@ -28,7 +28,7 @@ class ContinueRegistrationViewSpec extends ViewSpecTrait {
 
   lazy val page = digitalcontact.views.html.continue_registration(
     postAction = action
-  )(request, messagesProvider.messages, appConfig)
+  )
 
   "The Continue Registration view" should {
     val testPage = TestView(

@@ -49,7 +49,7 @@ class AuthoriseAgentControllerSpec extends ControllerBaseSpec
 
   object TestAuthoriseAgentController extends AuthoriseAgentController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService
   )
 

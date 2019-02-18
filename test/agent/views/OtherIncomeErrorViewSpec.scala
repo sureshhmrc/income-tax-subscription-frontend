@@ -27,7 +27,7 @@ class OtherIncomeErrorViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
 
-  lazy val page = agent.views.html.other_income_error(postAction = action, backUrl = backUrl)(FakeRequest(), messagesProvider.messages, appConfig)
+  lazy val page = agent.views.html.other_income_error(postAction = action, backUrl = backUrl)
 
   "The Main Income Error view" should {
 

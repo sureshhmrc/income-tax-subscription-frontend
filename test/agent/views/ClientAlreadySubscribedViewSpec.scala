@@ -26,7 +26,7 @@ class ClientAlreadySubscribedViewSpec extends ViewSpecTrait {
   val action = ViewSpecTrait.testCall
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.client_already_subscribed(action)(request, messagesProvider.messages, appConfig)
+  lazy val page = agent.views.html.client_already_subscribed(action)
 
   "The Client Already Enrolled view" should {
     val testPage = TestView(

@@ -21,13 +21,13 @@ import core.auth.Registration
 import core.config.MockConfig
 import core.controllers.ControllerBaseSpec
 import core.services.mocks.MockKeystoreService
-import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
-import play.api.test.Helpers._
-import uk.gov.hmrc.http.NotFoundException
 import core.utils.TestConstants._
 import incometax.business.forms.BusinessPhoneNumberForm
 import incometax.business.models.BusinessPhoneNumberModel
+import play.api.http.Status
+import play.api.mvc.{Action, AnyContent}
+import play.api.test.Helpers._
+import uk.gov.hmrc.http.NotFoundException
 
 class BusinessPhoneNumberControllerSpec extends ControllerBaseSpec
   with MockKeystoreService {
@@ -43,7 +43,7 @@ class BusinessPhoneNumberControllerSpec extends ControllerBaseSpec
       mockBaseControllerConfig(new MockConfig {
         override val enableRegistration = setEnableRegistration
       }),
-      app.injector.instanceOf[MessagesControllerComponents],
+      stubMessagesControllerComponents(),
       MockKeystoreService,
       mockAuthService
     )

@@ -42,7 +42,7 @@ class BusinessAccountingPeriodDateControllerSpec extends AgentControllerBaseSpec
 
   object TestBusinessAccountingPeriodController extends BusinessAccountingPeriodDateController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService
   )

@@ -34,7 +34,7 @@ class ClientDetailsErrorControllerSpec extends AgentControllerBaseSpec {
 
   object TestClientDetailsErrorController extends ClientDetailsErrorController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService
   )
 

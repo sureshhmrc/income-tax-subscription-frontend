@@ -30,7 +30,7 @@ import uk.gov.hmrc.play.language.LanguageUtils.Welsh
 
 class DateHelperSpec extends UnitTestTrait {
 
-  private def dateHelper(field: Field, label: Option[String])(implicit messages: Messages = messagesProvider.messages)
+  private def dateHelper(field: Field, label: Option[String])(implicit messages: Messages = implicitMessages)
   = helpers.dateHelper(field, label)(messages)
 
   val dateName = "testDate"

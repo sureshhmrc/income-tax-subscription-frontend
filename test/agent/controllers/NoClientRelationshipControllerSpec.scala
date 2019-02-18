@@ -36,7 +36,7 @@ class NoClientRelationshipControllerSpec
 
   object TestNoClientRelationshipController extends NoClientRelationshipController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockClientRelationshipService,
     MockKeystoreService,
     mockAuthService

@@ -17,6 +17,7 @@
 package incometax.incomesource.forms
 
 import assets.MessageLookup
+import core.forms.FormBaseSpec
 import core.forms.submapping.YesNoMapping
 import core.forms.validation.ErrorMessageFactory
 import core.forms.validation.testutils._
@@ -25,7 +26,7 @@ import org.scalatest.Matchers._
 import org.scalatestplus.play.{OneAppPerTest, PlaySpec}
 import play.api.i18n.Messages.Implicits._
 
-class OtherIncomeFormSpec extends PlaySpec with OneAppPerTest {
+class OtherIncomeFormSpec extends FormBaseSpec {
 
   import OtherIncomeForm._
 

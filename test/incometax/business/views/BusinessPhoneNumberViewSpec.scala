@@ -32,7 +32,7 @@ class BusinessPhoneNumberViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode = isEditMode
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   def documentCore(isEditMode: Boolean) = TestView(
     name = "Business phone number View",

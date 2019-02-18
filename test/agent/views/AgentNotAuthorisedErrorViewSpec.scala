@@ -26,7 +26,7 @@ class AgentNotAuthorisedErrorViewSpec extends ViewSpecTrait {
   val action = ViewSpecTrait.testCall
   val request: FakeRequest[AnyContentAsEmpty.type] = FakeRequest("POST", "/test-url")
 
-  lazy val page = agent.views.html.agent_not_authorised(action)(request, messagesProvider.messages, appConfig)
+  lazy val page = agent.views.html.agent_not_authorised(action)(request, implicitMessages, appConfig)
 
   "The Agent Not Authorised Error view" should {
     val testPage = TestView(

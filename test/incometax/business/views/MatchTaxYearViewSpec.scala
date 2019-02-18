@@ -35,7 +35,7 @@ class MatchTaxYearViewSpec extends ViewSpecTrait {
     isRegistration = isRegistration,
     backUrl = backUrl,
     isEditMode
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
 
   "The Match tax year view" when {

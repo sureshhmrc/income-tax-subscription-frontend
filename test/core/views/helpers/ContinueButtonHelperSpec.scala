@@ -24,7 +24,7 @@ import core.views.html.helpers.continueButton
 
 class ContinueButtonHelperSpec extends UnitTestTrait {
 
-  val view = continueButton()(messagesProvider.messages)
+  val view = continueButton()
   val html = Jsoup.parse(view.body)
 
   "The continue button helper" should {

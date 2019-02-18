@@ -25,7 +25,7 @@ class NotEnrolledAgentServicesViewSpec extends ViewSpecTrait {
   val action = ViewSpecTrait.testCall
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.not_enrolled_agent_services()(request, messagesProvider.messages, appConfig)
+  lazy val page = agent.views.html.not_enrolled_agent_services()
 
   "The Agent not Enrolled to Agent Services view" should {
     val testPage = TestView(

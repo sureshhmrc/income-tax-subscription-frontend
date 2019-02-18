@@ -35,7 +35,7 @@ class FieldErrorHelperSpec extends UnitTestTrait {
   case class TestData(field1: String)
 
   private def fieldErrorHelper(field: Field, form: Form[_])
-  = helpers.fieldErrorHelper(field, form)(messagesProvider.messages)
+  = helpers.fieldErrorHelper(field, form)
 
   val errorMessage: Invalid = DataMap.alwaysFailInvalid
   val fieldErrorMessage: FieldError = DataMap.alwaysFailInvalid.errors.head.args(FieldErrorLoc).asInstanceOf[FieldError]

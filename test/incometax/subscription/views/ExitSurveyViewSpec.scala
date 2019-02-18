@@ -29,7 +29,7 @@ class ExitSurveyViewSpec extends ViewSpecTrait {
   lazy val page = incometax.subscription.views.html.exit_survey(
     exitSurveyForm = ExitSurveyForm.exitSurveyForm.form,
     postAction = action
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   "The Exit Survey Page view" should {
 

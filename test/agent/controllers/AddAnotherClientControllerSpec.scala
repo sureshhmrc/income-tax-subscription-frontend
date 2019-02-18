@@ -33,7 +33,7 @@ class AddAnotherClientControllerSpec extends AgentControllerBaseSpec
 
   object TestAddAnotherClientController extends AddAnotherClientController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService,
     app.injector.instanceOf[Logging]

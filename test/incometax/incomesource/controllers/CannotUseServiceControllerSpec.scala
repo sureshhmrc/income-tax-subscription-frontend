@@ -30,7 +30,7 @@ class CannotUseServiceControllerSpec extends ControllerBaseSpec {
 
   object TestCannotUseServiceController extends CannotUseServiceController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService
   )
 

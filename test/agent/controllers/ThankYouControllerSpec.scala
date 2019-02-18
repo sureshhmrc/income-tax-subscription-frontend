@@ -32,7 +32,7 @@ class ThankYouControllerSpec extends AgentControllerBaseSpec {
 
   object TestThankYouController extends ThankYouController()(
     appConfig,
-    app.injector.instanceOf[MessagesControllerComponents]
+    stubMCC
   )
 
   "TestThankYouController.show" should {

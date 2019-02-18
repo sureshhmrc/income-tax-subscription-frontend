@@ -42,7 +42,7 @@ class CheckYourAnswersControllerSpec extends ControllerBaseSpec
 
   object TestCheckYourAnswersController extends CheckYourAnswersController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     subscriptionService = mockSubscriptionOrchestrationService,
     mockAuthService,

@@ -32,7 +32,7 @@ class BusinessAccountingMethodViewSpec extends ViewSpecTrait {
     postAction = action,
     isEditMode,
     backUrl = backUrl
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   def documentCore(isEditMode: Boolean) = TestView(
     name = "Business Accounting Method View",

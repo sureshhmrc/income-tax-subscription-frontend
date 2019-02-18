@@ -35,7 +35,7 @@ class RegisterNextAccountingPeriodControllerSpec extends AgentControllerBaseSpec
 
   object TestRegisterNextAccountingPeriodController extends RegisterNextAccountingPeriodController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService
   )

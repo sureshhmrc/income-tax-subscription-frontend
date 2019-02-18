@@ -33,7 +33,7 @@ class WorkForYourselfViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode = isEditMode
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   "The Work for Yourself View" should {
 

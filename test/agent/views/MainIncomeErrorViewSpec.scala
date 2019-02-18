@@ -25,7 +25,7 @@ class MainIncomeErrorViewSpec extends ViewSpecTrait {
   val backUrl = ViewSpecTrait.testBackUrl
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.main_income_error(backUrl)(request, messagesProvider.messages, appConfig)
+  lazy val page = agent.views.html.main_income_error(backUrl)
 
   "The Main Income Error view" should {
     val testPage = TestView(

@@ -25,11 +25,8 @@ import uk.gov.hmrc.play.bootstrap.http.HttpClient
 import uk.gov.hmrc.play.partials.HeaderCarrierForPartialsConverter
 
 @Singleton
-class SessionCache @Inject()(@Named("appName") appName: String,
-                             environment: Environment,
-                             configuration: Configuration,
-                             val http: HttpClient,
-                             config: ServicesConfig) extends uk.gov.hmrc.http.cache.client.SessionCache {
+class SessionCache @Inject()(config: ServicesConfig,
+                             val http: HttpClient) extends uk.gov.hmrc.http.cache.client.SessionCache {
 
   lazy val defaultSource: String = config.getConfString("session-cache.income-tax-subscription-frontend.cache", "income-tax-subscription-frontend")
 

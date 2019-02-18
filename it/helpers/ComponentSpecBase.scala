@@ -18,6 +18,7 @@ package helpers
 
 import java.util.UUID
 
+import com.google.inject.name.Names
 import core.ITSASessionKeys._
 import core.auth.{JourneyState, Registration, SignUp, UserMatching}
 import core.config.AppConfig
@@ -102,6 +103,7 @@ trait ComponentSpecBase extends UnitSpec
   implicit lazy val appConfig = app.injector.instanceOf[AppConfig]
 
   implicit val messagesProvider = app.injector.instanceOf[MessagesProvider]
+  override val messagesApi = app.injector.instanceOf[MessagesApi]
 
   override def beforeEach(): Unit = {
     super.beforeEach()

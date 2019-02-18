@@ -42,7 +42,7 @@ class PreferencesControllerSpec extends ControllerBaseSpec
 
   object TestPreferencesController extends PreferencesController(
     mockBaseControllerConfig(appConfig),
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockPreferencesService,
     mockAuthService,
     MockKeystoreService,

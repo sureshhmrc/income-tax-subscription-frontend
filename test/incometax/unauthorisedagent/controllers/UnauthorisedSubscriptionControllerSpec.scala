@@ -47,7 +47,7 @@ class UnauthorisedSubscriptionControllerSpec extends ControllerBaseSpec
     mockBaseControllerConfig(new MockConfig {
       override val unauthorisedAgentEnabled = enableUnauthorisedAgent
     }),
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService,
     MockKeystoreService,
     mockSubscriptionStoreRetrievalService,

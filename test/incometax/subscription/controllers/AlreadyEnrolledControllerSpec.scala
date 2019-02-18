@@ -32,7 +32,7 @@ class AlreadyEnrolledControllerSpec extends ControllerBaseSpec {
 
   object TestAlreadyEnrolledController extends AlreadyEnrolledController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService
   )
 

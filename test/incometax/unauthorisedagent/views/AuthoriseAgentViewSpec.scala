@@ -29,7 +29,7 @@ class AuthoriseAgentViewSpec extends ViewSpecTrait {
   def page(addFormErrors: Boolean) = incometax.unauthorisedagent.views.html.authorise_agent(
     authoriseAgentForm = ConfirmAgentForm.confirmAgentForm.addError(addFormErrors),
     postAction = action
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   "The Authorise Agent View" should {
 

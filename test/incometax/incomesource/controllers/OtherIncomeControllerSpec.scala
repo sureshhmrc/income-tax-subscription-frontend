@@ -44,7 +44,7 @@ class OtherIncomeControllerSpec extends ControllerBaseSpec
 
   object TestOtherIncomeController extends OtherIncomeController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     app.injector.instanceOf[Logging],
     mockAuthService,

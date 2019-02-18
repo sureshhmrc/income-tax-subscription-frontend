@@ -44,7 +44,7 @@ class MatchTaxYearControllerSpec extends ControllerBaseSpec
 
   object TestMatchTaxYearController extends MatchTaxYearController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService,
     mockCurrentTimeService

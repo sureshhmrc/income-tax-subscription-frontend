@@ -27,7 +27,7 @@ class AgentNotAuthorisedViewSpec extends ViewSpecTrait {
 
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = incometax.unauthorisedagent.views.html.agent_not_authorised()(request, messagesProvider.messages, appConfig)
+  lazy val page = incometax.unauthorisedagent.views.html.agent_not_authorised()
 
   "The Affinity Group Error view" should {
 

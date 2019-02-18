@@ -29,7 +29,7 @@ import core.views.html.helpers.RadioOption
 class RadioHelperSpec extends UnitTestTrait {
 
   private def radioHelper(field: Field, legend: String, options: Seq[RadioOption])
-  = helpers.radioHelper(field, legend, options)(messagesProvider.messages)
+  = helpers.radioHelper(field, legend, options)
 
   case class TestData(radio: String)
 

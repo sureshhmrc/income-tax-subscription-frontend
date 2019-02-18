@@ -78,8 +78,6 @@ trait AgentControllerBaseSpec extends ControllerBaseTrait with MockAgentAuthServ
     }
   }
 
-  lazy val fakeRequest = FakeRequest()
-
   lazy val userMatchingRequest = FakeRequest().withSession(
     ITSASessionKeys.JourneyStateKey -> AgentUserMatching.name
   )

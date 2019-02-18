@@ -45,7 +45,7 @@ class HomeControllerSpec extends AgentControllerBaseSpec {
 
   private def testHomeController(showGuidance: Boolean) = new HomeController(
     mockBaseControllerConfig(showGuidance),
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService,
     app.injector.instanceOf[Logging]
   )

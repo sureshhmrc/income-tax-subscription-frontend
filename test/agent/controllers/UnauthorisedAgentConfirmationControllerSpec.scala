@@ -34,7 +34,7 @@ class UnauthorisedAgentConfirmationControllerSpec extends AgentControllerBaseSpe
         override val unauthorisedAgentEnabled = true
       }
     ),
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService,
     app.injector.instanceOf[Logging]
@@ -53,7 +53,7 @@ class UnauthorisedAgentConfirmationControllerSpec extends AgentControllerBaseSpe
               override val unauthorisedAgentEnabled = true
             }
           ),
-          app.injector.instanceOf[MessagesControllerComponents],
+          stubMCC,
           MockKeystoreService,
           mockAuthService,
           app.injector.instanceOf[Logging]
@@ -96,7 +96,7 @@ class UnauthorisedAgentConfirmationControllerSpec extends AgentControllerBaseSpe
               override val unauthorisedAgentEnabled = false
             }
           ),
-          app.injector.instanceOf[MessagesControllerComponents],
+          stubMCC,
           MockKeystoreService,
           mockAuthService,
           app.injector.instanceOf[Logging]

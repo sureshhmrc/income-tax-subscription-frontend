@@ -26,11 +26,7 @@ class CannotUseServiceViewSpec extends ViewSpecTrait {
   val action = ViewSpecTrait.testCall
 
   lazy val page = incometax.incomesource.views.html.cannot_use_service(
-    postAction = action)(
-    FakeRequest(),
-    messagesProvider.messages,
-    appConfig
-  )
+    postAction = action)
 
   "The Cannot Use Service view" should {
 

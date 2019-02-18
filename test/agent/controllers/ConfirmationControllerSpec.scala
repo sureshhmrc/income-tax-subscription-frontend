@@ -34,7 +34,7 @@ class ConfirmationControllerSpec extends AgentControllerBaseSpec
 
   object TestConfirmationController extends ConfirmationController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService,
     app.injector.instanceOf[Logging]

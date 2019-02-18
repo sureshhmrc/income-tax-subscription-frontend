@@ -111,11 +111,9 @@ trait AppConfig extends FeatureSwitching {
 }
 
 @Singleton
-class FrontendAppConfig @Inject()(configuration: Configuration,
-                                  config: ServicesConfig,
-                                  environment: Environment) extends AppConfig {
+class FrontendAppConfig @Inject()(config: ServicesConfig) extends AppConfig {
 
-  protected def loadConfig(key: String) = configuration.getString(key).getOrElse(throw new Exception(s"Missing configuration key: $key"))
+  protected def loadConfig(key: String) = config.getConfString(key, throw new Exception(s"Missing configuration key: $key"))
 
   protected def splitString(value: String, separator: String): Seq[String] = value.split(separator).toSeq
 
@@ -180,7 +178,7 @@ class FrontendAppConfig @Inject()(configuration: Configuration,
 
   override lazy val shutterPage: String = loadConfig("shutter-page.url")
 
-  private def whitelistConfig(key: String): Seq[String] = configuration.getString(key).fold(Seq[String]())(ips => ips.split(",").toSeq)
+  private def whitelistConfig(key: String): Seq[String] = config.getString(key).split(",").toSeq
 
   override lazy val whitelistIps: Seq[String] = whitelistConfig("ip-whitelist.urls")
 
@@ -210,7 +208,7 @@ class FrontendAppConfig @Inject()(configuration: Configuration,
   *  matching.
   */
   override lazy val hasEnabledTestOnlyRoutes: Boolean =
-    configuration.getString("application.router").get == "testOnlyDoNotUseInAppConf.Routes"
+    config.getString("application.router") == "testOnlyDoNotUseInAppConf.Routes"
 
   override lazy val matchingAttempts: Int = loadConfig("lockout.maxAttempts").toInt
 

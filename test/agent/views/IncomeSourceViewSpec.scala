@@ -33,7 +33,7 @@ class IncomeSourceViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode = isEditMode
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   "The Income source view" should {
     val testPage = TestView(

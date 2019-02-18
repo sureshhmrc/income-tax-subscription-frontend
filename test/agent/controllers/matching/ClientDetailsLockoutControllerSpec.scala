@@ -42,7 +42,7 @@ class ClientDetailsLockoutControllerSpec extends AgentControllerBaseSpec
 
   object TestClientDetailsLockoutController extends ClientDetailsLockoutController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService,
     mockUserLockoutService
   )

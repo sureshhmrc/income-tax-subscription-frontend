@@ -30,7 +30,7 @@ class NotEnrolledAgentServicesControllerSpec extends AgentControllerBaseSpec {
 
   object TestNotEnrolledAgentServicesController extends NotEnrolledAgentServicesController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents]
+    stubMCC
   )
 
   "Calling the 'show' action of the NotEnrolledAgentServicesController" should {

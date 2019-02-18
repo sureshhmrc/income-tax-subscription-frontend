@@ -35,7 +35,7 @@ class ClaimSubscriptionControllerSpec extends ControllerBaseSpec with MockKeysto
 
   object TestClaimSubscriptionController extends ClaimSubscriptionController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService,
     mockSubscriptionOrchestrationService,
     MockKeystoreService

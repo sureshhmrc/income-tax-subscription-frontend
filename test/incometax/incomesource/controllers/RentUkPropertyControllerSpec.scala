@@ -42,7 +42,7 @@ class RentUkPropertyControllerSpec extends ControllerBaseSpec
 
   object TestRentUkPropertyController extends RentUkPropertyController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService,
     mockCurrentTimeService
@@ -50,7 +50,7 @@ class RentUkPropertyControllerSpec extends ControllerBaseSpec
 
   "test" should {
     "en" in {
-      val m: Messages = messagesApi.preferred(subscriptionRequest)
+      val m: Messages = implicitMessages
       m must not be null
       m.apply("base.back") must be("Back")
     }

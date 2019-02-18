@@ -24,7 +24,7 @@ import play.api.test.FakeRequest
 class IvFailedViewSpec extends ViewSpecTrait {
   val testUrl = "link/iv"
 
-  lazy val page = identityverification.views.html.iv_failed(testUrl)(FakeRequest(), messagesProvider.messages, appConfig)
+  lazy val page = identityverification.views.html.iv_failed(testUrl)
 
   "The IV failed view spec" should {
     val testPage = TestView(

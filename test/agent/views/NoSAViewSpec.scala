@@ -25,7 +25,7 @@ class NoSAViewSpec extends ViewSpecTrait {
   val action = ViewSpecTrait.testCall
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.no_sa()(request, messagesProvider.messages, appConfig)
+  lazy val page = agent.views.html.no_sa()
 
   "The No SA view" should {
 

@@ -32,7 +32,7 @@ class ExitSurveyThankYouControllerSpec extends ControllerBaseSpec {
 
   object TestExitSurveyThankYouController extends ExitSurveyThankYouController()(
     appConfig,
-    mcc
+    stubMCC
   )
 
   "ExitSurveyThankYouController.show" should {

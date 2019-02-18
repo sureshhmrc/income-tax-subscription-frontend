@@ -27,7 +27,7 @@ class FrontPageViewSpec extends ViewSpecTrait {
 
   lazy val page = views.html.frontpage(
     getAction = action
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   "The 'Front/Start Page view" should {
 

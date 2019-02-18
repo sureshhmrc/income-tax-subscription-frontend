@@ -30,7 +30,7 @@ class AffinityGroupErrorControllerSpec extends ControllerBaseSpec {
 
   object TestAffinityGroupErrorController extends AffinityGroupErrorController()(
     MockBaseControllerConfig.applicationConfig,
-    mcc)
+    stubMCC)
 
   "Calling the show action of the AffinityGroupErrorController" should {
 

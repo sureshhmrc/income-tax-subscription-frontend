@@ -69,7 +69,7 @@ class CheckYourAnswersViewSpec extends UnitTestTrait {
       isRegistration = isRegistration,
       postAction = postAction,
       backUrl = backUrl
-    )(FakeRequest(), messagesProvider.messages, appConfig)
+    )
 
   def document(isRegistration: Boolean = false, testSummaryModel: IndividualSummary = testSummary): Document =
     page(isRegistration = isRegistration, testSummaryModel).doc

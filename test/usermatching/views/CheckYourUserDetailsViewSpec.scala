@@ -49,7 +49,7 @@ class CheckYourUserDetailsViewSpec extends UnitTestTrait {
     userDetailsModel = testUserDetails,
     postAction = postAction,
     backUrl = backUrl
-  )(FakeRequest(), applicationMessages, appConfig)
+  )
 
   def document(): Document = page().doc
 

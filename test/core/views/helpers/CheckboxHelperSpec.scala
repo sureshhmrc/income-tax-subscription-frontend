@@ -28,7 +28,7 @@ import core.views.html.helpers
 class CheckboxHelperSpec extends UnitTestTrait {
 
   private def checkboxHelper(field: Field, label: String)
-  = helpers.checkboxHelper(field, label)(messagesProvider.messages)
+  = helpers.checkboxHelper(field, label)
 
   case class TestData(checked: Boolean)
 

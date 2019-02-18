@@ -57,7 +57,7 @@ class BusinessAccountingPeriodDateControllerSpec extends ControllerBaseSpec
       mockBaseControllerConfig(new MockConfig {
         override val enableRegistration = setEnableRegistration
       }),
-      app.injector.instanceOf[MessagesControllerComponents],
+      stubMCC,
       MockKeystoreService,
       mockAuthService,
       mockCurrentTimeService

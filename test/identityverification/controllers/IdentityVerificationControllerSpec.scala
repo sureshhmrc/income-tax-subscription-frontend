@@ -33,7 +33,7 @@ class IdentityVerificationControllerSpec extends ControllerBaseSpec {
 
   object TestIdentityVerificationController extends IdentityVerificationController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService,
     app.injector.instanceOf[Logging]
   )

@@ -26,7 +26,7 @@ class UserDetailsErrorViewSpec extends ViewSpecTrait {
   val action = ViewSpecTrait.testCall
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = usermatching.views.html.user_details_error(action)(request, applicationMessages, appConfig)
+  lazy val page = usermatching.views.html.user_details_error(action)
 
   "The User Details Error view" should {
     val testPage = TestView(

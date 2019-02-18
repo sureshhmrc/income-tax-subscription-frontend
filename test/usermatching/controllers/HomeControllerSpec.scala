@@ -31,6 +31,7 @@ import org.jsoup.Jsoup
 import org.mockito.Mockito.reset
 import play.api.http.Status
 import play.api.mvc.{Action, AnyContent}
+import play.api.test.FakeRequest
 import play.api.test.Helpers.{await, contentAsString, _}
 import uk.gov.hmrc.http.InternalServerException
 import usermatching.services.mocks.MockCitizenDetailsService
@@ -43,6 +44,7 @@ class HomeControllerSpec extends ControllerBaseSpec
   with MockSubscriptionStoreRetrievalService {
 
   override val controllerName: String = "HomeControllerSpec"
+  val fakeRequest = FakeRequest()
 
   override val authorisedRoutes: Map[String, Action[AnyContent]] = Map(
     "index" -> TestHomeController(showStartPage = false).index()
@@ -59,7 +61,7 @@ class HomeControllerSpec extends ControllerBaseSpec
       override val showGuidance: Boolean = showStartPage
       override val enableRegistration: Boolean = registrationFeature
     }),
-    mcc,
+    stubMCC,
     mockSubscriptionService,
     MockKeystoreService,
     mockAuthService,

@@ -36,7 +36,7 @@ class ExitSurveyControllerSpec extends AgentControllerBaseSpec {
   object TestExitSurveyController extends ExitSurveyController(
     app.injector.instanceOf[Logging],
     appConfig,
-    app.injector.instanceOf[MessagesControllerComponents]
+    stubMCC
   )
 
   val testSurvey = ExitSurveyModel("Very satisfied", "This is my extended feedback")

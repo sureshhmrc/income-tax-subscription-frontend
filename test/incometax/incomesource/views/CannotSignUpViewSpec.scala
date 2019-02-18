@@ -29,11 +29,7 @@ class CannotSignUpViewSpec extends ViewSpecTrait {
 
   lazy val page = incometax.incomesource.views.html.cannot_sign_up(
     postAction = action,
-    backUrl = backUrl)(
-    FakeRequest(),
-    messagesProvider.messages,
-    appConfig
-  )
+    backUrl = backUrl)
 
   "The Cannot Sign Up view" should {
 

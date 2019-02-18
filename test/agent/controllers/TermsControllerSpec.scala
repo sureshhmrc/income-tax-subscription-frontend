@@ -36,7 +36,7 @@ class TermsControllerSpec extends AgentControllerBaseSpec
 
   object TestTermsController extends TermsController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService
   )

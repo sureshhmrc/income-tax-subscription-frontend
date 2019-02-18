@@ -23,6 +23,7 @@ class Module extends AbstractModule {
   override def configure(): Unit = {
     bind(classOf[SessionCache]).to(classOf[core.config.SessionCache]).asEagerSingleton()
     bind(classOf[AppConfig]).to(classOf[FrontendAppConfig]).asEagerSingleton()
+
   }
 
 }

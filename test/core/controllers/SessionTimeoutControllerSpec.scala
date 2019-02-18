@@ -29,7 +29,7 @@ class SessionTimeoutControllerSpec extends ControllerBaseSpec {
 
   object TestSessionTimeoutController extends SessionTimeoutController()(
     MockBaseControllerConfig.applicationConfig,
-    mcc)
+    stubMCC)
 
   "Calling the timeout action of the SessionTimeoutController" should {
 

@@ -33,7 +33,7 @@ class CannotSignUpControllerSpec extends ControllerBaseSpec with MockKeystoreSer
 
   object TestCannotSignUpController extends CannotSignUpController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     app.injector.instanceOf[Logging],
     mockAuthService

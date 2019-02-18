@@ -39,7 +39,7 @@ class TextAreaHelperSpec extends UnitTestTrait {
       showLabel = showLabel,
       maxLength = maxLength,
       cols = cols,
-      rows = rows)(messagesProvider.messages)
+      rows = rows)
 
   case class TestData(input: String)
 

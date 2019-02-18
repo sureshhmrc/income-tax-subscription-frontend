@@ -25,7 +25,7 @@ class ExitSurveyThankYouViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
 
-  lazy val page = incometax.subscription.views.html.exit_survey_thank_you()(FakeRequest(), messagesProvider.messages, appConfig)
+  lazy val page = incometax.subscription.views.html.exit_survey_thank_you()
 
   "The exit survey's Thank You Page view" should {
 

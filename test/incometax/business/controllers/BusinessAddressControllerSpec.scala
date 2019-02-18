@@ -49,7 +49,7 @@ class BusinessAddressControllerSpec extends ControllerBaseSpec
     mockBaseControllerConfig(new MockConfig {
       override val enableRegistration: Boolean = setEnableRegistration
     }),
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService,
     mockAddressLookupService,
     MockKeystoreService

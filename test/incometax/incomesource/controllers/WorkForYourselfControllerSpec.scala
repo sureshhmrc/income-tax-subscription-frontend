@@ -37,7 +37,7 @@ class WorkForYourselfControllerSpec extends ControllerBaseSpec
 
   object TestWorkForYourselfController extends WorkForYourselfController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService,
     mockCurrentTimeService

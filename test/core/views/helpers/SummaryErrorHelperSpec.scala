@@ -32,7 +32,7 @@ import core.views.html.helpers
 class SummaryErrorHelperSpec extends UnitTestTrait {
 
   private def summaryErrorHelper(form: Form[_])
-  = helpers.summaryErrorHelper(form)(messagesProvider.messages)
+  = helpers.summaryErrorHelper(form)
 
   case class TestData(field1: String, field2: String, field3: String)
 

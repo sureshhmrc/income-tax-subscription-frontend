@@ -42,7 +42,7 @@ class BusinessAccountingMethodControllerSpec extends ControllerBaseSpec
 
   object TestBusinessAccountingMethodController extends BusinessAccountingMethodController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService,
     mockCurrentTimeService

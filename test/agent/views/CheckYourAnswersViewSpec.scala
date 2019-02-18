@@ -38,7 +38,7 @@ class CheckYourAnswersViewSpec extends UnitTestTrait {
     summaryModel = testSummaryData,
     postAction = postAction,
     backUrl = backUrl
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   def document(accountingPeriodViewType: AccountingPeriodViewType = CurrentAccountingPeriodView): Document = page(accountingPeriodViewType).doc
 

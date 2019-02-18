@@ -39,7 +39,7 @@ class UserDetailsErrorControllerSpec extends ControllerBaseSpec {
 
   def createTestUserDetailsErrorController(enableMatchingFeature: Boolean) = new UserDetailsErrorController(
     MockBaseControllerConfig,
-    mcc,
+    stubMCC,
     mockAuthService
   )
 

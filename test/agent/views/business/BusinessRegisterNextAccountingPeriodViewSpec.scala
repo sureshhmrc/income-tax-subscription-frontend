@@ -31,7 +31,7 @@ class BusinessRegisterNextAccountingPeriodViewSpec extends ViewSpecTrait {
   lazy val page = agent.views.html.business.register_next_accounting_period(
     postAction = action,
     backUrl = backUrl
-  )(request, messagesProvider.messages, appConfig)
+  )
 
   "The 'Register Next Accounting Period' view" should {
     val testPage = TestView(

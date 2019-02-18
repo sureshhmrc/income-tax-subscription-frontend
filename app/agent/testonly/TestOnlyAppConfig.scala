@@ -18,15 +18,12 @@
 
 package agent.testonly
 
-import javax.inject.{Inject, Singleton}
 import core.config.FrontendAppConfig
-import play.api.{Configuration, Environment}
+import javax.inject.{Inject, Singleton}
 import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
-class TestOnlyAppConfig @Inject()(configuration: Configuration,
-                                  environment: Environment,
-                                  config: ServicesConfig) extends FrontendAppConfig(configuration, config, environment) {
+class TestOnlyAppConfig @Inject()(config: ServicesConfig) extends FrontendAppConfig(config) {
 
   lazy val preferencesURL: String = config.baseUrl("preferences")
 

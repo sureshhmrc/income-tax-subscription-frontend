@@ -26,7 +26,7 @@ class ThankYouViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
 
-  lazy val page = agent.views.html.feedback_thank_you()(FakeRequest(), messagesProvider.messages, appConfig)
+  lazy val page = agent.views.html.feedback_thank_you()
 
   "The Thank You Page view" should {
 

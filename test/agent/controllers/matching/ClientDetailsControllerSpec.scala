@@ -44,7 +44,7 @@ class ClientDetailsControllerSpec extends AgentControllerBaseSpec
 
   object TestClientDetailsController extends ClientDetailsController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     MockKeystoreService,
     mockAuthService,
     mockUserLockoutService

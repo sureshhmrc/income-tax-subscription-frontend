@@ -30,7 +30,7 @@ class SessionTimeoutControllerSpec extends AgentControllerBaseSpec {
 
   object TestSessionTimeoutController extends SessionTimeoutController()(
     MockBaseControllerConfig.applicationConfig,
-    app.injector.instanceOf[MessagesControllerComponents])
+    stubMCC)
 
   "Calling the timeout action of the SessionTimeoutController" should {
 

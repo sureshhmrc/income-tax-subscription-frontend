@@ -32,7 +32,7 @@ class ClientAlreadySubscribedControllerSpec extends AgentControllerBaseSpec {
 
   object TestClientAlreadySubscribedController extends ClientAlreadySubscribedController(
     MockBaseControllerConfig,
-    app.injector.instanceOf[MessagesControllerComponents],
+    stubMCC,
     mockAuthService
   )
 

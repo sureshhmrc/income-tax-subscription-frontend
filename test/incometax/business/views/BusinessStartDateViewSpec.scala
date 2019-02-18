@@ -32,7 +32,7 @@ class BusinessStartDateViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode = isEditMode
-  )(FakeRequest(), messagesProvider.messages, appConfig)
+  )
 
   def documentCore(prefix: String, suffix: Option[String] = None, isEditMode: Boolean) = TestView(
     name = s"$prefix Business Start Date View${suffix.fold("")(x => x)}",

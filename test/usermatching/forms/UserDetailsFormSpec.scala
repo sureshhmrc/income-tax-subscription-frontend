@@ -17,17 +17,15 @@
 package usermatching.forms
 
 import assets.MessageLookup
-import core.models.DateModel
+import core.forms.FormBaseSpec
 import core.forms.submapping.DateMapping._
 import core.forms.validation.ErrorMessageFactory
 import core.forms.validation.testutils._
+import core.models.DateModel
 import core.utils.TestConstants
-import org.scalatestplus.play.PlaySpec
-import org.scalatestplus.play.guice.GuiceOneAppPerSuite
-import play.api.i18n.Messages.Implicits._
 import usermatching.models.UserDetailsModel
 
-class UserDetailsFormSpec extends PlaySpec with GuiceOneAppPerSuite {
+class UserDetailsFormSpec extends FormBaseSpec {
 
   import usermatching.forms.UserDetailsForm._
 

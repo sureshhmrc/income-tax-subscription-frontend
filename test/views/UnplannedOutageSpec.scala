@@ -22,12 +22,7 @@ import play.api.test.FakeRequest
 
 class UnplannedOutageSpec extends ViewSpecTrait {
 
-  lazy val page = views.html.unplanned_outage()(
-    FakeRequest(),
-    messagesProvider.messages,
-    appConfig
-  )
-
+  lazy val page = views.html.unplanned_outage()
   "The Unplanned outage view" must {
 
     val testPage = TestView(
