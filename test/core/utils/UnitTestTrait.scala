@@ -49,7 +49,7 @@ trait UnitTestTrait extends PlaySpec with GuiceOneServerPerSuite with Implicits 
 
   implicit val appConfig: AppConfig = MockConfig
 
-  lazy val stubMCC = app.injector.instanceOf[MessagesControllerComponents]//stubMessagesControllerComponents()
+  lazy val stubMCC = stubMessagesControllerComponents()
 
   def messagesApi: MessagesApi = stubMCC.messagesApi
 

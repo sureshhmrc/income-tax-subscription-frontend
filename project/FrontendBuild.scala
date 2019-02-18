@@ -15,9 +15,9 @@ private object AppDependencies {
   import play.sbt.PlayImport._
   import play.core.PlayVersion
 
-  private val bootstrapPlayVersion = "0.32.0"
-  private val govukTemplateVersion = "5.27.0-play-26"
-  private val playUiVersion = "7.27.0-play-26"
+  private val bootstrapPlayVersion = "0.36.0"
+  private val govukTemplateVersion = "5.28.0-play-26"
+  private val playUiVersion = "7.32.0-play-26"
   private val playPartialsVersion = "6.1.0"
   private val hmrcTestVersion = "3.4.0-play-26"
   private val scalaTestVersion = "3.0.5"
@@ -51,6 +51,7 @@ private object AppDependencies {
   object Test {
     def apply(): Seq[ModuleID] = new TestDependencies {
       override lazy val test = Seq(
+        "uk.gov.hmrc" %% "bootstrap-play-26" % bootstrapPlayVersion % scope classifier "tests",
         "uk.gov.hmrc" %% "hmrctest" % hmrcTestVersion % scope,
         "org.scalatest" %% "scalatest" % scalaTestVersion % scope,
         "org.scalatestplus.play" %% "scalatestplus-play" % scalaTestPlusVersion % scope,
