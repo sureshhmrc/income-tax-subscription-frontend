@@ -19,16 +19,16 @@
 package agent.testonly.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import agent.auth.StatelessController
 import core.config.BaseControllerConfig
 import play.api.i18n.MessagesApi
 import play.api.libs.json.Json
 import core.services.AuthService
+import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.http.HttpPatch
 
 import scala.concurrent.Future
-
+import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
   * This controller is used to update the confidence level for users logging in via GG
@@ -37,10 +37,10 @@ import scala.concurrent.Future
   */
 @Singleton
 class AuthUpdateController @Inject()(val baseConfig: BaseControllerConfig,
-                                     val messagesApi: MessagesApi,
+                                     mcc: MessagesControllerComponents,
                                      val http: HttpPatch,
                                      val authService: AuthService
-                                    ) extends StatelessController {
+                                    ) extends StatelessController(mcc) {
 
   lazy val noAction = Future.successful("no actions taken")
   lazy val updated = Future.successful(Ok("updated"))

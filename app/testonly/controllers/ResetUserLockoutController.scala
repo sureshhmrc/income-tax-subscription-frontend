@@ -22,6 +22,8 @@ import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import testonly.connectors.ResetUserLockoutConnector
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 @Singleton
 class ResetUserLockoutController @Inject()(val baseConfig: BaseControllerConfig,
                                            val resetUserLockoutConnector: ResetUserLockoutConnector,

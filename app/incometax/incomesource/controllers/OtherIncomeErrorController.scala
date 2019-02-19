@@ -27,6 +27,7 @@ import play.api.i18n.MessagesApi
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class OtherIncomeErrorController @Inject()(val baseConfig: BaseControllerConfig,

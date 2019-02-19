@@ -30,7 +30,7 @@ import usermatching.models.{LockedOut, NotLockedOut}
 import usermatching.services.UserLockoutService
 
 import scala.concurrent.Future
-
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class ClientDetailsLockoutController @Inject()(val baseConfig: BaseControllerConfig,
                                                mcc: MessagesControllerComponents,

@@ -32,6 +32,7 @@ import play.api.i18n.MessagesApi
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import uk.gov.hmrc.http.InternalServerException
 import usermatching.userjourneys.ConfirmAgentSubscription
+import scala.concurrent.ExecutionContext.Implicits.global
 
 
 @Singleton

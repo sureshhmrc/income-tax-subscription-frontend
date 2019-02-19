@@ -17,10 +17,9 @@
 package agent.testonly.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.config.{AppConfig, BaseControllerConfig}
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import incometax.unauthorisedagent.connectors.SubscriptionStoreConnector
 import agent.testonly.forms.NinoForm._
@@ -31,14 +30,16 @@ import agent.testonly.controllers.routes._
 import core.services.AuthService
 import incometax.unauthorisedagent.models.{DeleteSubscriptionFailure, DeleteSubscriptionSuccess}
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 //$COVERAGE-OFF$Disabling scoverage on this class as it is only intended to be used by the test only controller
 
 @Singleton
 class ClientSubscriptionDataController @Inject()(val baseConfig: BaseControllerConfig,
-                                                 val messagesApi: MessagesApi,
+                                                 mcc: MessagesControllerComponents,
                                                  val authService: AuthService,
                                                  val subscriptionStoreConnector: SubscriptionStoreConnector
-                                                ) extends FrontendController with I18nSupport {
+                                                ) extends FrontendController(mcc) with I18nSupport {
 
 
   implicit lazy val appConfig: AppConfig = baseConfig.applicationConfig

@@ -28,6 +28,7 @@ import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.play.bootstrap.http.HttpClient
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 
 /**

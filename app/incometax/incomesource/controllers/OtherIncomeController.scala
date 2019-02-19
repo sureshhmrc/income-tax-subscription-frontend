@@ -31,6 +31,7 @@ import play.api.i18n.MessagesApi
 import play.api.mvc._
 import play.twirl.api.Html
 import uk.gov.hmrc.http.cache.client.CacheMap
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class OtherIncomeController @Inject()(val baseConfig: BaseControllerConfig,

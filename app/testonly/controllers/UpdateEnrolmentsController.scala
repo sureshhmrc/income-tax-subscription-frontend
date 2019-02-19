@@ -30,6 +30,7 @@ import uk.gov.hmrc.auth.otac.Authorised
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 
 class UpdateEnrolmentsController @Inject()(implicit val applicationConfig: AppConfig,

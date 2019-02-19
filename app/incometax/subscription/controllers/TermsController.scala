@@ -28,6 +28,7 @@ import incometax.util.AccountingPeriodUtil._
 import play.api.i18n.MessagesApi
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class TermsController @Inject()(val baseConfig: BaseControllerConfig,

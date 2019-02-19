@@ -19,21 +19,22 @@
 package agent.testonly
 
 import javax.inject.{Inject, Singleton}
-
 import core.config.FrontendAppConfig
 import play.api.{Configuration, Environment}
+import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
 class TestOnlyAppConfig @Inject()(configuration: Configuration,
-                                  environment: Environment) extends FrontendAppConfig(configuration, environment) {
+                                  environment: Environment,
+                                  servicesConfig: ServicesConfig) extends FrontendAppConfig(configuration, environment, servicesConfig) {
 
-  lazy val preferencesURL: String = baseUrl("preferences")
+  lazy val preferencesURL: String = servicesConfig.baseUrl("preferences")
 
-  lazy val entityResolverURL: String = baseUrl("entity-resolver")
+  lazy val entityResolverURL: String = servicesConfig.baseUrl("entity-resolver")
 
   lazy val protectedMicroServiceTestOnlyUrl = s"$protectedMicroServiceUrl/income-tax-subscription/test-only"
 
-  lazy val matchingStubsURL: String = baseUrl("matching-stubs")
+  lazy val matchingStubsURL: String = servicesConfig.baseUrl("matching-stubs")
 
 }
 

@@ -30,6 +30,7 @@ import testonly.forms.KnownFactsForm._
 import testonly.models.KnownFactsModel
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class KnownFactsController @Inject()(val baseConfig: BaseControllerConfig,

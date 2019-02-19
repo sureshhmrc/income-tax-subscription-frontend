@@ -32,6 +32,7 @@ import uk.gov.hmrc.http.{HeaderCarrier, InternalServerException}
 import uk.gov.hmrc.play.bootstrap.http.HttpClient
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class ClearPreferencesController @Inject()(preferenceFrontendConnector: PreferenceFrontendConnector,

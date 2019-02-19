@@ -30,6 +30,7 @@ import usermatching.models.{NotLockedOut, UserDetailsModel}
 import usermatching.services.UserLockoutService
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class UserDetailsController @Inject()(val baseConfig: BaseControllerConfig,

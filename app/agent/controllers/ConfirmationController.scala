@@ -27,6 +27,8 @@ import javax.inject.{Inject, Singleton}
 import play.api.i18n.MessagesApi
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 @Singleton
 class ConfirmationController @Inject()(val baseConfig: BaseControllerConfig,
                                        mcc: MessagesControllerComponents,

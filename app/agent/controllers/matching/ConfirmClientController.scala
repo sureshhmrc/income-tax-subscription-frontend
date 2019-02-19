@@ -36,6 +36,7 @@ import scala.concurrent.Future
 import scala.concurrent.Future.{failed, successful}
 import scala.util.Left
 
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class ConfirmClientController @Inject()(val baseConfig: BaseControllerConfig,

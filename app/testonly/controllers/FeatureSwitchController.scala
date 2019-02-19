@@ -29,6 +29,7 @@ import testonly.connectors.BackendFeatureSwitchConnector
 import testonly.models.FeatureSwitchSetting
 
 import scala.collection.immutable.ListMap
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class FeatureSwitchController @Inject()(mcc: MessagesControllerComponents,
                                         val baseConfig: BaseControllerConfig,

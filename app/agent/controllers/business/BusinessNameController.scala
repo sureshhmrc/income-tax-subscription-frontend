@@ -31,6 +31,8 @@ import play.api.i18n.MessagesApi
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 @Singleton
 class BusinessNameController @Inject()(val baseConfig: BaseControllerConfig,
                                        mcc: MessagesControllerComponents,

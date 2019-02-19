@@ -27,6 +27,8 @@ import play.api.i18n.MessagesApi
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import usermatching.utils.UserMatchingSessionUtil._
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 @Singleton
 class AgentNotAuthorisedController @Inject()(val baseConfig: BaseControllerConfig,
                                              mcc: MessagesControllerComponents,

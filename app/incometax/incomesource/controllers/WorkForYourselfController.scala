@@ -31,6 +31,7 @@ import play.api.mvc._
 import play.twirl.api.Html
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class WorkForYourselfController @Inject()(val baseConfig: BaseControllerConfig,

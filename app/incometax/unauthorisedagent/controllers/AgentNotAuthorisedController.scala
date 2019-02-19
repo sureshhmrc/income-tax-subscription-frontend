@@ -27,6 +27,8 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.MessagesControllerComponents
 import usermatching.userjourneys.ConfirmAgentSubscription
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 class AgentNotAuthorisedController @Inject()(val baseConfig: BaseControllerConfig,
                                              mcc: MessagesControllerComponents,
                                              val authService: AuthService,

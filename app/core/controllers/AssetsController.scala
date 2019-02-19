@@ -17,8 +17,9 @@
 package core.controllers
 
 import com.google.inject.{Inject, Singleton}
-import controllers.AssetsBuilder
+import controllers.{AssetsBuilder, AssetsComponents}
 import play.api.http.HttpErrorHandler
 
 @Singleton
-class AssetsController @Inject()(errorHandler: HttpErrorHandler) extends AssetsBuilder(errorHandler)
+class AssetsController @Inject()(errorHandler: HttpErrorHandler,
+                                 components: AssetsComponents) extends AssetsBuilder(errorHandler, components.assetsMetadata)

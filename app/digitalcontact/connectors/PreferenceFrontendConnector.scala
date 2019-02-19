@@ -17,8 +17,8 @@
 package digitalcontact.connectors
 
 import java.net.URLEncoder
-import javax.inject.{Inject, Singleton}
 
+import javax.inject.{Inject, Singleton}
 import core.Constants._
 import core.audit.Logging
 import core.config.{AppConfig, ITSAHeaderCarrierForPartialsConverter}
@@ -26,7 +26,7 @@ import core.utils.HttpResult._
 import digitalcontact.httpparsers.PaperlessPreferenceHttpParser._
 import digitalcontact.models.{PaperlessPreferenceError, PaperlessState}
 import play.api.i18n.{I18nSupport, Messages, MessagesApi}
-import play.api.mvc.{AnyContent, Request}
+import play.api.mvc.{AnyContent, ControllerComponents, Request}
 import uk.gov.hmrc.crypto.{ApplicationCrypto, PlainText}
 import uk.gov.hmrc.play.bootstrap.http.HttpClient
 import uk.gov.hmrc.play.http.logging.MdcLoggingExecutionContext._
@@ -38,11 +38,13 @@ import scala.concurrent.Future
 class PreferenceFrontendConnector @Inject()(appConfig: AppConfig,
                                             hc: ITSAHeaderCarrierForPartialsConverter,
                                             http: HttpClient,
-                                            val messagesApi: MessagesApi,
-                                            logging: Logging
+                                            logging: Logging,
+                                            controllerComponents: ControllerComponents
                                            ) extends I18nSupport {
 
   import hc._
+
+  override def messagesApi: MessagesApi = controllerComponents.messagesApi
 
   lazy val returnUrl: String = PreferenceFrontendConnector.returnUrl(appConfig.baseUrl)
 

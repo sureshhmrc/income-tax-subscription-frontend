@@ -33,6 +33,7 @@ import play.twirl.api.Html
 import usermatching.userjourneys.ConfirmAgentSubscription
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class AuthoriseAgentController @Inject()(val baseConfig: BaseControllerConfig,

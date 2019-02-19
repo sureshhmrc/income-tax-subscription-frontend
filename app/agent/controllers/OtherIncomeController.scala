@@ -34,6 +34,7 @@ import play.twirl.api.Html
 import uk.gov.hmrc.http.InternalServerException
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class OtherIncomeController @Inject()(val baseConfig: BaseControllerConfig,

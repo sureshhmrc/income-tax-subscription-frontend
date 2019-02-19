@@ -34,6 +34,7 @@ import usermatching.services.CitizenDetailsService
 import usermatching.userjourneys.ConfirmAgentSubscription
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class HomeController @Inject()(override val baseConfig: BaseControllerConfig,

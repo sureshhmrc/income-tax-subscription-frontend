@@ -29,6 +29,7 @@ import agent.services.KeystoreService
 import core.services.AuthService
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class BusinessAccountingMethodController @Inject()(val baseConfig: BaseControllerConfig,

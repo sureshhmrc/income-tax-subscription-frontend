@@ -32,6 +32,8 @@ import testonly.forms.UnauthorisedAgentSubmissionForm
 import testonly.models.UnauthorisedAgentSubmissionModel
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 //$COVERAGE-OFF$Disabling scoverage on this class as it is only intended to be used by the test only controller
 
 @Singleton

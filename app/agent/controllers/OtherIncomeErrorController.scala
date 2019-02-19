@@ -28,6 +28,7 @@ import core.services.AuthService
 import uk.gov.hmrc.http.InternalServerException
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class OtherIncomeErrorController @Inject()(implicit val baseConfig: BaseControllerConfig,

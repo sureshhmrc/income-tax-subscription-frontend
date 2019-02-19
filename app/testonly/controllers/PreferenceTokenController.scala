@@ -31,6 +31,7 @@ import testonly.models.preferences.{AddTokenRequest, AddTokenResponse}
 import uk.gov.hmrc.http._
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 
 class PreferenceTokenController @Inject()(val baseConfig: BaseControllerConfig,

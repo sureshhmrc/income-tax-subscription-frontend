@@ -25,6 +25,8 @@ import core.services.AuthService
 import javax.inject.{Inject, Singleton}
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 @Singleton
 class AddAnotherClientController @Inject()(override val baseConfig: BaseControllerConfig,
                                            mcc: MessagesControllerComponents,
