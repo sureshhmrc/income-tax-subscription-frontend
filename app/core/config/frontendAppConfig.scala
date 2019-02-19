@@ -110,15 +110,12 @@ trait AppConfig extends FeatureSwitching {
 }
 
 @Singleton
-class FrontendAppConfig @Inject()(configuration: Configuration,
-                                  environment: Environment,
+class FrontendAppConfig @Inject()(environment: Environment,
                                   servicesConfig: ServicesConfig) extends AppConfig {
 
   lazy val mode: Mode = environment.mode
 
-  protected def runModeConfiguration: Configuration = configuration
-
-  protected def loadConfig(key: String) = servicesConfig.getConfString(key, throw new Exception(s"Missing configuration key: $key"))
+  protected def loadConfig(key: String): String = servicesConfig.getString(key)
 
   protected def splitString(value: String, separator: String): Seq[String] = value.split(separator).toSeq
 
@@ -148,8 +145,8 @@ class FrontendAppConfig @Inject()(configuration: Configuration,
   override lazy val agentAccountUrl = loadConfig(s"agent-account.url")
 
   //GA Config
-  override lazy val analyticsToken = loadConfig(s"google-analytics.token")
-  override lazy val analyticsHost = loadConfig(s"google-analytics.host")
+  override lazy val analyticsToken = loadConfig("google-analytics.token")
+  override lazy val analyticsHost = loadConfig("google-analytics.host")
 
   //Contact Frontend Config
   protected lazy val contactFrontendService = servicesConfig.baseUrl("contact-frontend")
@@ -213,7 +210,7 @@ class FrontendAppConfig @Inject()(configuration: Configuration,
   *  matching.
   */
   override lazy val hasEnabledTestOnlyRoutes: Boolean =
-    configuration.getString("application.router").get == "testOnlyDoNotUseInAppConf.Routes"
+    loadConfig("application.router") == "testOnlyDoNotUseInAppConf.Routes"
 
   override lazy val matchingAttempts: Int = loadConfig("lockout.maxAttempts").toInt
 

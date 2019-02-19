@@ -17,7 +17,7 @@ private object AppDependencies {
 
   private val bootstrapPlayVersion = "0.36.0"
   private val govukTemplateVersion = "5.23.0"
-  private val playUiVersion = "7.22.0"
+  private val playUiVersion = "7.32.0-play-26"
   private val playPartialsVersion = "6.5.0"
   private val hmrcTestVersion = "3.3.0"
   private val scalaTestVersion = "3.0.5"

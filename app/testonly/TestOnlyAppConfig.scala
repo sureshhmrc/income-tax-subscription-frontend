@@ -24,9 +24,8 @@ import play.api.{Configuration, Environment}
 import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
-class TestOnlyAppConfig @Inject()(configuration: Configuration,
-                                  environment: Environment,
-                                  servicesConfig: ServicesConfig) extends FrontendAppConfig(configuration, environment, servicesConfig) {
+class TestOnlyAppConfig @Inject()(environment: Environment,
+                                  servicesConfig: ServicesConfig) extends FrontendAppConfig(environment, servicesConfig) {
 
   override lazy val ggAuthenticationURL: String = servicesConfig.baseUrl("gg-authentication")
 
