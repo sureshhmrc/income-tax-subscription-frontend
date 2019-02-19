@@ -25,6 +25,7 @@ import core.config.{AppConfig, ITSAHeaderCarrierForPartialsConverter}
 import core.utils.HttpResult._
 import digitalcontact.httpparsers.PaperlessPreferenceHttpParser._
 import digitalcontact.models.{PaperlessPreferenceError, PaperlessState}
+import play.api.Play
 import play.api.i18n.{I18nSupport, Messages, MessagesApi}
 import play.api.mvc.{AnyContent, ControllerComponents, Request}
 import uk.gov.hmrc.crypto.{ApplicationCrypto, PlainText}
@@ -48,10 +49,10 @@ class PreferenceFrontendConnector @Inject()(appConfig: AppConfig,
 
   lazy val returnUrl: String = PreferenceFrontendConnector.returnUrl(appConfig.baseUrl)
 
-  def checkPaperlessUrl(token: String): String =
+  def checkPaperlessUrl(token: String)(implicit request: Request[AnyContent]): String =
     appConfig.preferencesFrontend + PreferenceFrontendConnector.checkPaperlessUri(returnUrl, token)
 
-  lazy val choosePaperlessUrl: String =
+  def choosePaperlessUrl(implicit request: Request[AnyContent]): String =
     appConfig.preferencesFrontendRedirect + PreferenceFrontendConnector.choosePaperlessUri(returnUrl)
 
   def checkPaperless(token: String)(implicit request: Request[AnyContent]): Future[Either[PaperlessPreferenceError.type, PaperlessState]] = {
@@ -69,9 +70,11 @@ class PreferenceFrontendConnector @Inject()(appConfig: AppConfig,
 
 object PreferenceFrontendConnector {
 
+  lazy val applicationCrypto = new ApplicationCrypto(Play.current.configuration.underlying)
+
   private[digitalcontact] def urlEncode(text: String) = URLEncoder.encode(text, "UTF-8")
 
-  private[digitalcontact] def encryptAndEncode(s: String) = urlEncode(ApplicationCrypto.QueryParameterCrypto.encrypt(PlainText(s)).value)
+  private[digitalcontact] def encryptAndEncode(s: String) = urlEncode(applicationCrypto.QueryParameterCrypto.encrypt(PlainText(s)).value)
 
   def returnUrl(baseUrl: String): String =
     encryptAndEncode(baseUrl + digitalcontact.controllers.routes.PreferencesController.callback().url)

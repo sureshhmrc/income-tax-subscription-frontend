@@ -22,7 +22,7 @@ import uk.gov.hmrc.auth.core.{AffinityGroup, ConfidenceLevel, CredentialRole, En
 import usermatching.utils.UserMatchingSessionUtil.{UserMatchingSessionRequestUtil, UserMatchingSessionResultUtil}
 
 
-class UserMatchingController(mcc: MessagesControllerComponents) extends BaseFrontendController(mcc) {
+abstract class UserMatchingController(mcc: MessagesControllerComponents) extends BaseFrontendController(mcc) {
 
   object Authenticated extends AuthenticatedActions[IncomeTaxAgentUser] {
 

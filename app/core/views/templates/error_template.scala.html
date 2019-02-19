@@ -36,7 +36,7 @@
     <script type="text/javascript" src=@routes.Assets.at("javascripts/ga-feedback.js")></script>
     <script type="text/javascript" src="@routes.Assets.at("javascripts/ga-backlink.js")"></script>
     @* append custom scripts *@
-@scriptElem.fold(HtmlFormat.empty)(x => x)
+@scriptElem.fold(Html(""))(x => x)
 }
 
 @headStyle = {
