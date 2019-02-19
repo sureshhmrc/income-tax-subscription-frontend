@@ -30,7 +30,7 @@ import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-trait AuthenticatedController[T <: UserJourney[IncomeTaxSAUser]] extends FrontendController with I18nSupport {
+abstract class AuthenticatedController[T <: UserJourney[IncomeTaxSAUser]](mcc: MessagesControllerComponents) extends FrontendController(mcc) with I18nSupport {
   type User = IncomeTaxSAUser
 
   val authService: AuthService

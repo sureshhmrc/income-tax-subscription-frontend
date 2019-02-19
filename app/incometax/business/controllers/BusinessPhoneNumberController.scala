@@ -17,7 +17,6 @@
 package incometax.business.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.auth.RegistrationController
 import core.config.BaseControllerConfig
 import core.services.{AuthService, KeystoreService}
@@ -25,17 +24,17 @@ import incometax.business.forms.BusinessPhoneNumberForm
 import incometax.business.models.BusinessPhoneNumberModel
 import play.api.data.Form
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 
 import scala.concurrent.Future
 
 @Singleton
 class BusinessPhoneNumberController @Inject()(val baseConfig: BaseControllerConfig,
-                                              val messagesApi: MessagesApi,
+                                              mcc: MessagesControllerComponents,
                                               val keystoreService: KeystoreService,
                                               val authService: AuthService
-                                             ) extends RegistrationController {
+                                             ) extends RegistrationController(mcc) {
 
   def view(businessPhoneNumberForm: Form[BusinessPhoneNumberModel], isEditMode: Boolean)(implicit request: Request[_]): Html =
     incometax.business.views.html.business_phone_number(

@@ -17,16 +17,15 @@
 package incometax.subscription.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.config.AppConfig
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
 @Singleton
 class ExitSurveyThankYouController @Inject()(implicit val applicationConfig: AppConfig,
-                                             val messagesApi: MessagesApi
-                                            ) extends FrontendController with I18nSupport {
+                                             mcc: MessagesControllerComponents
+                                            ) extends FrontendController(mcc) with I18nSupport {
 
   val show: Action[AnyContent] = Action { implicit request =>
     Ok(incometax.subscription.views.html.exit_survey_thank_you())

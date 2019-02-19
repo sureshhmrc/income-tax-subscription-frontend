@@ -32,7 +32,8 @@ import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-trait BaseFrontendController extends FrontendController with I18nSupport with AuthPredicates {
+abstract class BaseFrontendController(mcc: MessagesControllerComponents) extends
+  FrontendController(mcc) with I18nSupport with AuthPredicates {
 
   val authService: AuthService
   val baseConfig: BaseControllerConfig

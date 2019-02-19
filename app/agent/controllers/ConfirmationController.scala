@@ -25,15 +25,15 @@ import core.config.BaseControllerConfig
 import core.services.AuthService
 import javax.inject.{Inject, Singleton}
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 
 @Singleton
 class ConfirmationController @Inject()(val baseConfig: BaseControllerConfig,
-                                       val messagesApi: MessagesApi,
+                                       mcc: MessagesControllerComponents,
                                        val keystoreService: KeystoreService,
                                        val authService: AuthService,
                                        val logging: Logging
-                                      ) extends PostSubmissionController {
+                                      ) extends PostSubmissionController(mcc) {
 
   val show: Action[AnyContent] = Authenticated.async { implicit request =>
     implicit user =>

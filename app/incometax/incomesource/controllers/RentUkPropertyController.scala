@@ -17,7 +17,6 @@
 package incometax.incomesource.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.auth.SignUpController
 import core.config.BaseControllerConfig
 import core.models.{No, Yes}
@@ -27,18 +26,18 @@ import incometax.incomesource.models.RentUkPropertyModel
 import incometax.incomesource.services.CurrentTimeService
 import play.api.data.Form
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import play.api.mvc._
 import play.twirl.api.Html
 
 import scala.concurrent.Future
 
 @Singleton
 class RentUkPropertyController @Inject()(val baseConfig: BaseControllerConfig,
-                                         val messagesApi: MessagesApi,
+                                         mcc: MessagesControllerComponents,
                                          val keystoreService: KeystoreService,
                                          val authService: AuthService,
                                          val currentTimeService: CurrentTimeService
-                                        ) extends SignUpController {
+                                        ) extends SignUpController(mcc) {
 
   def show(isEditMode: Boolean): Action[AnyContent] = Authenticated.async { implicit request =>
     implicit user =>

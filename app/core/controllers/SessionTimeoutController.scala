@@ -27,8 +27,8 @@ import scala.concurrent.Future
 
 @Singleton
 class SessionTimeoutController @Inject()(implicit val applicationConfig: AppConfig,
-                                         val messagesApi: MessagesApi
-                                        ) extends FrontendController with I18nSupport {
+                                         mcc: MessagesControllerComponents
+                                        ) extends FrontendController(mcc) with I18nSupport {
 
   val show = Action.async { implicit request =>
     Future.successful(Ok(core.views.html.timeout.timeout()))

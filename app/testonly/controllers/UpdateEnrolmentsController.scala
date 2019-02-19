@@ -21,7 +21,7 @@ import core.config.AppConfig
 import core.services.AuthService
 import javax.inject.Inject
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import testonly.connectors.EnrolmentStoreStubConnector
 import testonly.forms.UpdateEnrolmentsForm
 import uk.gov.hmrc.auth.core.AuthConnector
@@ -33,10 +33,10 @@ import scala.concurrent.Future
 
 
 class UpdateEnrolmentsController @Inject()(implicit val applicationConfig: AppConfig,
-                                           val messagesApi: MessagesApi,
+                                           mcc: MessagesControllerComponents,
                                            enrolmentStoreStubConnector: EnrolmentStoreStubConnector,
                                            authService: AuthService
-                                          ) extends FrontendController with I18nSupport {
+                                          ) extends FrontendController(mcc) with I18nSupport {
 
   import authService._
 

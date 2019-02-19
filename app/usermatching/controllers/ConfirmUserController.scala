@@ -17,14 +17,13 @@
 package usermatching.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.ITSASessionKeys._
 import core.auth.JourneyState._
 import core.auth.{IncomeTaxSAUser, UserMatched, UserMatchingController}
 import core.config.BaseControllerConfig
 import core.services.AuthService
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import play.api.mvc._
 import play.twirl.api.Html
 import uk.gov.hmrc.http.{HeaderCarrier, InternalServerException}
 import usermatching.models.{LockedOut, NotLockedOut, UserDetailsModel, UserMatchSuccessResponseModel}
@@ -36,11 +35,11 @@ import scala.util.Left
 
 @Singleton
 class ConfirmUserController @Inject()(val baseConfig: BaseControllerConfig,
-                                      val messagesApi: MessagesApi,
+                                      mcc: MessagesControllerComponents,
                                       val authService: AuthService,
                                       val userMatching: UserMatchingService,
                                       val lockOutService: UserLockoutService
-                                     ) extends UserMatchingController {
+                                     ) extends UserMatchingController(mcc) {
 
   def view(userDetailsModel: UserDetailsModel)(implicit request: Request[_]): Html =
     usermatching.views.html.check_your_user_details(

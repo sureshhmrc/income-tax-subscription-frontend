@@ -17,25 +17,24 @@
 package testonly.controllers
 
 import javax.inject.Inject
-
 import core.auth.BaseFrontendController
 import core.config.BaseControllerConfig
 import core.config.featureswitch.FeatureSwitch._
 import core.config.featureswitch.{FeatureSwitch, FeatureSwitching}
 import core.services.AuthService
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, Request}
+import play.api.mvc.{Action, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import testonly.connectors.BackendFeatureSwitchConnector
 import testonly.models.FeatureSwitchSetting
 
 import scala.collection.immutable.ListMap
 
-class FeatureSwitchController @Inject()(val messagesApi: MessagesApi,
+class FeatureSwitchController @Inject()(mcc: MessagesControllerComponents,
                                         val baseConfig: BaseControllerConfig,
                                         val authService: AuthService,
                                         featureSwitchConnector: BackendFeatureSwitchConnector)
-  extends BaseFrontendController with FeatureSwitching with I18nSupport {
+  extends BaseFrontendController(mcc) with FeatureSwitching with I18nSupport {
   private def view(switchNames: Map[FeatureSwitch, Boolean], backendFeatureSwitches: Map[String, Boolean])(implicit request: Request[_]): Html =
     testonly.views.html.feature_switch(
       switchNames = switchNames,

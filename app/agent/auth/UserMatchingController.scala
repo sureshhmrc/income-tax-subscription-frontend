@@ -17,12 +17,12 @@
 package agent.auth
 
 import core.auth.BaseFrontendController
-import play.api.mvc.{AnyContent, Request, Result}
+import play.api.mvc.{AnyContent, MessagesControllerComponents, Request, Result}
 import uk.gov.hmrc.auth.core.{AffinityGroup, ConfidenceLevel, CredentialRole, Enrolments}
 import usermatching.utils.UserMatchingSessionUtil.{UserMatchingSessionRequestUtil, UserMatchingSessionResultUtil}
 
 
-trait UserMatchingController extends BaseFrontendController {
+class UserMatchingController(mcc: MessagesControllerComponents) extends BaseFrontendController(mcc) {
 
   object Authenticated extends AuthenticatedActions[IncomeTaxAgentUser] {
 

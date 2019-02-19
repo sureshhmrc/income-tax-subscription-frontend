@@ -17,7 +17,6 @@
 package agent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import agent.audit.Logging
 import agent.auth.AgentJourneyState._
 import agent.auth._
@@ -26,7 +25,7 @@ import core.config.BaseControllerConfig
 import core.services.AuthService
 import core.utils.Implicits._
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Result}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Result}
 import uk.gov.hmrc.http.InternalServerException
 
 import scala.concurrent.Future
@@ -34,10 +33,10 @@ import scala.concurrent.Future._
 
 @Singleton
 class HomeController @Inject()(override val baseConfig: BaseControllerConfig,
-                               override val messagesApi: MessagesApi,
+                               mcc: MessagesControllerComponents,
                                val authService: AuthService,
                                logging: Logging
-                              ) extends StatelessController {
+                              ) extends StatelessController(mcc) {
 
   lazy val showGuidance: Boolean = baseConfig.applicationConfig.showGuidance
 

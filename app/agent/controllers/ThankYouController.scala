@@ -17,16 +17,15 @@
 package agent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.config.AppConfig
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
 @Singleton
 class ThankYouController @Inject()(implicit val applicationConfig: AppConfig,
-                                   val messagesApi: MessagesApi
-                                  ) extends FrontendController with I18nSupport {
+                                   mcc: MessagesControllerComponents
+                                  ) extends FrontendController(mcc) with I18nSupport {
 
   val show: Action[AnyContent] = Action { implicit request =>
     Ok(agent.views.html.feedback_thank_you())

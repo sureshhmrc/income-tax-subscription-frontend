@@ -17,14 +17,13 @@
 package agent.controllers.business
 
 import javax.inject.{Inject, Singleton}
-
 import agent.auth.AuthenticatedController
 import core.config.BaseControllerConfig
 import agent.forms.AccountingMethodForm
 import agent.models.AccountingMethodModel
 import play.api.data.Form
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import agent.services.KeystoreService
 import core.services.AuthService
@@ -33,10 +32,10 @@ import scala.concurrent.Future
 
 @Singleton
 class BusinessAccountingMethodController @Inject()(val baseConfig: BaseControllerConfig,
-                                                   val messagesApi: MessagesApi,
+                                                   mcc: MessagesControllerComponents,
                                                    val keystoreService: KeystoreService,
                                                    val authService: AuthService
-                                                  ) extends AuthenticatedController {
+                                                  ) extends AuthenticatedController(mcc) {
 
   def view(accountingMethodForm: Form[AccountingMethodModel], isEditMode: Boolean)(implicit request: Request[_]): Html =
     agent.views.html.business.accounting_method(

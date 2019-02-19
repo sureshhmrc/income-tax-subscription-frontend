@@ -17,13 +17,12 @@
 package usermatching.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.auth.{IncomeTaxSAUser, UserMatchingController}
 import core.config.BaseControllerConfig
 import core.services.{AuthService, KeystoreService}
 import play.api.data.Form
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import play.api.mvc._
 import play.twirl.api.Html
 import uk.gov.hmrc.http.{HeaderCarrier, InternalServerException}
 import usermatching.forms.UserDetailsForm
@@ -34,11 +33,11 @@ import scala.concurrent.Future
 
 @Singleton
 class UserDetailsController @Inject()(val baseConfig: BaseControllerConfig,
-                                      val messagesApi: MessagesApi,
+                                      mcc: MessagesControllerComponents,
                                       val keystoreService: KeystoreService,
                                       val authService: AuthService,
                                       val lockOutService: UserLockoutService
-                                     ) extends UserMatchingController {
+                                     ) extends UserMatchingController(mcc) {
 
   def view(userDetailsForm: Form[UserDetailsModel], isEditMode: Boolean)(implicit request: Request[_]): Html =
     usermatching.views.html.user_details(

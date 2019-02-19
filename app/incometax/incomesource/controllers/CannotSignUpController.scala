@@ -17,23 +17,22 @@
 package incometax.incomesource.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.audit.Logging
 import core.auth.SignUpController
 import core.config.BaseControllerConfig
 import core.services.{AuthService, KeystoreService}
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 
 import scala.concurrent.Future
 
 @Singleton
 class CannotSignUpController @Inject()(val baseConfig: BaseControllerConfig,
-                                       val messagesApi: MessagesApi,
+                                       mcc: MessagesControllerComponents,
                                        val keystoreService: KeystoreService,
                                        val logging: Logging,
                                        val authService: AuthService
-                                      ) extends SignUpController {
+                                      ) extends SignUpController(mcc) {
 
   val show: Action[AnyContent] = Authenticated.async { implicit request =>
     implicit user =>

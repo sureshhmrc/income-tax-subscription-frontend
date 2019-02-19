@@ -18,8 +18,8 @@ package incometax.subscription.controllers
 
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
-import javax.inject.{Inject, Singleton}
 
+import javax.inject.{Inject, Singleton}
 import core.ITSASessionKeys
 import core.audit.Logging
 import core.auth.PostSubmissionController
@@ -29,18 +29,18 @@ import incometax.subscription.models.Other
 import incometax.subscription.views.html.sign_up_complete
 import incometax.unauthorisedagent.views.html.unauthorised_agent_confirmation
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import uk.gov.hmrc.http.InternalServerException
 import usermatching.userjourneys.ConfirmAgentSubscription
 
 
 @Singleton
 class ConfirmationController @Inject()(val baseConfig: BaseControllerConfig,
-                                       val messagesApi: MessagesApi,
+                                       mcc: MessagesControllerComponents,
                                        val keystoreService: KeystoreService,
                                        val logging: Logging,
                                        val authService: AuthService
-                                      ) extends PostSubmissionController {
+                                      ) extends PostSubmissionController(mcc) {
 
   val show: Action[AnyContent] = Authenticated.async { implicit request =>
     implicit user =>

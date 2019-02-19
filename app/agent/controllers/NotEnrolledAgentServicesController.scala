@@ -17,18 +17,17 @@
 package agent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.config.{AppConfig, BaseControllerConfig}
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
 import scala.concurrent.Future
 
 @Singleton
 class NotEnrolledAgentServicesController @Inject()(val baseConfig: BaseControllerConfig,
-                                                   val messagesApi: MessagesApi
-                                                  ) extends FrontendController with I18nSupport {
+                                                   mcc: MessagesControllerComponents
+                                                  ) extends FrontendController(mcc) with I18nSupport {
 
   implicit lazy val appConfig: AppConfig = baseConfig.applicationConfig
 

@@ -17,13 +17,12 @@
 package agent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import agent.audit.Logging
 import agent.auth.AuthenticatedController
 import core.config.BaseControllerConfig
 import agent.forms.IncomeSourceForm
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import agent.services.KeystoreService
 import core.services.AuthService
 import uk.gov.hmrc.http.InternalServerException
@@ -32,11 +31,11 @@ import scala.concurrent.Future
 
 @Singleton
 class OtherIncomeErrorController @Inject()(implicit val baseConfig: BaseControllerConfig,
-                                           val messagesApi: MessagesApi,
+                                           mcc: MessagesControllerComponents,
                                            val keystoreService: KeystoreService,
                                            val authService: AuthService,
                                            val logging: Logging
-                                          ) extends AuthenticatedController {
+                                          ) extends AuthenticatedController(mcc) {
 
   val show = Action.async { implicit request =>
     Future.successful(Ok(agent.views.html.other_income_error(postAction = agent.controllers.routes.OtherIncomeErrorController.submit(), backUrl)))

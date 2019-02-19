@@ -17,7 +17,6 @@
 package agent.controllers.business
 
 import javax.inject.{Inject, Singleton}
-
 import agent.auth.AuthenticatedController
 import agent.forms.BusinessNameForm
 import agent.models.BusinessNameModel
@@ -29,16 +28,16 @@ import incometax.incomesource.services.CurrentTimeService
 import incometax.subscription.models.{Both, Business, IncomeSourceType}
 import play.api.data.Form
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 
 @Singleton
 class BusinessNameController @Inject()(val baseConfig: BaseControllerConfig,
-                                       val messagesApi: MessagesApi,
+                                       mcc: MessagesControllerComponents,
                                        val keystoreService: KeystoreService,
                                        val authService: AuthService,
                                        currentTimeService: CurrentTimeService
-                                      ) extends AuthenticatedController {
+                                      ) extends AuthenticatedController(mcc) {
 
   def view(businessNameForm: Form[BusinessNameModel],
            isEditMode: Boolean,

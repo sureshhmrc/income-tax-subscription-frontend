@@ -39,11 +39,11 @@ import scala.util.Left
 
 @Singleton
 class ConfirmClientController @Inject()(val baseConfig: BaseControllerConfig,
-                                        val messagesApi: MessagesApi,
+                                        mcc: MessagesControllerComponents,
                                         val agentQualificationService: AgentQualificationService,
                                         val authService: AuthService,
                                         val lockOutService: UserLockoutService
-                                       ) extends UserMatchingController {
+                                       ) extends UserMatchingController(mcc) {
 
   def view(userDetailsModel: UserDetailsModel)(implicit request: Request[_]): Html =
     agent.views.html.check_your_client_details(

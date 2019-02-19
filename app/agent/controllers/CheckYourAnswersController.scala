@@ -17,7 +17,6 @@
 package agent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import agent.audit.Logging
 import agent.auth.AgentJourneyState._
 import agent.auth.{AuthenticatedController, IncomeTaxAgentUser}
@@ -28,7 +27,7 @@ import core.services.AuthService
 import incometax.subscription.models.SubscriptionSuccess
 import incometax.unauthorisedagent.services.SubscriptionStorePersistenceService
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import play.api.mvc._
 import uk.gov.hmrc.http.cache.client.CacheMap
 import uk.gov.hmrc.http.{HeaderCarrier, InternalServerException}
 
@@ -36,14 +35,14 @@ import scala.concurrent.Future
 
 @Singleton
 class CheckYourAnswersController @Inject()(val baseConfig: BaseControllerConfig,
-                                           val messagesApi: MessagesApi,
+                                           mcc: MessagesControllerComponents,
                                            val keystoreService: KeystoreService,
                                            val subscriptionService: SubscriptionOrchestrationService,
                                            val clientRelationshipService: ClientRelationshipService,
                                            val subscriptionStorePersistenceService: SubscriptionStorePersistenceService,
                                            val authService: AuthService,
                                            logging: Logging
-                                          ) extends AuthenticatedController {
+                                          ) extends AuthenticatedController(mcc) {
 
   import agent.services.CacheUtil._
 

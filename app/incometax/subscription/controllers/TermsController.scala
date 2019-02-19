@@ -17,7 +17,6 @@
 package incometax.subscription.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.auth.SignUpController
 import core.config.BaseControllerConfig
 import core.models.{No, Yes, YesNo}
@@ -27,15 +26,15 @@ import incometax.business.models.MatchTaxYearModel
 import incometax.subscription.models.{Both, Business, IncomeSourceType, Property}
 import incometax.util.AccountingPeriodUtil._
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 
 @Singleton
 class TermsController @Inject()(val baseConfig: BaseControllerConfig,
-                                val messagesApi: MessagesApi,
+                                mcc: MessagesControllerComponents,
                                 val keystoreService: KeystoreService,
                                 val authService: AuthService
-                               ) extends SignUpController {
+                               ) extends SignUpController(mcc) {
 
   def view(backUrl: String, taxEndYear: Int)(implicit request: Request[_]): Html =
     incometax.subscription.views.html.terms(

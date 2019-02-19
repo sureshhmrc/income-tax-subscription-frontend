@@ -17,7 +17,6 @@
 package incometax.business.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.auth.{Registration, SignUpController}
 import core.config.BaseControllerConfig
 import core.services.{AuthService, KeystoreService}
@@ -26,7 +25,7 @@ import incometax.business.models.AccountingPeriodModel
 import incometax.business.models.enums._
 import play.api.data.Form
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import core.services.CacheUtil._
 import incometax.incomesource.services.CurrentTimeService
@@ -36,11 +35,11 @@ import scala.concurrent.Future
 
 @Singleton
 class BusinessAccountingPeriodDateController @Inject()(val baseConfig: BaseControllerConfig,
-                                                       val messagesApi: MessagesApi,
+                                                       mcc: MessagesControllerComponents,
                                                        val keystoreService: KeystoreService,
                                                        val authService: AuthService,
                                                        val currentTimeService: CurrentTimeService
-                                                      ) extends SignUpController {
+                                                      ) extends SignUpController(mcc) {
 
   def view(form: Form[AccountingPeriodModel], backUrl: String, isEditMode: Boolean, editMatch: Boolean)(implicit request: Request[_]): Html =
     incometax.business.views.html.accounting_period_date(

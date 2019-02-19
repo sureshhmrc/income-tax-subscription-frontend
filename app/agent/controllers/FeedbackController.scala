@@ -17,14 +17,14 @@
 package agent.controllers
 
 import java.net.URLEncoder
-import javax.inject.{Inject, Singleton}
 
+import javax.inject.{Inject, Singleton}
 import agent.views.html.feedback.feedback_thankyou
 import core.config.AppConfig
 import play.api.Logger
 import play.api.http.{Status => HttpStatus}
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, AnyContent, Request, RequestHeader}
+import play.api.mvc.{Request => _, _}
 import play.twirl.api.Html
 import uk.gov.hmrc.auth.core.AuthConnector
 import uk.gov.hmrc.crypto.PlainText
@@ -41,8 +41,8 @@ class FeedbackController @Inject()(implicit val applicationConfig: AppConfig,
                                    protected val authConnector: AuthConnector,
                                    val sessionCookieCrypto: SessionCookieCrypto,
                                    val http: HttpClient,
-                                   val messagesApi: MessagesApi
-                                  ) extends FrontendController with PartialRetriever with I18nSupport {
+                                   mcc: MessagesControllerComponents
+                                  ) extends FrontendController(mcc) with PartialRetriever with I18nSupport {
   private val TICKET_ID = "ticketId"
 
   override val httpGet = http

@@ -17,7 +17,6 @@
 package agent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import agent.audit.Logging
 import agent.auth.AuthenticatedController
 import agent.forms.{IncomeSourceForm, OtherIncomeForm}
@@ -30,7 +29,7 @@ import incometax.incomesource.services.CurrentTimeService
 import incometax.subscription.models.IncomeSourceType
 import play.api.data.Form
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import play.api.mvc._
 import play.twirl.api.Html
 import uk.gov.hmrc.http.InternalServerException
 
@@ -38,12 +37,12 @@ import scala.concurrent.Future
 
 @Singleton
 class OtherIncomeController @Inject()(val baseConfig: BaseControllerConfig,
-                                      val messagesApi: MessagesApi,
+                                      mcc: MessagesControllerComponents,
                                       val keystoreService: KeystoreService,
                                       val authService: AuthService,
                                       val logging: Logging,
                                       currentTimeService: CurrentTimeService
-                                     ) extends AuthenticatedController {
+                                     ) extends AuthenticatedController(mcc) {
 
   def view(otherIncomeForm: Form[YesNo],
            incomeSource: String,

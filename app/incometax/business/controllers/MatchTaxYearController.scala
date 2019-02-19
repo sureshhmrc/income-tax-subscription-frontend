@@ -34,11 +34,11 @@ import scala.concurrent.Future
 
 @Singleton
 class MatchTaxYearController @Inject()(val baseConfig: BaseControllerConfig,
-                                       val messagesApi: MessagesApi,
+                                       mcc: MessagesControllerComponents,
                                        val keystoreService: KeystoreService,
                                        val authService: AuthService,
                                        val currentTimeService: CurrentTimeService
-                                      ) extends SignUpController {
+                                      ) extends SignUpController(mcc) {
 
   def view(matchTaxYearForm: Form[MatchTaxYearModel], isEditMode: Boolean)(implicit request: Request[AnyContent]): Html =
     incometax.business.views.html.match_to_tax_year(

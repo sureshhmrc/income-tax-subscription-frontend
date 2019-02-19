@@ -17,7 +17,6 @@
 package incometax.incomesource.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.auth.SignUpController
 import core.config.BaseControllerConfig
 import core.services.CacheUtil._
@@ -28,18 +27,18 @@ import incometax.incomesource.services.CurrentTimeService
 import incometax.subscription.models._
 import play.api.data.Form
 import play.api.i18n.MessagesApi
-import play.api.mvc.{Action, AnyContent, Request, Result}
+import play.api.mvc._
 import play.twirl.api.Html
 
 import scala.concurrent.Future
 
 @Singleton
 class WorkForYourselfController @Inject()(val baseConfig: BaseControllerConfig,
-                                          val messagesApi: MessagesApi,
+                                          mcc: MessagesControllerComponents,
                                           val keystoreService: KeystoreService,
                                           val authService: AuthService,
                                           val currentTimeService: CurrentTimeService
-                                         ) extends SignUpController {
+                                         ) extends SignUpController(mcc) {
 
   def view(workForYourselfForm: Form[WorkForYourselfModel], isEditMode: Boolean)(implicit request: Request[_]): Html =
     incometax.incomesource.views.html.work_for_yourself(

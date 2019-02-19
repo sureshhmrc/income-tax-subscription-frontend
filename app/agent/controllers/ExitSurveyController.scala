@@ -17,7 +17,6 @@
 package agent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import agent.audit.Logging
 import agent.forms.ExitSurveyForm
 import agent.models.ExitSurveyModel
@@ -25,7 +24,7 @@ import core.config.AppConfig
 import core.utils.Implicits._
 import play.api.data.Form
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, AnyContent, Request}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
@@ -35,8 +34,8 @@ import scala.concurrent.Future
 @Singleton
 class ExitSurveyController @Inject()(val logging: Logging,
                                      implicit val applicationConfig: AppConfig,
-                                     val messagesApi: MessagesApi
-                                    ) extends FrontendController with I18nSupport {
+                                     mcc: MessagesControllerComponents
+                                    ) extends FrontendController(mcc) with I18nSupport {
 
   def view(exitSurveyForm: Form[ExitSurveyModel])(implicit request: Request[_]): Html =
     agent.views.html.exit_survey(

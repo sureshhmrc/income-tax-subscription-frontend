@@ -17,19 +17,19 @@
 package agent.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import agent.auth.AuthenticatedController
 import core.config.BaseControllerConfig
 import core.services.AuthService
 import play.api.i18n.MessagesApi
+import play.api.mvc.MessagesControllerComponents
 
 import scala.concurrent.Future
 
 @Singleton
 class MainIncomeErrorController @Inject()(val baseConfig: BaseControllerConfig,
-                                          val messagesApi: MessagesApi,
+                                          mcc: MessagesControllerComponents,
                                           val authService: AuthService
-                                         ) extends AuthenticatedController {
+                                         ) extends AuthenticatedController(mcc) {
 
 
   val show = Authenticated.async { implicit request =>

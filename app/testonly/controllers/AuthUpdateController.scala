@@ -19,12 +19,12 @@
 package testonly.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.auth.SignUpController
 import core.config.BaseControllerConfig
 import core.services.AuthService
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.Json
+import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.play.bootstrap.http.HttpClient
 
 import scala.concurrent.Future
@@ -37,10 +37,10 @@ import scala.concurrent.Future
   */
 @Singleton
 class AuthUpdateController @Inject()(val baseConfig: BaseControllerConfig,
-                                     val messagesApi: MessagesApi,
+                                     mcc: MessagesControllerComponents,
                                      val http: HttpClient,
                                      val authService: AuthService
-                                    ) extends SignUpController with I18nSupport {
+                                    ) extends SignUpController(mcc) with I18nSupport {
 
   lazy val noAction = Future.successful("no actions taken")
   lazy val updated = Future.successful(Ok("updated"))

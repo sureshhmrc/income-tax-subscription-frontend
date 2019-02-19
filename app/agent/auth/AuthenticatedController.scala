@@ -17,9 +17,10 @@
 package agent.auth
 
 import core.auth.BaseFrontendController
+import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.auth.core.{AffinityGroup, ConfidenceLevel, CredentialRole, Enrolments}
 
-trait AuthenticatedController extends BaseFrontendController {
+abstract class AuthenticatedController(mcc: MessagesControllerComponents) extends BaseFrontendController(mcc) {
 
   object Authenticated extends AuthenticatedActions[IncomeTaxAgentUser] {
 

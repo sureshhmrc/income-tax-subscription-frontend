@@ -17,11 +17,10 @@
 package testonly.controllers
 
 import javax.inject.{Inject, Singleton}
-
 import core.config.{AppConfig, BaseControllerConfig}
 import play.api.data.Form
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, Request}
+import play.api.mvc.{Action, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 import testonly.connectors.{MatchingStubConnector, UserData}
 import testonly.forms.UserToStubForm
@@ -34,9 +33,9 @@ import core.utils.Implicits._
 
 @Singleton
 class MatchingStubController @Inject()(implicit val applicationConfig: AppConfig,
-                                       val messagesApi: MessagesApi,
+                                       mcc: MessagesControllerComponents,
                                        matchingStubConnector: MatchingStubConnector
-                                      ) extends FrontendController with I18nSupport {
+                                      ) extends FrontendController(mcc) with I18nSupport {
 
   def view(clientToStubForm: Form[UserToStubModel])(implicit request: Request[_]): Html =
     testonly.views.html.stub_user(
