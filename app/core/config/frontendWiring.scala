@@ -17,29 +17,30 @@
 package core.config
 
 import javax.inject._
-
 import play.api.{Configuration, Environment}
 import uk.gov.hmrc.crypto.PlainText
 import uk.gov.hmrc.play.audit.http.connector.{AuditConnector => Auditing}
+import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 import uk.gov.hmrc.play.bootstrap.filters.frontend.crypto.SessionCookieCrypto
 import uk.gov.hmrc.play.bootstrap.http.HttpClient
-import uk.gov.hmrc.play.config.{AppName, ServicesConfig}
 import uk.gov.hmrc.play.partials.HeaderCarrierForPartialsConverter
 
 @Singleton
 class SessionCache @Inject()(environment: Environment,
                              configuration: Configuration,
-                             val http: HttpClient) extends uk.gov.hmrc.http.cache.client.SessionCache with AppName with ServicesConfig {
-  override lazy val mode = environment.mode
+                             val http: HttpClient,
+                             servicesConfig: ServicesConfig,
+                             @Named("appName") appName: String) extends uk.gov.hmrc.http.cache.client.SessionCache {
+  lazy val mode = environment.mode
 
-  override protected def runModeConfiguration: Configuration = configuration
+  protected def runModeConfiguration: Configuration = configuration
 
-  override protected def appNameConfiguration: Configuration = configuration
+  protected def appNameConfiguration: Configuration = configuration
 
-  lazy val defaultSource: String = getConfString("session-cache.income-tax-subscription-frontend.cache", "income-tax-subscription-frontend")
+  lazy val defaultSource: String = servicesConfig.getConfString("session-cache.income-tax-subscription-frontend.cache", "income-tax-subscription-frontend")
 
-  lazy val baseUri = baseUrl("session-cache")
-  lazy val domain = getConfString("session-cache.domain", throw new Exception(s"Could not find core.config 'session-cache.domain'"))
+  lazy val baseUri = servicesConfig.baseUrl("session-cache")
+  lazy val domain = servicesConfig.getConfString("session-cache.domain", throw new Exception(s"Could not find core.config 'session-cache.domain'"))
 }
 
 

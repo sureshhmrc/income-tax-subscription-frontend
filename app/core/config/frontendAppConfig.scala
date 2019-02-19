@@ -17,12 +17,11 @@
 package core.config
 
 import javax.inject.{Inject, Singleton}
-
 import core.config.featureswitch.FeatureSwitching
 import play.api.i18n.Lang
 import play.api.mvc.Call
-import play.api.{Configuration, Environment}
-import uk.gov.hmrc.play.config.ServicesConfig
+import play.api.{Configuration, Environment, Mode}
+import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 trait AppConfig extends FeatureSwitching {
 
@@ -112,23 +111,24 @@ trait AppConfig extends FeatureSwitching {
 
 @Singleton
 class FrontendAppConfig @Inject()(configuration: Configuration,
-                                  environment: Environment) extends AppConfig with ServicesConfig {
+                                  environment: Environment,
+                                  servicesConfig: ServicesConfig) extends AppConfig {
 
-  override lazy val mode = environment.mode
+  lazy val mode: Mode = environment.mode
 
-  override protected def runModeConfiguration: Configuration = configuration
+  protected def runModeConfiguration: Configuration = configuration
 
-  protected def loadConfig(key: String) = configuration.getString(key).getOrElse(throw new Exception(s"Missing configuration key: $key"))
+  protected def loadConfig(key: String) = servicesConfig.getConfString(key, throw new Exception(s"Missing configuration key: $key"))
 
   protected def splitString(value: String, separator: String): Seq[String] = value.split(separator).toSeq
 
   // Frontend Config
-  override lazy val baseUrl: String = loadConfig("base.url")
+  override lazy val baseUrl: String = servicesConfig.baseUrl("base.url")
   val contextRoute = "/report-quarterly/income-and-expenses/sign-up"
 
   //Authentication/Authorisation Config
   override lazy val ggSignInContinueUrl = s"$baseUrl$contextRoute/index"
-  override lazy val authUrl = baseUrl("auth")
+  override lazy val authUrl = servicesConfig.baseUrl("auth")
 
   // sign out
   override lazy val ggUrl = loadConfig(s"government-gateway.url")
@@ -152,7 +152,7 @@ class FrontendAppConfig @Inject()(configuration: Configuration,
   override lazy val analyticsHost = loadConfig(s"google-analytics.host")
 
   //Contact Frontend Config
-  protected lazy val contactFrontendService = baseUrl("contact-frontend")
+  protected lazy val contactFrontendService = servicesConfig.baseUrl("contact-frontend")
   protected lazy val contactHost = loadConfig("contact-frontend.host")
   override lazy val contactFormServiceIdentifier = "MTDIT"
   override lazy val contactFrontendPartialBaseUrl = s"$contactFrontendService"
@@ -160,7 +160,7 @@ class FrontendAppConfig @Inject()(configuration: Configuration,
   override lazy val reportAProblemNonJSUrl = s"$contactHost/contact/problem_reports_nonjs?service=$contactFormServiceIdentifier"
 
   // protected microservice
-  protected lazy val protectedMicroServiceUrl = baseUrl("subscription-service")
+  protected lazy val protectedMicroServiceUrl = servicesConfig.baseUrl("subscription-service")
   override lazy val subscriptionUrl = s"$protectedMicroServiceUrl/income-tax-subscription/subscription"
   override lazy val userMatchingUrl = s"$protectedMicroServiceUrl/income-tax-subscription/client-matching"
   override lazy val clientMatchingUrl = s"$protectedMicroServiceUrl/income-tax-subscription/client-matching"
@@ -172,37 +172,37 @@ class FrontendAppConfig @Inject()(configuration: Configuration,
   override lazy val agentSignUpUrl = s"$agentFrontendUrl/report-quarterly/income-and-expenses/sign-up/client"
 
   // Digital Preferences
-  override lazy val preferencesFrontend = baseUrl("preferences-frontend")
+  override lazy val preferencesFrontend = servicesConfig.baseUrl("preferences-frontend")
 
   override lazy val preferencesFrontendRedirect = loadConfig("preferences-frontend.url")
 
-  override lazy val preferencesUrl = baseUrl("preferences")
+  override lazy val preferencesUrl = servicesConfig.baseUrl("preferences")
 
   // Enable or disable showing the guidance page or go straight to sign ups
   override lazy val showGuidance: Boolean = loadConfig("feature-switch.show-guidance").toBoolean
 
   override lazy val shutterPage: String = loadConfig("shutter-page.url")
 
-  private def whitelistConfig(key: String): Seq[String] = configuration.getString(key).fold(Seq[String]())(ips => ips.split(",").toSeq)
+  private def whitelistConfig(key: String): Seq[String] = servicesConfig.getConfString(key, "").split(",").toSeq
 
   override lazy val whitelistIps: Seq[String] = whitelistConfig("ip-whitelist.urls")
 
   override lazy val ipExclusionList: Seq[Call] = whitelistConfig("ip-whitelist.excludeCalls").map(ip => Call("GET", ip))
 
-  override lazy val ggAuthenticationURL = baseUrl("gg-authentication")
-  override lazy val ggURL = baseUrl("government-gateway")
-  override lazy val ggAdminURL = baseUrl("gg-admin")
+  override lazy val ggAuthenticationURL = servicesConfig.baseUrl("gg-authentication")
+  override lazy val ggURL = servicesConfig.baseUrl("government-gateway")
+  override lazy val ggAdminURL = servicesConfig.baseUrl("gg-admin")
 
   override lazy val identityVerificationURL: String = loadConfig("identity-verification-frontend.url")
 
   override lazy val contactHmrcLink: String = loadConfig("contact-hmrc.url")
 
-  override lazy val citizenDetailsURL: String = baseUrl("citizen-details")
+  override lazy val citizenDetailsURL: String = servicesConfig.baseUrl("citizen-details")
 
   // Agent Services config
   override lazy val agentServicesUrl: String = loadConfig("agent-services.url")
 
-  override lazy val agentMicroserviceUrl: String = baseUrl("agent-microservice")
+  override lazy val agentMicroserviceUrl: String = servicesConfig.baseUrl("agent-microservice")
 
   /*
   *  This checks to see if the testOnlyDoNotUseInAppConf route is set in configuration instead of the default prod.Routes
@@ -219,7 +219,7 @@ class FrontendAppConfig @Inject()(configuration: Configuration,
 
   override lazy val matchingLockOutSeconds: Int = loadConfig("lockout.lockOutSeconds").toInt
 
-  override lazy val authenticatorUrl: String = baseUrl("authenticator")
+  override lazy val authenticatorUrl: String = servicesConfig.baseUrl("authenticator")
 
   override def enableRegistration: Boolean = isEnabled(featureswitch.RegistrationFeature)
 
@@ -229,7 +229,7 @@ class FrontendAppConfig @Inject()(configuration: Configuration,
 
   override def unauthorisedAgentEnabled: Boolean = isEnabled(featureswitch.UnauthorisedAgentFeature)
 
-  override lazy val addressLookupFrontendURL: String = baseUrl("address-lookup-frontend")
+  override lazy val addressLookupFrontendURL: String = servicesConfig.baseUrl("address-lookup-frontend")
 
   override lazy val signUpToSaLink: String = loadConfig("sa-signup.url")
 
@@ -237,7 +237,7 @@ class FrontendAppConfig @Inject()(configuration: Configuration,
 
   override lazy val backendFeatureSwitchUrl: String = s"$protectedMicroServiceUrl/income-tax-subscription/test-only/feature-switch"
 
-  lazy val taxEnrolments = baseUrl("tax-enrolments")
+  lazy val taxEnrolments = servicesConfig.baseUrl("tax-enrolments")
 
   override def upsertEnrolmentUrl(enrolmentKey: String): String =
     s"$taxEnrolments/tax-enrolments/enrolments/$enrolmentKey"
@@ -245,12 +245,12 @@ class FrontendAppConfig @Inject()(configuration: Configuration,
   override def allocateEnrolmentUrl(groupId: String, enrolmentKey: String): String =
     s"$taxEnrolments/tax-enrolments/groups/$groupId/enrolments/$enrolmentKey"
 
-  lazy val subscriptionStore = baseUrl("income-tax-subscription-store")
+  lazy val subscriptionStore = servicesConfig.baseUrl("income-tax-subscription-store")
 
   override def storeSubscriptionUrl(nino: String): String =
     s"$subscriptionStore/income-tax-subscription-store/client-subscription-data/$nino"
 
-  lazy val agentServicesAccount = baseUrl("agent-services-account")
+  lazy val agentServicesAccount = servicesConfig.baseUrl("agent-services-account")
 
   override def getAgencyNameUrl(arn: String): String = s"$agentServicesAccount/agent-services-account/client/agency-name/$arn"
 
