@@ -33,7 +33,7 @@ class OtherIncomeViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode = isEditMode
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   "The Other Income View" should {
 

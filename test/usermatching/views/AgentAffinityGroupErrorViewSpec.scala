@@ -23,7 +23,7 @@ import play.api.test.FakeRequest
 
 class AgentAffinityGroupErrorViewSpec extends ViewSpecTrait {
 
-  lazy val page = usermatching.views.html.agent_affinity_group_error()
+  lazy val page = usermatching.views.html.agent_affinity_group_error()(FakeRequest(), implicitMessages, appConfig)
 
   "The Affinity Group Error view" should {
 

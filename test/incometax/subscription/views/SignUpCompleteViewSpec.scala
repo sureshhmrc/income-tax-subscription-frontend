@@ -39,7 +39,7 @@ class SignUpCompleteViewSpec extends ViewSpecTrait {
       case Both => testSummaryData
       case _ => testSummaryData.copy(workForYourself = Some(testWorkForYourself_no))
     }
-  )
+  )(request, implicitMessages, appConfig)
 
   def document = Jsoup.parse(page(incomeSource).body)
 

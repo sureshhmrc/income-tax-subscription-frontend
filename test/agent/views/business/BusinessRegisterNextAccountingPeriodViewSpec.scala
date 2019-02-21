@@ -18,9 +18,7 @@ package agent.views.business
 
 import agent.assets.MessageLookup.Business.{RegisterNextAccountingPeriod => messages}
 import assets.MessageLookup.{Base => commonMessages}
-import core.controllers.SignOutController.signOut
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 
 class BusinessRegisterNextAccountingPeriodViewSpec extends ViewSpecTrait {
 
@@ -31,7 +29,7 @@ class BusinessRegisterNextAccountingPeriodViewSpec extends ViewSpecTrait {
   lazy val page = agent.views.html.business.register_next_accounting_period(
     postAction = action,
     backUrl = backUrl
-  )
+  )(request, implicitMessages, appConfig)
 
   "The 'Register Next Accounting Period' view" should {
     val testPage = TestView(

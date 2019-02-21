@@ -18,7 +18,6 @@ package views
 
 import assets.MessageLookup.{Base => common, FrontPage => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class FrontPageViewSpec extends ViewSpecTrait {
@@ -27,7 +26,7 @@ class FrontPageViewSpec extends ViewSpecTrait {
 
   lazy val page = views.html.frontpage(
     getAction = action
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   "The 'Front/Start Page view" should {
 

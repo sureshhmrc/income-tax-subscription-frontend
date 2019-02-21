@@ -18,14 +18,13 @@ package agent.views
 
 import agent.assets.MessageLookup.{Base => commonMessages, NotEnrolledAgentServices => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 
 class NotEnrolledAgentServicesViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.not_enrolled_agent_services()
+  lazy val page = agent.views.html.not_enrolled_agent_services()(request, implicitMessages, appConfig)
 
   "The Agent not Enrolled to Agent Services view" should {
     val testPage = TestView(

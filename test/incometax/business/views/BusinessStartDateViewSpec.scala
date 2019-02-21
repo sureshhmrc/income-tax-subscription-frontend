@@ -19,7 +19,6 @@ package incometax.business.views
 import assets.MessageLookup.{Base => common, BusinessStartDate => messages}
 import core.views.ViewSpecTrait
 import incometax.business.forms.BusinessStartDateForm
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class BusinessStartDateViewSpec extends ViewSpecTrait {
@@ -32,7 +31,7 @@ class BusinessStartDateViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode = isEditMode
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   def documentCore(prefix: String, suffix: Option[String] = None, isEditMode: Boolean) = TestView(
     name = s"$prefix Business Start Date View${suffix.fold("")(x => x)}",

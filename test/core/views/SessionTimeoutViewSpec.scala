@@ -17,12 +17,11 @@
 package core.views
 
 import assets.MessageLookup.{Timeout => messages}
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class SessionTimeoutViewSpec extends ViewSpecTrait {
 
-  lazy val page = _root_.core.views.html.timeout.timeout()
+  lazy val page = _root_.core.views.html.timeout.timeout()(FakeRequest(), implicitMessages, appConfig)
 
   "The Session timeout view" should {
 

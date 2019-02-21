@@ -21,6 +21,7 @@ import core.forms.submapping.DateMapping._
 import core.forms.validation.testutils.DataMap
 import core.models.DateModel
 import core.utils.UnitTestTrait
+import core.views.ViewSpecTrait
 import core.views.html.helpers
 import org.scalatest.Matchers._
 import play.api.data.{Field, Form}
@@ -28,7 +29,7 @@ import play.api.i18n.Messages.Implicits.applicationMessages
 import play.api.i18n.{Lang, Messages}
 import uk.gov.hmrc.play.language.LanguageUtils.Welsh
 
-class DateHelperSpec extends UnitTestTrait {
+class DateHelperSpec extends ViewSpecTrait {
 
   private def dateHelper(field: Field, label: Option[String])(implicit messages: Messages = implicitMessages)
   = helpers.dateHelper(field, label)(messages)

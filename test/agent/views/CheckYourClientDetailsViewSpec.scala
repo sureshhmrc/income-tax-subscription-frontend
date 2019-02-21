@@ -21,6 +21,7 @@ import agent.assets.MessageLookup.{Base => common, ConfirmClient => messages}
 import agent.utils.TestConstants
 import agent.views.html.helpers.ConfirmClientIdConstants._
 import core.utils.{TestModels, UnitTestTrait}
+import core.views.ViewSpecTrait
 import org.jsoup.nodes.{Document, Element}
 import org.scalatest.Matchers._
 import play.api.mvc.Call
@@ -28,7 +29,7 @@ import play.api.test.FakeRequest
 import play.twirl.api.Html
 import usermatching.models.UserDetailsModel
 
-class CheckYourClientDetailsViewSpec extends UnitTestTrait {
+class CheckYourClientDetailsViewSpec extends ViewSpecTrait {
 
   val testFirstName = "Test"
   val testLastName = "User"
@@ -47,7 +48,7 @@ class CheckYourClientDetailsViewSpec extends UnitTestTrait {
     userDetailsModel = testClientDetails,
     postAction = postAction,
     backUrl = backUrl
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   def document(): Document = page().doc
 
@@ -171,7 +172,7 @@ class CheckYourClientDetailsViewSpec extends UnitTestTrait {
     "display the correct info for dob" in {
       val sectionId = DobId
       val expectedQuestion = messages.dob
-      val expectedAnswer = testDob.toCheckYourAnswersDateFormat
+      val expectedAnswer = testDob.toCheckYourAnswersDateFormat(implicitMessages)
       val expectedEditLink = agent.controllers.matching.routes.ClientDetailsController.show(editMode = true).url
 
       sectionTest(

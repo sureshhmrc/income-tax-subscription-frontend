@@ -19,7 +19,6 @@ package agent.views
 import agent.assets.MessageLookup.{IncomeSource => messages}
 import agent.forms.IncomeSourceForm
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class IncomeSourceViewSpec extends ViewSpecTrait {
@@ -33,7 +32,7 @@ class IncomeSourceViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode = isEditMode
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   "The Income source view" should {
     val testPage = TestView(

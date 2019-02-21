@@ -20,22 +20,21 @@ import core.forms.validation.ErrorMessageFactory
 import core.forms.validation.models.FieldError
 import core.forms.validation.testutils.DataMap
 import core.forms.validation.utils.MappingUtil._
+import core.views.ViewSpecTrait
+import core.views.html.helpers
 import org.scalatest.Matchers._
 import play.api.data.Forms.mapping
 import play.api.data.validation.Invalid
 import play.api.data.{Field, Form}
-import play.api.i18n.Messages.Implicits.applicationMessages
-import core.utils.UnitTestTrait
-import core.views.html.helpers
 
-class FieldErrorHelperSpec extends UnitTestTrait {
+class FieldErrorHelperSpec extends ViewSpecTrait {
 
   import ErrorMessageFactory._
 
   case class TestData(field1: String)
 
   private def fieldErrorHelper(field: Field, form: Form[_])
-  = helpers.fieldErrorHelper(field, form)
+  = helpers.fieldErrorHelper(field, form)(implicitMessages)
 
   val errorMessage: Invalid = DataMap.alwaysFailInvalid
   val fieldErrorMessage: FieldError = DataMap.alwaysFailInvalid.errors.head.args(FieldErrorLoc).asInstanceOf[FieldError]
@@ -66,7 +65,7 @@ class FieldErrorHelperSpec extends UnitTestTrait {
       spans.get(0).attr("class") shouldBe "error-notification"
       spans.get(0).attr("role") shouldBe "tooltip"
       spans.get(0).attr("id") shouldBe s"error-message-$fieldName"
-      spans.get(0).text shouldBe fieldErrorMessage.toText
+      spans.get(0).text shouldBe fieldErrorMessage.toText(implicitMessages)
     }
 
   }

@@ -18,7 +18,6 @@ package agent.views
 
 import agent.assets.MessageLookup.{ThankYou => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits.applicationMessages
 import play.api.test.FakeRequest
 
 
@@ -26,7 +25,7 @@ class ThankYouViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
 
-  lazy val page = agent.views.html.feedback_thank_you()
+  lazy val page = agent.views.html.feedback_thank_you()(FakeRequest(), implicitMessages, appConfig)
 
   "The Thank You Page view" should {
 

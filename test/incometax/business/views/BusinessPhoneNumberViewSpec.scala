@@ -19,7 +19,6 @@ package incometax.business.views
 import assets.MessageLookup.{BusinessPhoneNumber => messages}
 import core.views.ViewSpecTrait
 import incometax.business.forms.BusinessPhoneNumberForm
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class BusinessPhoneNumberViewSpec extends ViewSpecTrait {
@@ -32,7 +31,7 @@ class BusinessPhoneNumberViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode = isEditMode
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   def documentCore(isEditMode: Boolean) = TestView(
     name = "Business phone number View",

@@ -18,17 +18,17 @@ package usermatching.views
 
 import assets.MessageLookup
 import assets.MessageLookup.{Base => common, ConfirmUser => messages}
+import core.utils.{TestConstants, TestModels}
+import core.views.ViewSpecTrait
+import core.views.html.helpers.ConfirmUserIdConstants._
 import org.jsoup.nodes.{Document, Element}
 import org.scalatest.Matchers._
-import play.api.i18n.Messages.Implicits.applicationMessages
 import play.api.mvc.Call
 import play.api.test.FakeRequest
 import play.twirl.api.Html
 import usermatching.models.UserDetailsModel
-import core.utils.{TestConstants, TestModels, UnitTestTrait}
-import core.views.html.helpers.ConfirmUserIdConstants._
 
-class CheckYourUserDetailsViewSpec extends UnitTestTrait {
+class CheckYourUserDetailsViewSpec extends ViewSpecTrait {
 
   val testFirstName = "Test"
   val testLastName = "User"
@@ -49,7 +49,7 @@ class CheckYourUserDetailsViewSpec extends UnitTestTrait {
     userDetailsModel = testUserDetails,
     postAction = postAction,
     backUrl = backUrl
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   def document(): Document = page().doc
 

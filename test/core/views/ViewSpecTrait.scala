@@ -25,14 +25,17 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.{Document, Element}
 import org.jsoup.select.Elements
 import play.api.data.Form
-import play.api.i18n.{MessagesApi, MessagesImpl, MessagesProvider}
-import play.api.mvc.{AnyContentAsEmpty, Call}
+import play.api.i18n.{Messages, MessagesApi}
+import play.api.mvc.Call
 import play.api.test.FakeRequest
-import play.i18n.Lang
 import play.twirl.api.Html
 
 
 trait ViewSpecTrait extends UnitTestTrait {
+
+  override val messagesApi: MessagesApi = app.injector.instanceOf[MessagesApi]
+
+  implicit val implicitMessages: Messages = messagesApi.preferred(fakeRequest)
 
   val titleErrPrefix = MessageLookup.Base.titleError
 

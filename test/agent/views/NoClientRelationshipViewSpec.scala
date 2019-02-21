@@ -19,14 +19,13 @@ package agent.views
 import agent.assets.MessageLookup.{Base => common, NoClientRelationship => messages}
 import core.views.ViewSpecTrait
 import org.jsoup.Jsoup
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class NoClientRelationshipViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
 
-  lazy val page = agent.views.html.no_client_relationship(action)
+  lazy val page = agent.views.html.no_client_relationship(action)(FakeRequest(), implicitMessages, appConfig)
 
   lazy val document = Jsoup.parse(page.body)
 

@@ -30,7 +30,7 @@ class UserDetailsViewSpec extends ViewSpecTrait {
     userDetailsForm = UserDetailsForm.userDetailsForm.form.addError(addFormErrors),
     postAction = action,
     isEditMode = isEditMode
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   def documentCore(isEditMode: Boolean): TestView = TestView(
     name = "User Details View",

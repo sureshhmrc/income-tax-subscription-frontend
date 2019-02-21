@@ -19,7 +19,8 @@ package incometax.subscription.views
 import assets.MessageLookup
 import assets.MessageLookup.{Summary => messages}
 import core.models.{DateModel, No, YesNo}
-import core.utils.{TestModels, UnitTestTrait}
+import core.utils.TestModels
+import core.views.ViewSpecTrait
 import core.views.html.helpers.SummaryIdConstants._
 import incometax.business.models._
 import incometax.business.models.address.Address
@@ -31,7 +32,7 @@ import play.api.mvc.Call
 import play.api.test.FakeRequest
 import play.twirl.api.Html
 
-class CheckYourAnswersViewSpec extends UnitTestTrait {
+class CheckYourAnswersViewSpec extends ViewSpecTrait {
 
   val testAccountingPeriod = AccountingPeriodModel(DateModel("1", "4", "2017"), DateModel("1", "4", "2018"))
   val testBusinessName = BusinessNameModel("test business name")
@@ -69,7 +70,7 @@ class CheckYourAnswersViewSpec extends UnitTestTrait {
       isRegistration = isRegistration,
       postAction = postAction,
       backUrl = backUrl
-    )
+    )(FakeRequest(), implicitMessages, appConfig)
 
   def document(isRegistration: Boolean = false, testSummaryModel: IndividualSummary = testSummary): Document =
     page(isRegistration = isRegistration, testSummaryModel).doc

@@ -32,7 +32,7 @@ class TermsViewSpec extends ViewSpecTrait {
     postAction = action,
     taxEndYear = taxEndYear,
     backUrl = backUrl
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   "The Terms view" should {
     val testPage = TestView(

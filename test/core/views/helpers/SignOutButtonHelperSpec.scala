@@ -19,15 +19,15 @@ package core.views.helpers
 import assets.MessageLookup
 import core.controllers.SignOutController
 import core.utils.UnitTestTrait
+import core.views.ViewSpecTrait
 import core.views.html.helpers.signOutButton
 import org.jsoup.Jsoup
-import play.api.i18n.Messages.Implicits.applicationMessages
 import play.api.mvc.Request
 import play.api.test.FakeRequest
 
-class SignOutButtonHelperSpec extends UnitTestTrait {
+class SignOutButtonHelperSpec extends ViewSpecTrait {
 
-  def view(alternateText: Option[String])(request: Request[_]) = signOutButton(alternateText)
+  def view(alternateText: Option[String])(request: Request[_]) = signOutButton(alternateText)(request, implicitMessages)
 
   def html(alternateText: Option[String])(request: Request[_]) = Jsoup.parse(view(alternateText)(request).body)
 

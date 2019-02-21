@@ -18,14 +18,13 @@ package agent.views
 
 import assets.MessageLookup.{Base => common, NoSA => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 
 class NoSAViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.no_sa()
+  lazy val page = agent.views.html.no_sa()(request, implicitMessages, appConfig)
 
   "The No SA view" should {
 

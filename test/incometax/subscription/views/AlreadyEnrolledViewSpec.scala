@@ -28,7 +28,7 @@ class AlreadyEnrolledViewSpec extends ViewSpecTrait {
   val action = ViewSpecTrait.testCall
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = incometax.subscription.views.html.enrolled.already_enrolled()
+  lazy val page = incometax.subscription.views.html.enrolled.already_enrolled()(request, implicitMessages, appConfig)
   lazy val document = Jsoup.parse(page.body)
 
   "The Already Enrolled view" should {

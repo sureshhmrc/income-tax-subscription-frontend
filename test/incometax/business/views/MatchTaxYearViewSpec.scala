@@ -21,7 +21,6 @@ import assets.MessageLookup.{Base => common}
 import core.forms.submapping.YesNoMapping
 import core.views.ViewSpecTrait
 import incometax.business.forms.MatchTaxYearForm
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class MatchTaxYearViewSpec extends ViewSpecTrait {
@@ -35,7 +34,7 @@ class MatchTaxYearViewSpec extends ViewSpecTrait {
     isRegistration = isRegistration,
     backUrl = backUrl,
     isEditMode
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
 
   "The Match tax year view" when {

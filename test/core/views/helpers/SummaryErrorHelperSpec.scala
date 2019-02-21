@@ -21,18 +21,17 @@ import core.forms.validation.ErrorMessageFactory
 import core.forms.validation.models.SummaryError
 import core.forms.validation.testutils.DataMap
 import core.forms.validation.utils.MappingUtil._
+import core.views.ViewSpecTrait
+import core.views.html.helpers
 import org.scalatest.Matchers._
 import play.api.data.Form
 import play.api.data.Forms.mapping
 import play.api.data.validation.Invalid
-import play.api.i18n.Messages.Implicits.applicationMessages
-import core.utils.UnitTestTrait
-import core.views.html.helpers
 
-class SummaryErrorHelperSpec extends UnitTestTrait {
+class SummaryErrorHelperSpec extends ViewSpecTrait {
 
   private def summaryErrorHelper(form: Form[_])
-  = helpers.summaryErrorHelper(form)
+  = helpers.summaryErrorHelper(form)(implicitMessages)
 
   case class TestData(field1: String, field2: String, field3: String)
 

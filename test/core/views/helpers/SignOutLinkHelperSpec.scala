@@ -19,13 +19,14 @@ package core.views.helpers
 import assets.MessageLookup
 import core.controllers.SignOutController
 import core.utils.UnitTestTrait
+import core.views.ViewSpecTrait
 import core.views.html.helpers.signOutLink
 import org.jsoup.Jsoup
 import play.api.i18n.Messages.Implicits.applicationMessages
 import play.api.mvc.Request
 import play.api.test.FakeRequest
 
-class SignOutLinkHelperSpec extends UnitTestTrait {
+class SignOutLinkHelperSpec extends ViewSpecTrait {
 
   def view(alternateText: Option[String])(request: Request[_]) = signOutLink(alternateText)(request, implicitMessages)
 

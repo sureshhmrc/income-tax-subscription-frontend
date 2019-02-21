@@ -19,7 +19,6 @@ package incometax.unauthorisedagent.views
 import assets.MessageLookup.UnauthorisedAgent.{AuthoriseAgent => messages}
 import core.views.ViewSpecTrait
 import incometax.unauthorisedagent.forms.ConfirmAgentForm
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class AuthoriseAgentViewSpec extends ViewSpecTrait {
@@ -29,7 +28,7 @@ class AuthoriseAgentViewSpec extends ViewSpecTrait {
   def page(addFormErrors: Boolean) = incometax.unauthorisedagent.views.html.authorise_agent(
     authoriseAgentForm = ConfirmAgentForm.confirmAgentForm.addError(addFormErrors),
     postAction = action
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   "The Authorise Agent View" should {
 

@@ -17,18 +17,17 @@
 package core.views.helpers
 
 import core.forms.validation.testutils.DataMap
+import core.forms.validation.utils.MappingUtil._
+import core.views.ViewSpecTrait
+import core.views.html.helpers
 import org.scalatest.Matchers._
 import play.api.data.Forms._
 import play.api.data.{Field, Form}
-import play.api.i18n.Messages.Implicits.applicationMessages
-import core.utils.UnitTestTrait
-import core.forms.validation.utils.MappingUtil._
-import core.views.html.helpers
 
-class CheckboxHelperSpec extends UnitTestTrait {
+class CheckboxHelperSpec extends ViewSpecTrait {
 
   private def checkboxHelper(field: Field, label: String)
-  = helpers.checkboxHelper(field, label)
+  = helpers.checkboxHelper(field, label)(implicitMessages)
 
   case class TestData(checked: Boolean)
 

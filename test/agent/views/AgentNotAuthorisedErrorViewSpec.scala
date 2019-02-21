@@ -24,7 +24,7 @@ import play.api.test.FakeRequest
 class AgentNotAuthorisedErrorViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
-  val request: FakeRequest[AnyContentAsEmpty.type] = FakeRequest("POST", "/test-url")
+  val request = ViewSpecTrait.viewTestRequest
 
   lazy val page = agent.views.html.agent_not_authorised(action)(request, implicitMessages, appConfig)
 

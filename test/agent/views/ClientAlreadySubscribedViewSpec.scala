@@ -18,15 +18,13 @@ package agent.views
 
 import agent.assets.MessageLookup.{Base => common, ClientAlreadySubscribed => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
-import play.api.test.FakeRequest
 
 class ClientAlreadySubscribedViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.client_already_subscribed(action)
+  lazy val page = agent.views.html.client_already_subscribed(action)(request, implicitMessages, appConfig)
 
   "The Client Already Enrolled view" should {
     val testPage = TestView(

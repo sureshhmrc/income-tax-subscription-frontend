@@ -20,7 +20,6 @@ import agent.assets.MessageLookup.{AccountingMethod => messages}
 import agent.forms.AccountingMethodForm
 import core.forms.submapping.AccountingMethodMapping
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class BusinessAccountingMethodViewSpec extends ViewSpecTrait {
@@ -32,7 +31,7 @@ class BusinessAccountingMethodViewSpec extends ViewSpecTrait {
     postAction = action,
     isEditMode,
     backUrl = backUrl
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   def documentCore(isEditMode: Boolean) = TestView(
     name = "Business Accounting Method View",

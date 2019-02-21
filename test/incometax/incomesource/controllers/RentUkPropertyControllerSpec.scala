@@ -25,7 +25,7 @@ import incometax.incomesource.models.RentUkPropertyModel
 import incometax.incomesource.services.mocks.MockCurrentTimeService
 import play.api.http.Status
 import play.api.i18n.Messages
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent}
 import play.api.test.Helpers._
 
 class RentUkPropertyControllerSpec extends ControllerBaseSpec
@@ -50,7 +50,7 @@ class RentUkPropertyControllerSpec extends ControllerBaseSpec
 
   "test" should {
     "en" in {
-      val m: Messages = implicitMessages
+      val m: Messages = cMessages
       m must not be null
       m.apply("base.back") must be("Back")
     }

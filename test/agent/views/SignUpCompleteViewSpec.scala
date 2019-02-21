@@ -22,10 +22,9 @@ import core.utils.TestModels.testAgentSummaryData
 import core.utils.UnitTestTrait
 import core.views.ViewSpecTrait
 import org.jsoup.Jsoup
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
-class SignUpCompleteViewSpec extends UnitTestTrait {
+class SignUpCompleteViewSpec extends ViewSpecTrait {
 
   val submissionDateValue = DateModel("1", "1", "2016")
   val action = ViewSpecTrait.testCall
@@ -34,7 +33,7 @@ class SignUpCompleteViewSpec extends UnitTestTrait {
     summary = testAgentSummaryData,
     postAction = agent.controllers.routes.AddAnotherClientController.addAnother(),
     signOutAction = action
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
   lazy val document = Jsoup.parse(page.body)
 
   "The Sign Up Complete view" should {

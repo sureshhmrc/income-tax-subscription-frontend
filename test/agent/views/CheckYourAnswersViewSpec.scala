@@ -22,14 +22,14 @@ import _root_.core.utils.UnitTestTrait
 import agent.assets.MessageLookup
 import agent.assets.MessageLookup.{Summary => messages}
 import core.utils.TestModels._
+import core.views.ViewSpecTrait
 import org.jsoup.nodes.{Document, Element}
 import org.scalatest.Matchers._
-import play.api.i18n.Messages.Implicits.applicationMessages
 import play.api.mvc.Call
 import play.api.test.FakeRequest
 import play.twirl.api.Html
 
-class CheckYourAnswersViewSpec extends UnitTestTrait {
+class CheckYourAnswersViewSpec extends ViewSpecTrait {
 
   lazy val postAction: Call = _root_.agent.controllers.routes.CheckYourAnswersController.submit()
   lazy val backUrl: String = _root_.agent.controllers.routes.TermsController.show().url
@@ -38,7 +38,7 @@ class CheckYourAnswersViewSpec extends UnitTestTrait {
     summaryModel = testSummaryData,
     postAction = postAction,
     backUrl = backUrl
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   def document(accountingPeriodViewType: AccountingPeriodViewType = CurrentAccountingPeriodView): Document = page(accountingPeriodViewType).doc
 

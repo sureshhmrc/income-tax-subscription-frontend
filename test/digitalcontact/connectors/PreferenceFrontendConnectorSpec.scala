@@ -25,7 +25,7 @@ import core.utils.UnitTestTrait
 class PreferenceFrontendConnectorSpec extends UnitTestTrait
   with TestPreferenceFrontendConnector {
 
-  implicit val fakeRequest = FakeRequest()
+  implicit val fakeRequest1 = FakeRequest()
 
   "PreferenceFrontendConnector" should {
 

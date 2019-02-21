@@ -44,7 +44,6 @@ class HomeControllerSpec extends ControllerBaseSpec
   with MockSubscriptionStoreRetrievalService {
 
   override val controllerName: String = "HomeControllerSpec"
-  val fakeRequest = FakeRequest()
 
   override val authorisedRoutes: Map[String, Action[AnyContent]] = Map(
     "index" -> TestHomeController(showStartPage = false).index()

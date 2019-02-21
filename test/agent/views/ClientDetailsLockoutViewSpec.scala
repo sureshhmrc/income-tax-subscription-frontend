@@ -18,14 +18,13 @@ package agent.views
 
 import agent.assets.MessageLookup.{Base => commonMessages, ClientDetailsLockout => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 
 class ClientDetailsLockoutViewSpec extends ViewSpecTrait {
 
   val testTime = "test time"
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.client_details_lockout(testTime)
+  lazy val page = agent.views.html.client_details_lockout(testTime)(request, implicitMessages, appConfig)
 
   "The Client Details Lockout view" should {
     val testPage = TestView(

@@ -20,16 +20,15 @@ import agent.assets.MessageLookup
 import core.utils.UnitTestTrait
 import core.views.ViewSpecTrait
 import org.jsoup.Jsoup
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
-class UnauthorisedAgentConfirmationViewSpec extends UnitTestTrait {
+class UnauthorisedAgentConfirmationViewSpec extends ViewSpecTrait {
 
   val action = ViewSpecTrait.testCall
 
   lazy val page = agent.views.html.unauthorised_agent_confirmation(
     postAction = agent.controllers.routes.AddAnotherClientController.addAnother()
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
   lazy val document = Jsoup.parse(page.body)
 
   "The Unauthorised Agent Confirmation view" should {

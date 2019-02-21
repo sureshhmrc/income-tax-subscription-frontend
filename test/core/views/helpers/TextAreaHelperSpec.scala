@@ -19,13 +19,13 @@ package core.views.helpers
 import core.forms.validation.testutils.DataMap
 import core.forms.validation.utils.MappingUtil._
 import core.utils.UnitTestTrait
+import core.views.ViewSpecTrait
 import core.views.html.helpers
 import org.scalatest.Matchers._
 import play.api.data.Forms._
 import play.api.data.{Field, Form}
-import play.api.i18n.Messages.Implicits.applicationMessages
 
-class TextAreaHelperSpec extends UnitTestTrait {
+class TextAreaHelperSpec extends ViewSpecTrait {
 
   private def textAreaHelper(field: Field,
                              label: String,
@@ -39,7 +39,7 @@ class TextAreaHelperSpec extends UnitTestTrait {
       showLabel = showLabel,
       maxLength = maxLength,
       cols = cols,
-      rows = rows)
+      rows = rows)(implicitMessages)
 
   case class TestData(input: String)
 

@@ -20,7 +20,6 @@ import assets.MessageLookup.{AccountingPeriod => messages, Base => common}
 import core.views.ViewSpecTrait
 import incometax.business.forms.AccountingPeriodDateForm
 import incometax.business.models.enums._
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class BusinessAccountingPeriodDateViewSpec extends ViewSpecTrait {
@@ -35,7 +34,7 @@ class BusinessAccountingPeriodDateViewSpec extends ViewSpecTrait {
       backUrl = backUrl,
       viewType = viewType,
       isEditMode = isEditMode
-    )
+    )(FakeRequest(), implicitMessages, appConfig)
 
   def documentCore(prefix: String, suffix: Option[String] = None, viewType: AccountingPeriodViewType, isEditMode: Boolean) = TestView(
     name = s"$prefix Business Accounting Period Date View${suffix.fold("")(x => x)}",

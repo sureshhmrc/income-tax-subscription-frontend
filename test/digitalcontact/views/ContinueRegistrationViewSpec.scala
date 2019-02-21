@@ -18,8 +18,6 @@ package digitalcontact.views
 
 import assets.MessageLookup.{PreferencesCallBack => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits.applicationMessages
-import play.api.test.FakeRequest
 
 class ContinueRegistrationViewSpec extends ViewSpecTrait {
 
@@ -28,7 +26,7 @@ class ContinueRegistrationViewSpec extends ViewSpecTrait {
 
   lazy val page = digitalcontact.views.html.continue_registration(
     postAction = action
-  )
+  )(request, implicitMessages, appConfig)
 
   "The Continue Registration view" should {
     val testPage = TestView(

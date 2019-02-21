@@ -18,14 +18,13 @@ package agent.views
 
 import agent.assets.MessageLookup.{Base, MainIncomeError => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 
 class MainIncomeErrorViewSpec extends ViewSpecTrait {
 
   val backUrl = ViewSpecTrait.testBackUrl
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = agent.views.html.main_income_error(backUrl)
+  lazy val page = agent.views.html.main_income_error(backUrl)(request, implicitMessages, appConfig)
 
   "The Main Income Error view" should {
     val testPage = TestView(

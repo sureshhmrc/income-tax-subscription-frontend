@@ -27,7 +27,7 @@ import core.utils.UnitTestTrait
 
 class PreferencesServiceSpec extends UnitTestTrait with TestPreferencesService with EitherValues {
 
-  implicit val fakeRequest = FakeRequest()
+  implicit val fakeRequest1 = FakeRequest()
 
   "TestPreferencesService" should {
 

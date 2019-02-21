@@ -35,7 +35,7 @@ class RentUkPropertyViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode = isEditMode
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   "The Rent Uk Property view" should {
     val testPage = TestView(

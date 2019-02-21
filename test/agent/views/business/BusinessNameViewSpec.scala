@@ -19,7 +19,6 @@ package agent.views.business
 import agent.assets.MessageLookup.{BusinessName => messages}
 import agent.forms.BusinessNameForm
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class BusinessNameViewSpec extends ViewSpecTrait {
@@ -32,7 +31,7 @@ class BusinessNameViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode = isEditMode
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   def documentCore(isEditMode: Boolean) = TestView(
     name = "Business Name View",

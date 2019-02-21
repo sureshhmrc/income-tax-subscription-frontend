@@ -19,9 +19,8 @@ package agent.views.business
 import agent.assets.MessageLookup.Business.{AccountingPeriodPrior => messages}
 import agent.forms.AccountingPeriodPriorForm
 import core.forms.submapping.YesNoMapping
-import play.api.i18n.Messages.Implicits._
-import play.api.test.FakeRequest
 import core.views.ViewSpecTrait
+import play.api.test.FakeRequest
 
 class BusinessAccountingPeriodPriorViewSpec extends ViewSpecTrait {
 
@@ -33,7 +32,7 @@ class BusinessAccountingPeriodPriorViewSpec extends ViewSpecTrait {
     postAction = action,
     backUrl = backUrl,
     isEditMode
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   def documentCore(isEditMode: Boolean) =
     TestView(

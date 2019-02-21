@@ -72,6 +72,7 @@ class ConfirmationControllerSpec extends ControllerBaseSpec
         )
 
         status(result) shouldBe OK
+        println("========================================================================================="+contentAsString(result))
 
         Jsoup.parse(contentAsString(result)).title shouldBe Messages("sign-up-complete.title")
 

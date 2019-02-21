@@ -19,7 +19,6 @@ package agent.views
 import agent.assets.MessageLookup.{Base => common, ClientDetails => messages}
 import agent.forms.ClientDetailsForm
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class ClientDetailsViewSpec extends ViewSpecTrait {
@@ -30,7 +29,7 @@ class ClientDetailsViewSpec extends ViewSpecTrait {
     clientDetailsForm = ClientDetailsForm.clientDetailsForm.form.addError(addFormErrors),
     postAction = action,
     isEditMode = isEditMode
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   def documentCore(isEditMode: Boolean) = TestView(
     name = "Client Details View",

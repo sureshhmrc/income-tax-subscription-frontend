@@ -18,16 +18,14 @@ package incometax.unauthorisedagent.views
 
 import assets.MessageLookup.UnauthorisedAgent.{AgentNotAuthorised => messages}
 import assets.MessageLookup.{Base => common}
-import core.utils.TestConstants._
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 
 
 class AgentNotAuthorisedViewSpec extends ViewSpecTrait {
 
   val request = ViewSpecTrait.viewTestRequest
 
-  lazy val page = incometax.unauthorisedagent.views.html.agent_not_authorised()
+  lazy val page = incometax.unauthorisedagent.views.html.agent_not_authorised()(request, implicitMessages, appConfig)
 
   "The Affinity Group Error view" should {
 

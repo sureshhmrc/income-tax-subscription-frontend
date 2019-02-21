@@ -17,15 +17,15 @@
 package core.views.helpers
 
 import core.forms.validation.testutils.DataMap
+import core.forms.validation.utils.MappingUtil._
+import core.utils.UnitTestTrait
+import core.views.ViewSpecTrait
+import core.views.html.helpers
 import org.scalatest.Matchers._
 import play.api.data.Forms._
 import play.api.data.{Field, Form}
-import play.api.i18n.Messages.Implicits.applicationMessages
-import core.utils.UnitTestTrait
-import core.forms.validation.utils.MappingUtil._
-import core.views.html.helpers
 
-class InputHelperSpec extends UnitTestTrait {
+class InputHelperSpec extends ViewSpecTrait {
 
   private def inputHelper(
                            field: Field,
@@ -35,7 +35,7 @@ class InputHelperSpec extends UnitTestTrait {
                            labelClass: Option[String] = None,
                            isNumeric: Boolean = false
                          )
-  = helpers.inputHelper(field, label = label, formHint = formHint, maxLength = maxLength, labelClass = labelClass, isNumeric = isNumeric)
+  = helpers.inputHelper(field, label = label, formHint = formHint, maxLength = maxLength, labelClass = labelClass, isNumeric = isNumeric)(implicitMessages)
 
   case class TestData(input: String)
 

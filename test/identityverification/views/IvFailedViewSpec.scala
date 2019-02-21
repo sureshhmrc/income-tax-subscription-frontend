@@ -18,13 +18,12 @@ package identityverification.views
 
 import assets.MessageLookup.{IvFailed => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class IvFailedViewSpec extends ViewSpecTrait {
   val testUrl = "link/iv"
 
-  lazy val page = identityverification.views.html.iv_failed(testUrl)
+  lazy val page = identityverification.views.html.iv_failed(testUrl)(FakeRequest(), implicitMessages, appConfig)
 
   "The IV failed view spec" should {
     val testPage = TestView(

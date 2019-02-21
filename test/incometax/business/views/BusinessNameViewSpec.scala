@@ -19,7 +19,6 @@ package incometax.business.views
 import assets.MessageLookup.{BusinessName => messages}
 import core.views.ViewSpecTrait
 import incometax.business.forms.BusinessNameForm
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class BusinessNameViewSpec extends ViewSpecTrait {
@@ -33,7 +32,7 @@ class BusinessNameViewSpec extends ViewSpecTrait {
     backUrl = backUrl,
     isRegistration = isRegistration,
     isEditMode = isEditMode
-  )
+  )(FakeRequest(), implicitMessages, appConfig)
 
   def documentCore(isEditMode: Boolean, isRegistration: Boolean) = TestView(
     name = s"Business Name View for ${if (isRegistration) "registration" else "sign up"}",

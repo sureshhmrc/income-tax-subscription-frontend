@@ -18,7 +18,6 @@ package incometax.incomesource.views
 
 import assets.MessageLookup.{OtherIncomeError => messages}
 import core.views.ViewSpecTrait
-import play.api.i18n.Messages.Implicits._
 import play.api.test.FakeRequest
 
 class OtherIncomeErrorViewSpec extends ViewSpecTrait {
@@ -29,7 +28,11 @@ class OtherIncomeErrorViewSpec extends ViewSpecTrait {
 
   lazy val page = incometax.incomesource.views.html.other_income_error(
     postAction = action,
-    backUrl = backUrl)
+    backUrl = backUrl)(
+    FakeRequest(),
+    implicitMessages,
+    appConfig
+  )
 
   "The Other Income Error view" should {
 

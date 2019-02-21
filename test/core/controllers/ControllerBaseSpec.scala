@@ -24,6 +24,7 @@ import core.services.mocks.MockAuthService
 import core.utils.TestConstants
 import org.mockito.Mockito
 import play.api.data.Form
+import play.api.i18n.{Messages, MessagesApi}
 import play.api.mvc._
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
@@ -37,6 +38,10 @@ trait ControllerBaseSpec extends ControllerBaseTrait with MockAuthService {
 
   val controllerName: String
   val authorisedRoutes: Map[String, Action[AnyContent]]
+
+  def messagesApi: MessagesApi = stubMCC.messagesApi
+
+  implicit val cMessages: Messages = messagesApi.preferred(stubMCC.langs.availables)
 
   final def authorisationTests(): Unit = {
     authorisedRoutes.foreach {

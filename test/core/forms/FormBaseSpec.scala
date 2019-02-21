@@ -18,11 +18,12 @@ package core.forms
 
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
-import play.api.i18n.{MessagesApi, MessagesImpl, MessagesProvider}
-import play.i18n.Lang
+import play.api.i18n.{Messages, MessagesApi}
+import play.api.test.FakeRequest
 
 class FormBaseSpec extends PlaySpec with GuiceOneAppPerSuite {
 
-  implicit val messagesProvider: MessagesProvider = app.injector.instanceOf[MessagesProvider]
+  val messagesApi: MessagesApi = app.injector.instanceOf[MessagesApi]
+  implicit val implicitMessages: Messages = messagesApi.preferred(FakeRequest())
 
 }
