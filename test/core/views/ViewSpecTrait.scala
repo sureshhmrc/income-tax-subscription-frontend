@@ -33,7 +33,7 @@ import play.twirl.api.Html
 
 trait ViewSpecTrait extends UnitTestTrait {
 
-  override val messagesApi: MessagesApi = app.injector.instanceOf[MessagesApi]
+  val messagesApi: MessagesApi = app.injector.instanceOf[MessagesApi]
 
   implicit val implicitMessages: Messages = messagesApi.preferred(fakeRequest)
 

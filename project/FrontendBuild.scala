@@ -15,12 +15,12 @@ private object AppDependencies {
   import play.sbt.PlayImport._
   import play.core.PlayVersion
 
-  private val bootstrapPlayVersion = "0.32.0"
-  private val govukTemplateVersion = "5.27.0-play-26"
-  private val playUiVersion = "7.27.0-play-26"
+  private val bootstrapPlayVersion = "0.36.0"
+  private val govukTemplateVersion = "5.28.0-play-26"
+  private val playUiVersion = "7.32.0-play-26"
   private val playPartialsVersion = "6.3.0"
-  private val hmrcTestVersion = "3.0.0"
-  private val scalaTestVersion = "3.0.4"
+  private val hmrcTestVersion = "3.3.0"
+  private val scalaTestVersion = "3.0.5"
   private val scalaTestPlusVersion = "3.1.2"
   private val pegdownVersion = "1.6.0"
   private val httpCachingCleintVersion = "8.0.0"
