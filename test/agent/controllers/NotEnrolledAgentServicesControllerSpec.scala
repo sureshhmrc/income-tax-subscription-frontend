@@ -16,11 +16,10 @@
 
 package agent.controllers
 
-import agent.assets.MessageLookup.{NotEnrolledAgentServices => messages}
 import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
-import play.api.test.Helpers.{contentAsString, contentType, _}
+import play.api.mvc.{Action, AnyContent}
+import play.api.test.Helpers.{contentAsString, _}
 
 class NotEnrolledAgentServicesControllerSpec extends AgentControllerBaseSpec {
 
@@ -41,15 +40,5 @@ class NotEnrolledAgentServicesControllerSpec extends AgentControllerBaseSpec {
     "return 200" in {
       status(result) must be(Status.OK)
     }
-
-    "return HTML" in {
-      contentType(result) must be(Some("text/html"))
-      charset(result) must be(Some("utf-8"))
-    }
-
-    "render the 'Not subscribed to Agent Services page'" in {
-      document.title mustBe messages.title
-    }
-
   }
 }

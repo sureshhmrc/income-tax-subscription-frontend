@@ -16,7 +16,6 @@
 
 package incometax.business.controllers
 
-import assets.MessageLookup
 import core.config.MockConfig
 import core.config.featureswitch.FeatureSwitching
 import core.controllers.ControllerBaseSpec
@@ -28,9 +27,8 @@ import incometax.business.forms.AccountingPeriodDateForm
 import incometax.business.models.AccountingPeriodModel
 import incometax.incomesource.services.mocks.MockCurrentTimeService
 import incometax.util.AccountingPeriodUtil
-import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent}
 import play.api.test.Helpers._
 
 class BusinessAccountingPeriodDateControllerSpec extends ControllerBaseSpec
@@ -86,11 +84,6 @@ class BusinessAccountingPeriodDateControllerSpec extends ControllerBaseSpec
         await(result)
         verifyKeystore(fetchAccountingPeriodDate = 1, saveAccountingPeriodDate = 0)
 
-      }
-
-      s"the rendered view should have the heading '${MessageLookup.AccountingPeriod.heading_signup}'" in {
-        val document = Jsoup.parse(contentAsString(result))
-        document.select("h1").text mustBe MessageLookup.AccountingPeriod.heading_signup
       }
     }
 
@@ -240,11 +233,6 @@ class BusinessAccountingPeriodDateControllerSpec extends ControllerBaseSpec
         await(result)
         verifyKeystore(fetchAccountingPeriodDate = 1, saveAccountingPeriodDate = 0)
 
-      }
-
-      s"the rendered view should have the heading '${MessageLookup.AccountingPeriod.heading_registration}'" in {
-        val document = Jsoup.parse(contentAsString(result))
-        document.select("h1").text mustBe MessageLookup.AccountingPeriod.heading_registration
       }
     }
   }

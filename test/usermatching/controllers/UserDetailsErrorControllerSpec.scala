@@ -16,17 +16,14 @@
 
 package usermatching.controllers
 
-import assets.MessageLookup.{UserDetailsError => messages}
 import core.ITSASessionKeys
 import core.auth.UserMatching
-import core.config.MockConfig
 import core.controllers.ControllerBaseSpec
 import core.utils.TestConstants.testUserId
-import org.jsoup.Jsoup
 import play.api.http.Status
 import play.api.mvc.{Action, AnyContent}
-import play.api.test.Helpers.{contentAsString, contentType, _}
-import uk.gov.hmrc.http.{NotFoundException, SessionKeys}
+import play.api.test.Helpers.{contentType, _}
+import uk.gov.hmrc.http.SessionKeys
 
 class UserDetailsErrorControllerSpec extends ControllerBaseSpec {
 
@@ -51,7 +48,6 @@ class UserDetailsErrorControllerSpec extends ControllerBaseSpec {
   "Calling the 'show' action of the UserDetailsErrorController" should {
 
     lazy val result = TestUserDetailsErrorController.show(request)
-    lazy val document = Jsoup.parse(contentAsString(result))
 
     "return 200" in {
       status(result) must be(Status.OK)
@@ -60,15 +56,6 @@ class UserDetailsErrorControllerSpec extends ControllerBaseSpec {
     "return HTML" in {
       contentType(result) must be(Some("text/html"))
       charset(result) must be(Some("utf-8"))
-    }
-
-    "render the 'User Details Error page'" in {
-      document.title mustBe messages.title
-    }
-
-    s"the page must have a link to sign out" in {
-      document.select("#sign-out").attr("href") mustBe
-        core.controllers.SignOutController.signOut(request.path).url
     }
 
   }

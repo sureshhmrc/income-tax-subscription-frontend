@@ -83,7 +83,6 @@ class IdentityVerificationControllerSpec extends ControllerBaseSpec {
       lazy val document = Jsoup.parse(contentAsString(result))
 
       status(result) mustBe Status.OK
-      document.title() mustBe MessageLookup.IvFailed.title
     }
   }
 

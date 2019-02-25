@@ -48,9 +48,6 @@ class ThankYouControllerSpec extends AgentControllerBaseSpec {
       charset(result) must be(Some("utf-8"))
     }
 
-    s"have the title '${MessageLookup.ThankYou.title}'" in {
-      document.title() must be(MessageLookup.ThankYou.title)
-    }
   }
 
 }

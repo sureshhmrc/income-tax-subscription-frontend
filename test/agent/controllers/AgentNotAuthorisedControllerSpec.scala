@@ -72,10 +72,6 @@ class AgentNotAuthorisedControllerSpec extends AgentControllerBaseSpec
         charset(result) must be(Some("utf-8"))
       }
 
-      s"render the agent not authorised page" in {
-        document.title mustBe messages.heading
-      }
-
       s"the post action of the page rendered should be '${agent.controllers.routes.AgentNotAuthorisedController.submit().url}'" in {
         document.select("form").attr("action") mustBe agent.controllers.routes.AgentNotAuthorisedController.submit().url
       }

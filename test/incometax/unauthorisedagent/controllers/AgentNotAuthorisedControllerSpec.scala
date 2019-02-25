@@ -25,8 +25,7 @@ import core.utils.TestConstants._
 import incometax.unauthorisedagent.services.mocks.MockSubscriptionStoreRetrievalService
 import org.jsoup.Jsoup
 import play.api.i18n.Messages
-import play.api.i18n.Messages.Implicits._
-import play.api.mvc.{Action, AnyContent, AnyContentAsEmpty, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent, AnyContentAsEmpty}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import uk.gov.hmrc.http.{HttpResponse, NotFoundException}

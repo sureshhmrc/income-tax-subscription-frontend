@@ -62,10 +62,7 @@ class AuthoriseAgentControllerSpec extends ControllerBaseSpec
           enable(UnauthorisedAgentFeature)
 
           val result = await(TestAuthoriseAgentController.show().apply(request))
-          val document = Jsoup.parse(contentAsString(result))
-
           status(result) mustBe OK
-          document.title() mustBe Messages("authorise-agent.title", testAgencyName)
         }
       }
     }
@@ -112,8 +109,6 @@ class AuthoriseAgentControllerSpec extends ControllerBaseSpec
             val result = await(submit("this triggers a validation error"))
 
             status(result) must be(Status.BAD_REQUEST)
-            val document = Jsoup.parse(contentAsString(result))
-            document.title() must include(Messages("authorise-agent.title", testAgencyName))
           }
         }
       }
