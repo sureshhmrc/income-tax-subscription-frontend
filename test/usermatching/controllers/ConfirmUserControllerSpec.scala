@@ -56,7 +56,7 @@ class ConfirmUserControllerSpec extends ControllerBaseSpec
   val userDetails = TestModels.testUserDetails
   val token = TestConstants.testToken
 
-  lazy val request = userMatchingRequest.withSession(SessionKeys.userId -> testUserId.value, ITSASessionKeys.JourneyStateKey -> UserMatching.name).buildRequest(userDetails)
+  lazy val request = userMatchingRequest.withSession(SessionKeys.userId -> testUserId.value, ITSASessionKeys.JourneyStateKey -> UserMatching.name)//.buildRequest(userDetails)
 
 
   "Calling the show action of the ConfirmUserController with an authorised user" should {

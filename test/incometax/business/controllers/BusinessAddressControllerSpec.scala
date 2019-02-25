@@ -16,7 +16,6 @@
 
 package incometax.business.controllers
 
-import assets.MessageLookup
 import core.ITSASessionKeys
 import core.auth.Registration
 import core.config.MockConfig
@@ -219,7 +218,6 @@ class BusinessAddressControllerSpec extends ControllerBaseSpec
   }
 
   "the address lookup core.config" when {
-    import assets.MessageLookup.Base._
     import assets.MessageLookup.BusinessAddress._
 
     for (editMode <- Seq(true, false)) {
@@ -229,35 +227,35 @@ class BusinessAddressControllerSpec extends ControllerBaseSpec
         "should have the correct parameters" in {
           conf.continueUrl mustBe TestBusinessAddressController.callbackUrl(editMode)(request)
           conf.showBackButtons mustBe Some(true)
-          conf.navTitle mustBe Some(MessageLookup.Base.navTitle)
+          conf.navTitle mustBe Some("base.service_name")
 
           val lookup = conf.lookupPage.get
-          lookup.heading mustBe Some(Lookup.heading)
-          lookup.filterLabel mustBe Some(Lookup.nameOrNimber)
-          lookup.submitLabel mustBe Some(Lookup.submit)
-          lookup.manualAddressLinkText mustBe Some(Lookup.enterManually)
+          lookup.heading mustBe Some("business.address.lookup.heading")
+          lookup.filterLabel mustBe Some("business.address.lookup.name_or_number")
+          lookup.submitLabel mustBe Some("business.address.lookup.submit")
+          lookup.manualAddressLinkText mustBe Some("business.address.lookup.enter_manually")
 
           val select = conf.selectPage.get
-          select.title mustBe Some(Select.title)
-          select.heading mustBe Some(Select.heading)
+          select.title mustBe Some("business.address.select.title")
+          select.heading mustBe Some("business.address.select.heading")
           select.showSearchAgainLink mustBe Some(true)
-          select.editAddressLinkText mustBe Some(Select.edit)
+          select.editAddressLinkText mustBe Some("business.address.select.edit")
 
           val confirm = conf.confirmPage.get
-          confirm.heading mustBe Some(Confirm.heading)
+          confirm.heading mustBe Some("business.address.confirm.heading")
           confirm.showChangeLink mustBe Some(false)
           confirm.showSearchAgainLink mustBe Some(true)
-          confirm.searchAgainLinkText mustBe Some(Confirm.change)
+          confirm.searchAgainLinkText mustBe Some("business.address.confirm.change")
           if (editMode)
-            confirm.submitLabel mustBe Some(update)
+            confirm.submitLabel mustBe Some("base.update")
           else
             confirm.submitLabel mustBe None
 
           val edit = conf.editPage.get
-          edit.heading mustBe Some(Edit.heading)
-          edit.line1Label mustBe Some(Edit.addLine1)
-          edit.line2Label mustBe Some(Edit.addLine2)
-          edit.line3Label mustBe Some(Edit.addLine3)
+          edit.heading mustBe Some("business.address.edit.heading")
+          edit.line1Label mustBe Some("business.address.edit.add_line_1")
+          edit.line2Label mustBe Some("business.address.edit.add_line_2")
+          edit.line3Label mustBe Some("business.address.edit.add_line_3")
           edit.showSearchAgainLink mustBe Some(true)
         }
       }

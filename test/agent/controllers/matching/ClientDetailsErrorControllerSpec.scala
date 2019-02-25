@@ -52,10 +52,6 @@ class ClientDetailsErrorControllerSpec extends AgentControllerBaseSpec {
       charset(result) must be(Some("utf-8"))
     }
 
-    "render the 'Client Details Error page'" in {
-      document.title mustBe messages.title
-    }
-
     s"the page must have a link to sign out}" in {
       document.select("#sign-out").attr("href") mustBe
         core.controllers.SignOutController.signOut(userMatchingRequest.path).url

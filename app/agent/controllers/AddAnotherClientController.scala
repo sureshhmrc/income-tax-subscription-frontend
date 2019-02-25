@@ -25,7 +25,7 @@ import core.config.BaseControllerConfig
 import core.services.AuthService
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.ExecutionContext
 
 @Singleton
 class AddAnotherClientController @Inject()(override val baseConfig: BaseControllerConfig,
@@ -34,6 +34,8 @@ class AddAnotherClientController @Inject()(override val baseConfig: BaseControll
                                            val authService: AuthService,
                                            logging: Logging
                                           ) extends StatelessController(mcc) {
+
+  implicit val ec: ExecutionContext = mcc.executionContext
 
   override val statelessDefaultPredicate: AuthPredicate[IncomeTaxAgentUser] = agent.auth.AuthPredicates.defaultPredicates
 

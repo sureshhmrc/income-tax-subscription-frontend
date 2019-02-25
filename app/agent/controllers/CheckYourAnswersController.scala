@@ -30,8 +30,7 @@ import play.api.mvc._
 import uk.gov.hmrc.http.cache.client.CacheMap
 import uk.gov.hmrc.http.{HeaderCarrier, InternalServerException}
 
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class CheckYourAnswersController @Inject()(val baseConfig: BaseControllerConfig,
@@ -43,6 +42,7 @@ class CheckYourAnswersController @Inject()(val baseConfig: BaseControllerConfig,
                                            val authService: AuthService,
                                            logging: Logging
                                           ) extends AuthenticatedController(mcc) {
+  implicit val ec: ExecutionContext = mcc.executionContext
 
   import agent.services.CacheUtil._
 

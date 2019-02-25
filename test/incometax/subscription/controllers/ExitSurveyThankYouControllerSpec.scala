@@ -16,9 +16,7 @@
 
 package incometax.subscription.controllers
 
-import assets.MessageLookup
 import core.controllers.ControllerBaseSpec
-import org.jsoup.Jsoup
 import play.api.http.Status
 import play.api.mvc.{Action, AnyContent}
 import play.api.test.Helpers._
@@ -37,7 +35,6 @@ class ExitSurveyThankYouControllerSpec extends ControllerBaseSpec {
 
   "ExitSurveyThankYouController.show" should {
     lazy val result = TestExitSurveyThankYouController.show()(subscriptionRequest)
-    lazy val document = Jsoup.parse(contentAsString(result))
 
     "return ok (200)" in {
       status(result) must be(Status.OK)
@@ -46,10 +43,6 @@ class ExitSurveyThankYouControllerSpec extends ControllerBaseSpec {
     "return HTML" in {
       contentType(result) must be(Some("text/html"))
       charset(result) must be(Some("utf-8"))
-    }
-
-    s"have the title '${MessageLookup.ThankYou.title}'" in {
-      document.title() must be(MessageLookup.ThankYou.title)
     }
   }
 

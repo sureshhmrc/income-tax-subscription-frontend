@@ -36,7 +36,6 @@ class NoSAControllerSpec extends ControllerBaseSpec {
   "Calling the show action of the NoSAController" should {
 
     lazy val result = TestNoSAController.show(subscriptionRequest)
-    lazy val document = Jsoup.parse(contentAsString(result))
 
     "return 200" in {
       status(result) must be(Status.OK)
@@ -45,10 +44,6 @@ class NoSAControllerSpec extends ControllerBaseSpec {
     "return HTML" in {
       contentType(result) must be(Some("text/html"))
       charset(result) must be(Some("utf-8"))
-    }
-
-    s"have the title '${MessageLookup.NoSA.title}'" in {
-      document.title() must be(MessageLookup.NoSA.title)
     }
   }
 

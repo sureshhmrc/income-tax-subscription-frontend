@@ -28,8 +28,7 @@ import play.api.data.Form
 import play.api.mvc._
 import play.twirl.api.Html
 
-import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class IncomeSourceController @Inject()(val baseConfig: BaseControllerConfig,
@@ -38,6 +37,8 @@ class IncomeSourceController @Inject()(val baseConfig: BaseControllerConfig,
                                        val authService: AuthService,
                                        val currentTimeService: CurrentTimeService
                                       ) extends AuthenticatedController(mcc) {
+
+  implicit val ec: ExecutionContext = mcc.executionContext
 
   def view(incomeSourceForm: Form[IncomeSourceType], isEditMode: Boolean)(implicit request: Request[_]): Html =
     agent.views.html.income_source(

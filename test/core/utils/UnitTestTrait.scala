@@ -20,7 +20,7 @@ import core.config.{AppConfig, MockConfig}
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.scalatestplus.play.PlaySpec
-import org.scalatestplus.play.guice.GuiceOneServerPerSuite
+import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.test.FakeRequest
 import play.twirl.api.Html
 import uk.gov.hmrc.http.HeaderCarrier
@@ -29,7 +29,7 @@ import uk.gov.hmrc.play.bootstrap.tools.Stubs.stubMessagesControllerComponents
 import scala.concurrent.{ExecutionContextExecutor, Future}
 
 
-trait UnitTestTrait extends PlaySpec with GuiceOneServerPerSuite with Implicits {
+trait UnitTestTrait extends PlaySpec with GuiceOneAppPerSuite with Implicits {
 
   implicit val executionContext: ExecutionContextExecutor = scala.concurrent.ExecutionContext.Implicits.global
 
@@ -50,8 +50,5 @@ trait UnitTestTrait extends PlaySpec with GuiceOneServerPerSuite with Implicits 
   def fakeRequest = FakeRequest("", "")
 
   lazy val stubMCC = stubMessagesControllerComponents()
-
-
-
 
 }

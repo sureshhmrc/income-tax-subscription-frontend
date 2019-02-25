@@ -32,8 +32,7 @@ import play.api.mvc._
 import play.twirl.api.Html
 import uk.gov.hmrc.http.InternalServerException
 
-import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class OtherIncomeController @Inject()(val baseConfig: BaseControllerConfig,
@@ -44,6 +43,7 @@ class OtherIncomeController @Inject()(val baseConfig: BaseControllerConfig,
                                       currentTimeService: CurrentTimeService
                                      ) extends AuthenticatedController(mcc) {
 
+  implicit val ec: ExecutionContext = mcc.executionContext
   def view(otherIncomeForm: Form[YesNo],
            incomeSource: String,
            isEditMode: Boolean,

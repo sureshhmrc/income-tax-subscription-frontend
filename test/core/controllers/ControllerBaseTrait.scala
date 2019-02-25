@@ -18,9 +18,13 @@ package core.controllers
 
 import core.config.{AppConfig, BaseControllerConfig, MockConfig}
 import core.utils.UnitTestTrait
+import play.api.i18n.{Messages, MessagesApi}
 
 
 trait ControllerBaseTrait extends UnitTestTrait {
+
+  def messagesApi: MessagesApi = stubMCC.messagesApi
+  implicit val cMessages: Messages = messagesApi.preferred(fakeRequest)
 
   def mockBaseControllerConfig(appConfig: AppConfig): BaseControllerConfig =
     new BaseControllerConfig(applicationConfig = appConfig) {

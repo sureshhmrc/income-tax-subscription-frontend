@@ -16,11 +16,10 @@
 
 package incometax.subscription.controllers
 
-import assets.MessageLookup.{AlreadyEnrolled => messages}
 import core.controllers.ControllerBaseSpec
 import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent}
 import play.api.test.Helpers._
 
 class AlreadyEnrolledControllerSpec extends ControllerBaseSpec {
@@ -47,8 +46,6 @@ class AlreadyEnrolledControllerSpec extends ControllerBaseSpec {
 
       contentType(result) must be(Some("text/html"))
       charset(result) must be(Some("utf-8"))
-
-      document.title mustBe messages.heading
 
       document.select("#sign-out-button").attr("href") mustBe
       core.controllers.SignOutController.signOut(subscriptionRequest.path).url

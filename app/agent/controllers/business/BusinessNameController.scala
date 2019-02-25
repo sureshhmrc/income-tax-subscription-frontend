@@ -30,7 +30,7 @@ import play.api.data.Form
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Request}
 import play.twirl.api.Html
 
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.ExecutionContext
 
 @Singleton
 class BusinessNameController @Inject()(val baseConfig: BaseControllerConfig,
@@ -39,6 +39,8 @@ class BusinessNameController @Inject()(val baseConfig: BaseControllerConfig,
                                        val authService: AuthService,
                                        currentTimeService: CurrentTimeService
                                       ) extends AuthenticatedController(mcc) {
+
+  implicit val ec: ExecutionContext = mcc.executionContext
 
   def view(businessNameForm: Form[BusinessNameModel],
            isEditMode: Boolean,

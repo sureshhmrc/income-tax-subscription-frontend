@@ -76,7 +76,7 @@ class ConfirmClientControllerSpec extends AgentControllerBaseSpec
   val utr = TestConstants.testUtr
   val nino = TestConstants.testNino
 
-  lazy val request = userMatchingRequest.buildRequest(TestModels.testClientDetails)
+  lazy val request = userMatchingRequest//.buildRequest(TestModels.testClientDetails)
 
   "Calling the show action of the ConfirmClientController with an authorised user" should {
 

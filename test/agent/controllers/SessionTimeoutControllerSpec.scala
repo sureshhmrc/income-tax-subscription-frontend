@@ -16,10 +16,9 @@
 
 package agent.controllers
 
-import assets.MessageLookup
 import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
@@ -44,10 +43,6 @@ class SessionTimeoutControllerSpec extends AgentControllerBaseSpec {
     "return HTML" in {
       contentType(result) must be(Some("text/html"))
       charset(result) must be(Some("utf-8"))
-    }
-
-    s"have the title '${MessageLookup.Timeout.title}'" in {
-      document.title() must be(MessageLookup.Timeout.title)
     }
   }
 }

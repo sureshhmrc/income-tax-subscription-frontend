@@ -30,11 +30,9 @@ import uk.gov.hmrc.http.InternalServerException
 import usermatching.models.{LockedOut, NotLockedOut, UserDetailsModel}
 import usermatching.services.{LockoutUpdate, UserLockoutService}
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.Future.{failed, successful}
 import scala.util.Left
-
-import scala.concurrent.ExecutionContext.Implicits.global
 
 
 @Singleton
@@ -44,6 +42,8 @@ class ConfirmClientController @Inject()(val baseConfig: BaseControllerConfig,
                                         val authService: AuthService,
                                         val lockOutService: UserLockoutService
                                        ) extends UserMatchingController(mcc) {
+
+  implicit val ec: ExecutionContext = mcc.executionContext
 
   def view(userDetailsModel: UserDetailsModel)(implicit request: Request[_]): Html =
     agent.views.html.check_your_client_details(

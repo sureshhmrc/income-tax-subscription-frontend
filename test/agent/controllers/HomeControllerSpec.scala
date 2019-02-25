@@ -16,14 +16,12 @@
 
 package agent.controllers
 
-import agent.assets.MessageLookup.FrontPage
 import agent.audit.Logging
-import agent.auth.{AgentRegistration, AgentSignUp, AgentUserMatching}
+import agent.auth.{AgentSignUp, AgentUserMatching}
 import core.config.{BaseControllerConfig, MockConfig}
-import org.jsoup.Jsoup
 import org.mockito.Mockito.reset
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
@@ -58,10 +56,6 @@ class HomeControllerSpec extends AgentControllerBaseSpec {
 
       "Return status OK (200)" in {
         status(result) must be(Status.OK)
-      }
-
-      "Should have the page title" in {
-        Jsoup.parse(contentAsString(result)).title mustBe FrontPage.title
       }
     }
 

@@ -26,8 +26,7 @@ import javax.inject.{Inject, Singleton}
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.http.InternalServerException
 
-import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class OtherIncomeErrorController @Inject()(implicit val baseConfig: BaseControllerConfig,
@@ -36,6 +35,8 @@ class OtherIncomeErrorController @Inject()(implicit val baseConfig: BaseControll
                                            val authService: AuthService,
                                            val logging: Logging
                                           ) extends AuthenticatedController(mcc) {
+
+  implicit val ec: ExecutionContext = mcc.executionContext
 
   val show = Action.async { implicit request =>
     Future.successful(Ok(agent.views.html.other_income_error(postAction = agent.controllers.routes.OtherIncomeErrorController.submit(), backUrl)))

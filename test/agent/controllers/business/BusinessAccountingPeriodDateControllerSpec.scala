@@ -62,7 +62,7 @@ class BusinessAccountingPeriodDateControllerSpec extends AgentControllerBaseSpec
 
 
         val document = Jsoup.parse(contentAsString(result))
-        document.select("h1").text mustBe MessageLookup.AccountingPeriod.heading_current
+        document.select("h1").text mustBe "agent.accounting_period.heading.current"
 
       }
     }
@@ -80,7 +80,7 @@ class BusinessAccountingPeriodDateControllerSpec extends AgentControllerBaseSpec
 
 
         val document = Jsoup.parse(contentAsString(result))
-        document.select("h1").text mustBe MessageLookup.AccountingPeriod.heading_next
+        document.select("h1").text mustBe "agent.accounting_period.heading.next"
       }
     }
   }

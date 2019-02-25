@@ -16,13 +16,11 @@
 
 package agent.controllers
 
-import agent.assets.MessageLookup
 import agent.audit.Logging
 import agent.forms.ExitSurveyForm
 import agent.models.ExitSurveyModel
-import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 
@@ -44,7 +42,6 @@ class ExitSurveyControllerSpec extends AgentControllerBaseSpec {
   "ExitSurveyController.show" should {
     val testOrigin = "/hello-world"
     lazy val result = TestExitSurveyController.show(testOrigin)(FakeRequest())
-    lazy val document = Jsoup.parse(contentAsString(result))
 
     "return ok (200)" in {
       status(result) must be(Status.OK)
@@ -53,10 +50,6 @@ class ExitSurveyControllerSpec extends AgentControllerBaseSpec {
     "return HTML" in {
       contentType(result) must be(Some("text/html"))
       charset(result) must be(Some("utf-8"))
-    }
-
-    s"have the title '${MessageLookup.ExitSurvey.title}'" in {
-      document.title() must be(MessageLookup.ExitSurvey.title)
     }
   }
 

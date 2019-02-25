@@ -70,11 +70,6 @@ class ClientDetailsControllerSpec extends AgentControllerBaseSpec
         contentType(result) must be(Some("text/html"))
         charset(result) must be(Some("utf-8"))
       }
-
-      withClue("render the 'Not subscribed to Agent Services page'") {
-        val document = Jsoup.parse(contentAsString(result))
-        document.title mustBe messages.title
-      }
     }
   }
 
@@ -204,8 +199,7 @@ class ClientDetailsControllerSpec extends AgentControllerBaseSpec
           setupMockNotLockedOut(testARN)
 
           val badResult = callSubmit(isEditMode = editMode)
-          val document = Jsoup.parse(contentAsString(badResult))
-          document.title mustBe "Error: " + messages.title
+          status(badResult) must be(BAD_REQUEST)
         }
 
       }

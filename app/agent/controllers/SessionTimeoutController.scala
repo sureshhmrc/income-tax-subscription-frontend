@@ -16,10 +16,9 @@
 
 package agent.controllers
 
-import javax.inject.{Inject, Singleton}
-
 import core.config.AppConfig
-import play.api.i18n.{I18nSupport, MessagesApi}
+import javax.inject.{Inject, Singleton}
+import play.api.i18n.I18nSupport
 import play.api.mvc._
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 

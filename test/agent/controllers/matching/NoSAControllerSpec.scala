@@ -16,11 +16,9 @@
 
 package agent.controllers.matching
 
-import assets.MessageLookup
 import core.controllers.ControllerBaseSpec
-import org.jsoup.Jsoup
 import play.api.http.Status
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent}
 import play.api.test.Helpers._
 
 class NoSAControllerSpec extends ControllerBaseSpec {
@@ -36,7 +34,6 @@ class NoSAControllerSpec extends ControllerBaseSpec {
   "Calling the show action of the NoSAController" should {
 
     lazy val result = TestNoSAController.show(subscriptionRequest)
-    lazy val document = Jsoup.parse(contentAsString(result))
 
     "return 200" in {
       status(result) must be(Status.OK)
@@ -45,10 +42,6 @@ class NoSAControllerSpec extends ControllerBaseSpec {
     "return HTML" in {
       contentType(result) must be(Some("text/html"))
       charset(result) must be(Some("utf-8"))
-    }
-
-    s"have the title '${MessageLookup.NoSA.title}'" in {
-      document.title() must be(MessageLookup.NoSA.Agent.title)
     }
   }
 

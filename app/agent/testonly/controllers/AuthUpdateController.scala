@@ -26,8 +26,7 @@ import play.api.libs.json.Json
 import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.http.HttpPatch
 
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 
 /**
@@ -41,6 +40,8 @@ class AuthUpdateController @Inject()(val baseConfig: BaseControllerConfig,
                                      val http: HttpPatch,
                                      val authService: AuthService
                                     ) extends StatelessController(mcc) {
+
+  implicit val ec: ExecutionContext = mcc.executionContext
 
   lazy val noAction = Future.successful("no actions taken")
   lazy val updated = Future.successful(Ok("updated"))

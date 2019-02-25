@@ -16,11 +16,10 @@
 
 package agent.controllers
 
-import agent.assets.MessageLookup.{NoClientRelationship => messages}
 import agent.services.ClientRelationshipService
 import agent.services.mocks.MockKeystoreService
 import org.jsoup.Jsoup
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent}
 import play.api.test.Helpers._
 
 class NoClientRelationshipControllerSpec
@@ -50,8 +49,6 @@ class NoClientRelationshipControllerSpec
       status(res) mustBe OK
 
       lazy val document = Jsoup.parse(contentAsString(res))
-
-      document.title mustBe messages.heading
 
       document.select("form").attr("action") mustBe agent.controllers.routes.NoClientRelationshipController.submit().url
     }

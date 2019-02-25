@@ -26,7 +26,7 @@ import core.services.AuthService
 import javax.inject.{Inject, Singleton}
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.ExecutionContext
 
 @Singleton
 class ConfirmationController @Inject()(val baseConfig: BaseControllerConfig,
@@ -36,6 +36,7 @@ class ConfirmationController @Inject()(val baseConfig: BaseControllerConfig,
                                        val logging: Logging
                                       ) extends PostSubmissionController(mcc) {
 
+  implicit val ec: ExecutionContext = mcc.executionContext
   val show: Action[AnyContent] = Authenticated.async { implicit request =>
     implicit user =>
       val postAction = agent.controllers.routes.AddAnotherClientController.addAnother()

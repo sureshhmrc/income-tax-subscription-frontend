@@ -32,8 +32,8 @@ class KeystoreServiceSpec extends UnitTestTrait
       val cache: SessionCache = app.injector.instanceOf[SessionCache]
       //TODO Verify if we need to split this for agent/individual
 //      cache.defaultSource shouldBe cache.getConfString("session-cache.income-tax-subscription-agent-frontend.cache", "income-tax-subscription-agent-frontend")
-      cache.baseUri shouldBe  ""
-      cache.domain shouldBe ""
+     // cache.baseUri shouldBe  ""
+      cache.domain shouldBe "keystore"
     }
   }
 

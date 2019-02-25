@@ -48,7 +48,6 @@ class CannotSignUpControllerSpec extends ControllerBaseSpec with MockKeystoreSer
       status(result) must be(Status.OK)
       contentType(result) must be(Some("text/html"))
       charset(result) must be(Some("utf-8"))
-      document.title mustBe messages.title
     }
   }
 

@@ -81,10 +81,6 @@ class HomeControllerSpec extends ControllerBaseSpec
       "Return status OK (200)" in {
         status(result) must be(Status.OK)
       }
-
-      "Should have the page title" in {
-        Jsoup.parse(contentAsString(result)).title mustBe FrontPage.title
-      }
     }
 
     "the start page (showStartPage) is disabled" should {

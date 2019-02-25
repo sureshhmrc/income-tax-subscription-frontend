@@ -16,19 +16,18 @@
 
 package agent.controllers
 
+import agent.auth.{AgentRegistration, AgentSignUp, AgentUserMatched, AgentUserMatching}
+import agent.services.mocks.MockAgentAuthService
+import agent.utils.TestConstants
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
-import agent.auth.{AgentRegistration, AgentSignUp, AgentUserMatched, AgentUserMatching}
-import agent.controllers
+import core.controllers.ControllerBaseTrait
+import core.utils.JsonUtils
 import org.mockito.Mockito
 import play.api.data.Form
 import play.api.mvc._
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
-import agent.services.mocks.MockAgentAuthService
-import agent.utils.TestConstants
-import core.controllers.ControllerBaseTrait
-import core.utils.JsonUtils
 import uk.gov.hmrc.auth.core.{AuthorisationException, InvalidBearerToken}
 
 trait AgentControllerBaseSpec extends ControllerBaseTrait with MockAgentAuthService with JsonUtils {

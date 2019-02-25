@@ -28,7 +28,7 @@
 }
 
 @loadRadioOptions(key: String) = @{
-    (1 to Messages(s"$key.size").toInt).map(i =>
+    (1 to 5).map(i =>
         RadioOption(s"$i", Messages(s"$key.$i"))
     )
 }

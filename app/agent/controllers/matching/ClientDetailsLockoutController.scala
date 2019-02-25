@@ -29,8 +29,7 @@ import uk.gov.hmrc.http.InternalServerException
 import usermatching.models.{LockedOut, NotLockedOut}
 import usermatching.services.UserLockoutService
 
-import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.{ExecutionContext, Future}
 
 
 class ClientDetailsLockoutController @Inject()(val baseConfig: BaseControllerConfig,
@@ -38,6 +37,8 @@ class ClientDetailsLockoutController @Inject()(val baseConfig: BaseControllerCon
                                                val authService: AuthService,
                                                val lockoutService: UserLockoutService
                                               ) extends UserMatchingController(mcc) {
+
+  implicit val ec: ExecutionContext = mcc.executionContext
 
   private def handleLockOut(f: => Future[Result])(implicit user: IncomeTaxAgentUser, request: Request[_]) = {
     (lockoutService.getLockoutStatus(user.arn.get) flatMap {

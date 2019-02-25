@@ -35,7 +35,6 @@ import uk.gov.hmrc.play.bootstrap.http.HttpClient
 import uk.gov.hmrc.play.partials._
 
 import scala.concurrent.{ExecutionContext, Future}
-import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class FeedbackController @Inject()(implicit val applicationConfig: AppConfig,
@@ -44,6 +43,8 @@ class FeedbackController @Inject()(implicit val applicationConfig: AppConfig,
                                    val http: HttpClient,
                                     mcc: MessagesControllerComponents
                                   ) extends FrontendController(mcc) with PartialRetriever with I18nSupport {
+
+  implicit val ec: ExecutionContext = mcc.executionContext
   private val TICKET_ID = "ticketId"
 
   override val httpGet = http

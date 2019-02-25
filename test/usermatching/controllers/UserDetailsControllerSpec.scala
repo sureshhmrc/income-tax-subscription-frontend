@@ -28,7 +28,7 @@ import play.api.http.Status
 import play.api.mvc.{Action, AnyContent, Request}
 import play.api.test.FakeRequest
 import play.api.test.Helpers.{await, contentAsString, contentType, _}
-import uk.gov.hmrc.http.{HttpResponse, NotFoundException, SessionKeys}
+import uk.gov.hmrc.http.{HttpResponse, SessionKeys}
 import usermatching.forms.UserDetailsForm
 import usermatching.models.UserDetailsModel
 import usermatching.services.mocks.MockUserLockoutService
@@ -80,9 +80,6 @@ class UserDetailsControllerSpec extends ControllerBaseSpec
 
       contentType(result) must be(Some("text/html"))
       charset(result) must be(Some("utf-8"))
-
-      val document = Jsoup.parse(contentAsString(result))
-      document.title mustBe messages.title
     }
   }
 
@@ -203,8 +200,7 @@ class UserDetailsControllerSpec extends ControllerBaseSpec
           setupMockNotLockedOut(testUserId.value)
 
           val badResult = callSubmit(isEditMode = editMode)
-          val document = Jsoup.parse(contentAsString(badResult))
-          document.title mustBe "Error: " + messages.title
+          status(badResult) mustBe BAD_REQUEST
         }
 
       }

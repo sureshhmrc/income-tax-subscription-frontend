@@ -48,14 +48,6 @@ class RentUkPropertyControllerSpec extends ControllerBaseSpec
     mockCurrentTimeService
   )
 
-  "test" should {
-    "en" in {
-      val m: Messages = cMessages
-      m must not be null
-      m.apply("base.back") must be("Back")
-    }
-  }
-
   "Calling the show action of the RentUkPropertyController with an authorised user" when {
 
     def call = TestRentUkPropertyController.show(isEditMode = true)(subscriptionRequest)

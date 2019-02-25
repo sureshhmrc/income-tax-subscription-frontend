@@ -16,21 +16,19 @@
 
 package agent.testonly.controllers
 
-import javax.inject.{Inject, Singleton}
-import core.config.{AppConfig, BaseControllerConfig}
-import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
-import incometax.unauthorisedagent.connectors.SubscriptionStoreConnector
+import agent.testonly.controllers.routes._
 import agent.testonly.forms.NinoForm._
 import agent.testonly.views.html.delete_client_subscription_data
-
-import scala.concurrent.Future
-import agent.testonly.controllers.routes._
+import core.config.{AppConfig, BaseControllerConfig}
 import core.services.AuthService
+import incometax.unauthorisedagent.connectors.SubscriptionStoreConnector
 import incometax.unauthorisedagent.models.{DeleteSubscriptionFailure, DeleteSubscriptionSuccess}
+import javax.inject.{Inject, Singleton}
+import play.api.i18n.I18nSupport
+import play.api.mvc.MessagesControllerComponents
+import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.{ExecutionContext, Future}
 
 //$COVERAGE-OFF$Disabling scoverage on this class as it is only intended to be used by the test only controller
 
@@ -41,7 +39,7 @@ class ClientSubscriptionDataController @Inject()(val baseConfig: BaseControllerC
                                                  val subscriptionStoreConnector: SubscriptionStoreConnector
                                                 ) extends FrontendController(mcc) with I18nSupport {
 
-
+  implicit val ec: ExecutionContext = mcc.executionContext
   implicit lazy val appConfig: AppConfig = baseConfig.applicationConfig
 
   lazy val show = Action.async { implicit request =>

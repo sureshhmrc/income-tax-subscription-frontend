@@ -29,7 +29,7 @@ import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import core.utils.Implicits._
 import uk.gov.hmrc.http.InternalServerException
 
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.ExecutionContext
 
 //$COVERAGE-OFF$Disabling scoverage on this class as it is only intended to be used by the test only controller
 
@@ -39,6 +39,7 @@ class MatchingStubController @Inject()(val baseConfig: BaseControllerConfig,
                                        matchingStubConnector: MatchingStubConnector
                                       ) extends FrontendController(mcc) with I18nSupport {
 
+  implicit val ec: ExecutionContext = mcc.executionContext
   implicit lazy val appConfig: AppConfig = baseConfig.applicationConfig
 
   def view(clientToStubForm: Form[ClientToStubModel])(implicit request: Request[_]): Html =

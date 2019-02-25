@@ -29,8 +29,7 @@ import play.api.data.Form
 import play.api.mvc._
 import play.twirl.api.Html
 
-import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class BusinessAccountingPeriodPriorController @Inject()(val baseConfig: BaseControllerConfig,
@@ -38,6 +37,8 @@ class BusinessAccountingPeriodPriorController @Inject()(val baseConfig: BaseCont
                                                         val keystoreService: KeystoreService,
                                                         val authService: AuthService
                                                        ) extends AuthenticatedController(mcc) {
+
+  implicit val ec: ExecutionContext = mcc.executionContext
 
   def view(accountingPeriodPriorForm: Form[AccountingPeriodPriorModel], isEditMode: Boolean)(implicit request: Request[_]): Future[Html] =
     backUrl.map { backUrl =>

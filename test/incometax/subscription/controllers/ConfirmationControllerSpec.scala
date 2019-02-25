@@ -50,6 +50,8 @@ class ConfirmationControllerSpec extends ControllerBaseSpec
     mockAuthService
   )
 
+  override implicit val cMessages = messagesApi.preferred(Seq(Welsh))
+
   override val controllerName: String = "ConfirmationControllerSpec"
   override val authorisedRoutes: Map[String, Action[AnyContent]] = Map(
     "show" -> TestConfirmationController.show
@@ -72,7 +74,6 @@ class ConfirmationControllerSpec extends ControllerBaseSpec
         )
 
         status(result) shouldBe OK
-        println("========================================================================================="+contentAsString(result))
 
         Jsoup.parse(contentAsString(result)).title shouldBe Messages("sign-up-complete.title")
 
@@ -142,7 +143,7 @@ class ConfirmationControllerSpec extends ControllerBaseSpec
         )
         status(result) shouldBe OK
 
-        Jsoup.parse(contentAsString(result)).title shouldBe Messages("sign-up-complete.title")(applicationMessages(Welsh, app))
+        Messages(Jsoup.parse(contentAsString(result)).title) shouldBe Messages("sign-up-complete.title")
       }
     }
 

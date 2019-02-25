@@ -35,7 +35,6 @@ class AffinityGroupErrorControllerSpec extends ControllerBaseSpec {
   "Calling the show action of the AffinityGroupErrorController" should {
 
     lazy val result = TestAffinityGroupErrorController.show(subscriptionRequest)
-    lazy val document = Jsoup.parse(contentAsString(result))
 
     "return 200" in {
       status(result) must be(Status.OK)
@@ -44,10 +43,6 @@ class AffinityGroupErrorControllerSpec extends ControllerBaseSpec {
     "return HTML" in {
       contentType(result) must be(Some("text/html"))
       charset(result) must be(Some("utf-8"))
-    }
-
-    s"have the title '${MessageLookup.AffinityGroup.title}'" in {
-      document.title() must be(MessageLookup.AffinityGroup.title)
     }
   }
 }

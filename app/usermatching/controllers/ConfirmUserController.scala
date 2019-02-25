@@ -63,6 +63,7 @@ class ConfirmUserController @Inject()(val baseConfig: BaseControllerConfig,
 
   def show(): Action[AnyContent] = Authenticated.async { implicit request =>
     implicit user =>
+      println(""+request.fetchUserDetails)
       withLockOutCheck {
         Future.successful(
           request.fetchUserDetails match {
@@ -75,6 +76,7 @@ class ConfirmUserController @Inject()(val baseConfig: BaseControllerConfig,
 
   def submit(): Action[AnyContent] = Authenticated.async { implicit request =>
     implicit user =>
+      println(""+request.fetchUserDetails)
       withLockOutCheck {
         request.fetchUserDetails match {
           case None =>
