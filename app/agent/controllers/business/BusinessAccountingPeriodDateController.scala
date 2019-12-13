@@ -22,7 +22,6 @@ import agent.models.enums._
 import agent.services.CacheUtil._
 import agent.services.KeystoreService
 import core.config.BaseControllerConfig
-import core.config.featureswitch.{AgentTaxYear, FeatureSwitching}
 import core.models.{No, Yes}
 import core.services.{AccountingPeriodService, AuthService}
 import core.utils.Implicits._
@@ -45,7 +44,7 @@ class BusinessAccountingPeriodDateController @Inject()(val baseConfig: BaseContr
                                                        val authService: AuthService,
                                                        val accountingPeriodService: AccountingPeriodService,
                                                        val currentDateProvider: CurrentDateProvider
-                                                      ) extends AuthenticatedController with FeatureSwitching {
+                                                      ) extends AuthenticatedController {
 
   def view(form: Form[AccountingPeriodModel],
            backUrl: String, isEditMode: Boolean,
@@ -137,21 +136,12 @@ class BusinessAccountingPeriodDateController @Inject()(val baseConfig: BaseContr
     if (isEditMode) {
       agent.controllers.routes.CheckYourAnswersController.show().url
     } else {
-      if (isEnabled(AgentTaxYear)) {
-        agent.controllers.business.routes.MatchTaxYearController.show().url
-      }
-      else {
-        keystoreService.fetchAccountingPeriodPrior() flatMap {
-          case Some(currentPeriodPrior) => currentPeriodPrior.currentPeriodIsPrior match {
-            case Yes =>
-              agent.controllers.business.routes.RegisterNextAccountingPeriodController.show().url
-            case No =>
-              agent.controllers.business.routes.BusinessAccountingPeriodPriorController.show().url
-          }
-          case _ => new InternalServerException(s"Internal Server Error - No Accounting Period Prior answer retrieved from keystore")
-        }
-      }
+      agent.controllers.business.routes.MatchTaxYearController.show().url
     }
+
   }
 }
+
+
+
 
